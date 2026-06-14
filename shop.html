@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shop · TruthPrints — The Illustrated Bible</title>
+<meta name="description" content="Buy the illustrated Gospels as digital, paperback and collector editions, fine-art wall prints, and wallpaper packs. Every passage painted in the tradition of Caravaggio and Rembrandt.">
+<link rel="icon" type="image/png" href="brand/truthprints-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+  /* ── shop page uses a normal cursor (no candle) — override site.css cursor:none ── */
+  *,*::before,*::after{cursor:auto!important}
+  a,button,select,label,.prod,.wa-card,.shf-btn,[role=button]{cursor:pointer!important}
+  html{scroll-behavior:smooth}
+  body{background:var(--ink);color:var(--p)}
+
+  /* ── header ── */
+  .shop-nav{position:sticky;top:0;z-index:120;display:flex;align-items:center;justify-content:space-between;
+    padding:16px clamp(18px,4vw,48px);background:rgba(10,7,5,.92);-webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid var(--rules)}
+  .shop-nav .brand{display:flex;align-items:center;gap:13px;text-decoration:none}
+  .shop-nav .bmark{width:36px;height:36px;display:grid;place-items:center}
+  .shop-nav .bmark img{width:100%;height:100%}
+  .shop-nav .bname{font-family:var(--fd);font-size:17px;letter-spacing:.2em;text-transform:uppercase;color:var(--p)}
+  .shop-nav .bname b{font-weight:400;color:var(--gb)}
+  .shop-nav-mid{display:flex;gap:clamp(18px,2.6vw,36px)}
+  .shop-nav-mid a{font-family:var(--fd);font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--pd);text-decoration:none;padding:4px 0;border-bottom:1px solid transparent;transition:color .25s,border-color .25s}
+  .shop-nav-mid a:hover{color:var(--gb);border-color:var(--gd)}
+  .shop-nav-right{display:flex;align-items:center;gap:18px}
+  .shop-lang{display:flex;gap:8px;font-family:var(--fd);font-size:14px;letter-spacing:.14em}
+  .shop-lang button{background:none;border:none;color:var(--pm);font:inherit;letter-spacing:inherit;padding:4px 2px;border-bottom:1px solid transparent}
+  .shop-lang button.on{color:var(--gb);border-color:var(--gd)}
+  .shop-home{font-family:var(--fd);font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--g);text-decoration:none;white-space:nowrap}
+  .shop-home:hover{color:var(--gb)}
+  @media(max-width:760px){.shop-nav-mid{display:none}}
+
+  /* ── hero strip ── */
+  .shop-hero{position:relative;isolation:isolate;overflow:hidden;padding:clamp(72px,13vh,150px) clamp(18px,4vw,48px) clamp(60px,9vh,110px);text-align:center}
+  .shop-hero .shop-hero-img{position:absolute;inset:0;z-index:-2;background:url('assets/bg/christ-light.jpg') center/cover no-repeat;filter:brightness(.6) contrast(1.05)}
+  .shop-hero .shop-hero-veil{position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 90% 90% at 50% 45%,rgba(10,7,5,.55),rgba(10,7,5,.94) 78%),linear-gradient(180deg,rgba(10,7,5,.9),transparent 22%,transparent 70%,rgba(10,7,5,.98))}
+  .shop-hero .eyebrow{font-family:var(--fd);font-style:italic;font-size:clamp(14px,1.3vw,18px);letter-spacing:.32em;text-transform:uppercase;color:var(--g);margin-bottom:22px}
+  .shop-hero h1{font-family:var(--fd);font-weight:300;font-size:clamp(40px,7vw,86px);line-height:1.0;letter-spacing:-.02em;color:var(--p);text-shadow:0 6px 50px rgba(0,0,0,.85)}
+  .shop-hero h1 em{font-style:italic;color:var(--gb)}
+  .shop-hero p{font-family:var(--fd);font-style:italic;font-size:clamp(16px,1.6vw,21px);line-height:1.6;color:var(--p2);max-width:60ch;margin:24px auto 0}
+
+  /* ── sections ── */
+  .shop-sec{padding:clamp(64px,9vh,120px) clamp(18px,4vw,48px);border-top:1px solid var(--rules)}
+  .shop-sec .inner{max-width:1280px;margin:0 auto}
+  .shop-sec-head{margin-bottom:clamp(36px,5vw,56px)}
+  .shop-sec-head .slab{display:flex;align-items:center;gap:14px;font-family:var(--fd);font-style:italic;font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:var(--g);margin-bottom:18px}
+  .shop-sec-head .slab .bar{width:42px;height:1px;background:linear-gradient(90deg,var(--g),transparent)}
+  .shop-sec-head h2{font-family:var(--fd);font-weight:300;font-size:clamp(32px,4.4vw,60px);line-height:1.05;color:var(--p);letter-spacing:-.01em}
+  .shop-sec-head h2 em{font-style:italic;color:var(--gb)}
+  .shop-sec-head p{font-family:var(--fd);font-style:italic;font-size:clamp(15px,1.5vw,19px);color:var(--pd);margin-top:14px;max-width:62ch;line-height:1.6}
+
+  .shopgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:clamp(16px,2vw,28px)}
+  .wagrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:clamp(16px,2vw,28px)}
+  @media(max-width:560px){.shopgrid{grid-template-columns:repeat(2,1fr)}.wagrid{grid-template-columns:1fr}}
+
+  /* ── wall-art filter ── */
+  .shop-filter{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:clamp(28px,3.5vw,40px)}
+  .shf-btn{font-family:var(--fd);font-style:italic;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--pd);background:none;border:1px solid var(--rules);padding:9px 18px;transition:color .25s,border-color .25s,background .25s}
+  .shf-btn:hover{color:var(--gb);border-color:var(--gd)}
+  .shf-btn.on{color:var(--ink);background:linear-gradient(135deg,var(--g),var(--gb));border-color:transparent}
+  .wa-card.hide{display:none}
+
+  /* ── footer ── */
+  .shop-foot{border-top:1px solid var(--rules);padding:clamp(40px,6vw,64px) clamp(18px,4vw,48px);text-align:center;background:var(--ink2)}
+  .shop-foot .fl{display:flex;flex-wrap:wrap;gap:8px 26px;justify-content:center;font-family:var(--fb);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--pm)}
+  .shop-foot .fl a{color:var(--pd);text-decoration:none}
+  .shop-foot .fl a:hover{color:var(--gb)}
+  .shop-foot .cr{margin-top:18px;font-family:var(--fd);font-style:italic;font-size:14px;color:var(--pm)}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<nav class="shop-nav">
+  <a href="index.html" class="brand"><span class="bmark"><img src="brand/truthprints-flame.svg" alt="TruthPrints"></span><span class="bname">Truth<b>Prints</b></span></a>
+  <div class="shop-nav-mid">
+    <a href="#books"><span data-en>Books</span><span data-de>Bücher</span></a>
+    <a href="#wallart"><span data-en>Wall Art</span><span data-de>Wandkunst</span></a>
+    <a href="#wallpapers"><span data-en>Wallpapers</span><span data-de>Wallpaper</span></a>
+    <a href="bible.html"><span data-en>Read</span><span data-de>Lesen</span></a>
+  </div>
+  <div class="shop-nav-right">
+    <div class="shop-lang"><button id="lcEn" class="on">EN</button><button id="lcDe">DE</button></div>
+    <a href="index.html" class="shop-home">← <span data-en>Home</span><span data-de>Start</span></a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="shop-hero">
+  <div class="shop-hero-img"></div>
+  <div class="shop-hero-veil"></div>
+  <div class="eyebrow"><span data-en>The Shop</span><span data-de>Der Shop</span></div>
+  <h1><span data-en>Bring the Word <em>home.</em></span><span data-de>Hol dir das Wort <em>nach Hause.</em></span></h1>
+  <p><span data-en>The illustrated Gospels — as digital books, fine print editions, museum-grade wall art, and wallpaper packs. Every passage painted in the tradition of the old masters.</span><span data-de>Die illustrierten Evangelien — als digitale Bücher, edle Druckausgaben, museumsreife Wandkunst und Wallpaper-Packs. Jede Stelle gemalt in der Tradition der alten Meister.</span></p>
+</header>
+
+<!-- ── BOOKS ── -->
+<section class="shop-sec" id="books">
+  <div class="inner">
+    <div class="shop-sec-head">
+      <div class="slab"><span class="bar"></span><span data-en>The Gospels</span><span data-de>Die Evangelien</span></div>
+      <h2><span data-en>Four volumes. <em>Every one complete.</em></span><span data-de>Vier Bände. <em>Jeder vollendet.</em></span></h2>
+      <p><span data-en>Each volume in three editions — digital, paperback, collector. The collected set holds all four Gospels in one.</span><span data-de>Jeder Band in drei Editionen — digital, broschiert, Sammler. Die Gesamtausgabe vereint alle vier Evangelien.</span></p>
+    </div>
+    <div class="shopgrid">
+      <article class="prod">
+        <span class="prod-tag"><span data-en>Flagship</span><span data-de>Hauptband</span></span>
+        <div class="prod-cov"><img src="assets/books/matthew-cover.jpg" alt="The Gospel of Matthew" loading="lazy"></div>
+        <h3 class="prod-name"><span data-en>The Gospel of <em>Matthew</em></span><span data-de>Das Evangelium nach <em>Matthäus</em></span></h3>
+        <div class="prod-meta"><span data-en>244 plates · 28 chapters</span><span data-de>244 Tafeln · 28 Kapitel</span></div>
+        <div class="prod-foot"><div class="prod-price"><span data-en>from</span><span data-de>ab</span> <b>€19</b></div></div>
+      </article>
+      <article class="prod">
+        <span class="prod-tag"><span data-en>Available</span><span data-de>Erhältlich</span></span>
+        <div class="prod-cov"><img src="assets/books/mark-cover.jpg" alt="The Gospel of Mark" loading="lazy"></div>
+        <h3 class="prod-name"><span data-en>The Gospel of <em>Mark</em></span><span data-de>Das Evangelium nach <em>Markus</em></span></h3>
+        <div class="prod-meta"><span data-en>151 plates · 16 chapters</span><span data-de>151 Tafeln · 16 Kapitel</span></div>
+        <div class="prod-foot"><div class="prod-price"><span data-en>from</span><span data-de>ab</span> <b>€19</b></div></div>
+      </article>
+      <article class="prod">
+        <span class="prod-tag"><span data-en>Available</span><span data-de>Erhältlich</span></span>
+        <div class="prod-cov"><img src="assets/books/luke-cover.jpg" alt="The Gospel of Luke" loading="lazy"></div>
+        <h3 class="prod-name"><span data-en>The Gospel of <em>Luke</em></span><span data-de>Das Evangelium nach <em>Lukas</em></span></h3>
+        <div class="prod-meta"><span data-en>256 plates · 24 chapters</span><span data-de>256 Tafeln · 24 Kapitel</span></div>
+        <div class="prod-foot"><div class="prod-price"><span data-en>from</span><span data-de>ab</span> <b>€19</b></div></div>
+      </article>
+      <article class="prod">
+        <span class="prod-tag"><span data-en>Available</span><span data-de>Erhältlich</span></span>
+        <div class="prod-cov"><img src="assets/books/john-cover.jpg" alt="The Gospel of John" loading="lazy"></div>
+        <h3 class="prod-name"><span data-en>The Gospel of <em>John</em></span><span data-de>Das Evangelium nach <em>Johannes</em></span></h3>
+        <div class="prod-meta"><span data-en>199 plates · 21 chapters</span><span data-de>199 Tafeln · 21 Kapitel</span></div>
+        <div class="prod-foot"><div class="prod-price"><span data-en>from</span><span data-de>ab</span> <b>€19</b></div></div>
+      </article>
+      <article class="prod prod-best">
+        <span class="prod-tag"><span data-en>Best value</span><span data-de>Bestes Angebot</span></span>
+        <div class="prod-cov"><img src="assets/books/collection-cover.jpg" alt="The Four Gospels — collected" loading="lazy"></div>
+        <h3 class="prod-name"><span data-en>The Four Gospels <em>· collected</em></span><span data-de>Die Vier Evangelien <em>· Gesamtausgabe</em></span></h3>
+        <div class="prod-meta"><span data-en>850 plates · all four volumes</span><span data-de>850 Tafeln · alle vier Bände</span></div>
+        <div class="prod-foot"><div class="prod-price"><span data-en>from</span><span data-de>ab</span> <b>€59</b></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── ALL PLATES (full catalogue, filterable by book) ── -->
+<section class="shop-sec" id="wallart">
+  <div class="inner">
+    <div class="shop-sec-head">
+      <div class="slab"><span class="bar"></span><span data-en>Wall Art</span><span data-de>Wandkunst</span></div>
+      <h2><span data-en>The plates, <em>on your wall.</em></span><span data-de>Die Tafeln, <em>an deiner Wand.</em></span></h2>
+      <p><span data-en>Every painted scene as a museum-grade print — A3, A2 or gallery canvas. Hover any plate to see it framed on the wall. <b id="plCount">0</b> available now, more with every book.</span><span data-de>Jede gemalte Szene als musealer Kunstdruck — A3, A2 oder Galerie-Leinwand. Fahr über eine Tafel und sieh sie gerahmt an der Wand. <b id="plCount2">0</b> jetzt verfügbar, mehr mit jedem Buch.</span></p>
+    </div>
+    <div class="shop-filter" id="plFilter">
+      <button class="shf-btn on" data-f="all"><span data-en>All</span><span data-de>Alle</span></button>
+      <button class="shf-btn" data-f="matthew"><span data-en>Matthew</span><span data-de>Matthäus</span></button>
+      <button class="shf-btn" data-f="mark"><span data-en>Mark</span><span data-de>Markus</span></button>
+      <button class="shf-btn" data-f="luke"><span data-en>Luke</span><span data-de>Lukas</span></button>
+      <button class="shf-btn" data-f="john"><span data-en>John</span><span data-de>Johannes</span></button>
+    </div>
+    <div class="wagrid" id="plGrid"></div>
+  </div>
+</section>
+
+<!-- ── WALLPAPER PACKS ── -->
+<section class="shop-sec" id="wallpapers">
+  <div class="inner">
+    <div class="shop-sec-head">
+      <div class="slab"><span class="bar"></span><span data-en>Wallpaper Packs</span><span data-de>Wallpaper-Packs</span></div>
+      <h2><span data-en>The Word on <em>every screen.</em></span><span data-de>Das Wort auf <em>jedem Bildschirm.</em></span></h2>
+      <p><span data-en>Curated sets of the plates, formatted for desktop and phone. Instant download — yours forever.</span><span data-de>Kuratierte Sets der Tafeln, formatiert für Desktop und Handy. Sofort-Download — für immer deins.</span></p>
+    </div>
+    <div class="wagrid">
+      <article class="wa-card rv" data-wa="wp1">
+        <div class="wa-wall"><div class="wa-frame"><img src="assets/wallart/galilee.jpg" alt="" loading="lazy"></div></div>
+        <h3 class="wa-name"><span data-en>Gospel Light · 12 Wallpapers</span><span data-de>Gospel Light · 12 Wallpaper</span></h3>
+        <div class="wa-ref"><span data-en>Desktop &amp; phone · digital</span><span data-de>Desktop &amp; Handy · digital</span></div>
+        <div class="wa-foot">
+          <select class="wa-size" aria-label="Format"><option value="digital">Digital — €9</option></select>
+          <button class="wa-add"><span data-en>Add</span><span data-de>In den Warenkorb</span></button>
+        </div>
+      </article>
+      <article class="wa-card rv" data-wa="wp2">
+        <div class="wa-wall"><div class="wa-frame"><img src="assets/wallart/tomb.jpg" alt="" loading="lazy"></div></div>
+        <h3 class="wa-name"><span data-en>The Passion · 10 Wallpapers</span><span data-de>Die Passion · 10 Wallpaper</span></h3>
+        <div class="wa-ref"><span data-en>Desktop &amp; phone · digital</span><span data-de>Desktop &amp; Handy · digital</span></div>
+        <div class="wa-foot">
+          <select class="wa-size" aria-label="Format"><option value="digital">Digital — €9</option></select>
+          <button class="wa-add"><span data-en>Add</span><span data-de>In den Warenkorb</span></button>
+        </div>
+      </article>
+      <article class="wa-card rv" data-wa="wp3">
+        <div class="wa-wall"><div class="wa-frame"><img src="assets/wallart/desert.jpg" alt="" loading="lazy"></div></div>
+        <h3 class="wa-name"><span data-en>Light &amp; Shadow · 15 Wallpapers</span><span data-de>Licht &amp; Schatten · 15 Wallpaper</span></h3>
+        <div class="wa-ref"><span data-en>Desktop &amp; phone · digital</span><span data-de>Desktop &amp; Handy · digital</span></div>
+        <div class="wa-foot">
+          <select class="wa-size" aria-label="Format"><option value="digital">Digital — €12</option></select>
+          <button class="wa-add"><span data-en>Add</span><span data-de>In den Warenkorb</span></button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="shop-foot">
+  <div class="fl">
+    <a href="index.html"><span data-en>Home</span><span data-de>Start</span></a>
+    <a href="bible.html"><span data-en>Read</span><span data-de>Lesen</span></a>
+    <a href="impressum.html">Impressum</a>
+    <a href="agb.html">AGB</a>
+    <a href="widerruf.html"><span data-en>Withdrawal</span><span data-de>Widerruf</span></a>
+    <a href="mailto:hello.truthprints@gmail.com">hello.truthprints@gmail.com</a>
+  </div>
+  <div class="cr">© 2026 TruthPrints · <span data-en>The Word, illustrated</span><span data-de>Das Wort, illustriert</span></div>
+</footer>
+
+<script src="shop-plates-data.js"></script>
+<script src="cart.js?v=2"></script>
+<script>
+  /* ── full plate catalogue: build cards from window.TP_PLATES, register with cart ── */
+  (function(){
+    var grid = document.getElementById('plGrid');
+    var data = window.TP_PLATES || [];
+    if(!grid || !data.length || !window.tpCart) return;
+    var BOOK = { matthew:{en:'Matthew',de:'Matthäus'}, mark:{en:'Mark',de:'Markus'}, luke:{en:'Luke',de:'Lukas'}, john:{en:'John',de:'Johannes'} };
+    var PRICES = { a3:29, a2:49, canvas:89 };
+    var html = '';
+    data.forEach(function(p){
+      var bn = BOOK[p.book] || {en:p.book,de:p.book};
+      window.tpCart.register(p.id, { en:p.ref_en, de:p.ref_de, img:p.img, prices:PRICES });
+      html +=
+        '<article class="wa-card rv" data-wa="'+p.id+'" data-cat="'+p.book+'">'+
+          '<div class="wa-wall">'+
+            '<div class="wa-frame"><img src="'+p.img+'" alt="'+p.ref_en+'" loading="lazy"></div>'+
+            '<div class="wa-mock"><img class="fm-plate" src="'+p.img+'" alt="" loading="lazy"><img class="fm-frame" src="assets/wallart/frame-gold.png" alt="" loading="lazy"></div>'+
+          '</div>'+
+          '<h3 class="wa-name"><span data-en>'+p.ref_en+'</span><span data-de>'+p.ref_de+'</span></h3>'+
+          '<div class="wa-ref"><span data-en>'+bn.en+' · fine-art print</span><span data-de>'+bn.de+' · Kunstdruck</span></div>'+
+          '<div class="wa-foot">'+
+            '<select class="wa-size" aria-label="Size"><option value="a3">A3 — €29</option><option value="a2">A2 — €49</option><option value="canvas">Canvas 60×40 — €89</option></select>'+
+            '<button class="wa-add"><span data-en>Add</span><span data-de>In den Warenkorb</span></button>'+
+          '</div>'+
+        '</article>';
+    });
+    grid.innerHTML = html;
+    /* wire add buttons */
+    grid.querySelectorAll('.wa-card[data-wa]').forEach(function(card){
+      var key = card.dataset.wa;
+      var btn = card.querySelector('.wa-add'), sel = card.querySelector('.wa-size');
+      if(btn && sel) btn.addEventListener('click', function(){ window.tpCart.add(key, sel.value); });
+    });
+    /* count */
+    var n = data.length;
+    var c1 = document.getElementById('plCount'), c2 = document.getElementById('plCount2');
+    if(c1) c1.textContent = n; if(c2) c2.textContent = n;
+    /* per-book filter */
+    var bar = document.getElementById('plFilter');
+    if(bar) bar.addEventListener('click', function(e){
+      var b = e.target.closest('.shf-btn'); if(!b) return;
+      bar.querySelectorAll('.shf-btn').forEach(function(x){ x.classList.toggle('on', x===b); });
+      var f = b.dataset.f;
+      grid.querySelectorAll('.wa-card').forEach(function(c){
+        c.classList.toggle('hide', f!=='all' && c.dataset.cat!==f);
+      });
+    });
+  })();
+</script>
+<script>
+  /* language toggle — shares the tp_lang key with the homepage */
+  (function(){
+    function apply(lang){
+      document.body.classList.toggle('de', lang==='de');
+      document.documentElement.lang=lang;
+      document.getElementById('lcEn').classList.toggle('on',lang==='en');
+      document.getElementById('lcDe').classList.toggle('on',lang==='de');
+      try{localStorage.setItem('tp_lang',lang)}catch(_){}
+    }
+    document.getElementById('lcEn').addEventListener('click',()=>apply('en'));
+    document.getElementById('lcDe').addEventListener('click',()=>apply('de'));
+    let init='en'; try{ if(localStorage.getItem('tp_lang')==='de') init='de'; }catch(_){}
+    apply(init);
+  })();
+
+  /* wall-art filter */
+  (function(){
+    var grid=document.getElementById('waGrid'), bar=document.getElementById('waFilter');
+    if(!grid||!bar) return;
+    bar.addEventListener('click',function(e){
+      var b=e.target.closest('.shf-btn'); if(!b) return;
+      bar.querySelectorAll('.shf-btn').forEach(x=>x.classList.toggle('on',x===b));
+      var f=b.dataset.f;
+      grid.querySelectorAll('.wa-card').forEach(function(c){
+        c.classList.toggle('hide', f!=='all' && c.dataset.cat!==f);
+      });
+    });
+  })();
+
+  /* reveal-on-scroll for cards (mirrors the homepage .rv → .in) */
+  (function(){
+    if(!('IntersectionObserver' in window)){document.querySelectorAll('.rv').forEach(e=>e.classList.add('in'));return;}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.1,rootMargin:'0px 0px -5% 0px'});
+    document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+  })();
+</script>
+</body>
+</html>

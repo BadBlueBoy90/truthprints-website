@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Bible &middot; TruthPrints Reader</title>
+<meta name="description" content="Read the entire Bible, passage by passage, in beautiful typography. English and German. By TruthPrints.">
+<link rel="icon" type="image/png" href="brand/truthprints-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TRUTHPRINTS READER — CREAM &middot; SILENCE &middot; THE WORD
+   ============================================================ */
+:root{
+  --ink:#0a0906;
+  --cream:#f4efe6;
+  --cream-2:#efe9da;
+  --paper:#fafaf8;
+  --gold:#c9a84c;
+  --gold-deep:#9a7c2e;
+  --gold-light:#e8d490;
+  --gold-dim:rgba(201,168,76,.25);
+  --mid:#7a7068;
+  --soft:#a39c8e;
+  --line:#e3dccb;
+  --text:#2a2318;
+  --fd:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --fb:"Inter",-apple-system,"Segoe UI",sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sidebar-w:288px;
+  --topbar-h:60px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--cream);color:var(--ink);height:100%}
+body{font-family:var(--fb);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+img{max-width:100%;display:block}
+::selection{background:var(--gold);color:var(--ink)}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#d6cfbd;border-radius:5px}
+::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:var(--topbar-h);
+  display:flex;align-items:center;gap:16px;padding:0 clamp(14px,2.5vw,32px);
+  background:rgba(244,239,230,.9);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.tb-burger{display:none;flex-direction:column;gap:5px;padding:12px;min-width:48px;min-height:48px;align-items:center;justify-content:center;flex-shrink:0}
+.tb-burger span{width:22px;height:1.6px;background:var(--ink)}
+.tb-brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.tb-brand img{width:26px;height:26px;object-fit:contain}
+.tb-brand b{font-family:var(--fd);font-weight:500;font-size:17px;letter-spacing:.12em;white-space:nowrap}
+.tb-brand b i{font-style:normal;color:var(--gold-deep)}
+.tb-divider{width:1px;height:22px;background:var(--line);flex-shrink:0}
+.tb-title{
+  font-family:var(--fd);font-style:italic;font-size:16px;color:var(--mid);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.tb-spacer{flex:1}
+.tb-search-btn{
+  display:inline-flex;align-items:center;gap:10px;min-height:44px;
+  border:1px solid var(--line);border-radius:99px;background:var(--paper);
+  padding:8px 18px;color:var(--soft);font-size:13px;flex-shrink:0;
+  transition:border-color .3s,box-shadow .3s,color .3s;
+}
+.tb-search-btn:hover{border-color:var(--gold);color:var(--mid);box-shadow:0 0 0 3px rgba(201,168,76,.12)}
+.tb-search-btn .icon{
+  position:relative;width:13px;height:13px;border:1.6px solid currentColor;border-radius:50%;flex-shrink:0;
+}
+.tb-search-btn .icon::after{
+  content:"";position:absolute;width:6px;height:1.6px;background:currentColor;
+  bottom:-3px;right:-4px;transform:rotate(45deg);
+}
+.tb-search-btn .kbd{
+  font-size:10px;border:1px solid var(--line);border-radius:4px;
+  padding:1px 6px;background:var(--cream);
+}
+/* EN/DE pill */
+.lang-toggle{
+  display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;
+  flex-shrink:0;background:var(--paper);padding:3px;gap:2px;
+}
+.lang-toggle button{
+  font-size:10.5px;letter-spacing:.16em;padding:7px 15px;min-height:32px;color:var(--mid);
+  border-radius:99px;transition:background .35s var(--ease),color .3s;font-weight:500;
+}
+.lang-toggle button.on{background:var(--gold);color:var(--ink);font-weight:600}
+.sb-book .en-tag{
+  font-size:8.5px;letter-spacing:.12em;font-weight:600;color:var(--mid);
+  border:1px solid var(--line);border-radius:4px;padding:1px 4px;margin-left:auto;
+  opacity:.7;line-height:1.4;
+}
+.sb-book.en-only > button > span:first-child{opacity:.62}
+.de-fallback-note{
+  margin:0 0 22px;padding:10px 16px;border-left:2px solid var(--gold);
+  background:rgba(184,146,74,.07);font-size:13px;color:var(--mid);line-height:1.5;border-radius:0 6px 6px 0;
+}
+.tb-home{
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);
+  white-space:nowrap;flex-shrink:0;transition:color .3s;font-weight:500;padding:10px 0;
+}
+.tb-home:hover{color:var(--gold-deep)}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.app{display:flex;height:100vh;height:100svh;padding-top:var(--topbar-h)}
+
+/* ---------- SIDEBAR — slim, quiet, Inter 13px ---------- */
+.sidebar{
+  width:var(--sidebar-w);flex-shrink:0;height:100%;overflow-y:auto;
+  background:var(--cream-2);border-right:1px solid var(--line);
+  padding:18px 0 70px;scrollbar-width:thin;
+}
+.sb-close{display:none}
+.sb-section{
+  font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-deep);
+  font-weight:600;padding:22px 22px 10px;display:flex;align-items:center;gap:12px;
+}
+.sb-section::after{content:"";flex:1;height:1px;background:var(--line)}
+.sb-book{width:100%}
+.sb-book > button{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:9px 22px;min-height:38px;text-align:left;
+  font-family:var(--fb);font-size:13px;font-weight:400;letter-spacing:.02em;
+  color:#544e43;border-left:2px solid transparent;
+  transition:background .25s,color .25s,border-color .25s;
+}
+.sb-book > button:hover{background:rgba(201,168,76,.09);color:var(--ink)}
+.sb-book.active > button{
+  background:rgba(201,168,76,.13);color:var(--ink);border-left-color:var(--gold);font-weight:500;
+}
+.sb-book .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:transparent}
+.sb-book.complete .dot{background:var(--gold)}
+.sb-book.progress .dot{background:var(--gold);animation:blink 1.8s infinite}
+@keyframes blink{50%{opacity:.35}}
+.sb-chapters{display:none;padding:8px 14px 14px 22px}
+.sb-book.active .sb-chapters{display:block}
+.ch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:5px}
+.ch-grid button{
+  aspect-ratio:1;min-height:34px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--fd);font-size:14px;border:1px solid var(--line);border-radius:5px;
+  color:var(--mid);background:var(--paper);transition:all .25s;
+}
+.ch-grid button:hover{border-color:var(--gold);color:var(--ink)}
+.ch-grid button.on{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:600}
+.sb-passages{margin-top:12px;display:none}
+.sb-passages.show{display:block}
+.sb-passages button{
+  width:100%;min-height:34px;text-align:left;font-size:12px;color:var(--mid);padding:7px 10px;
+  border-radius:6px;transition:background .2s,color .2s;line-height:1.45;
+  display:flex;gap:8px;align-items:baseline;
+}
+.sb-passages button:hover{background:rgba(201,168,76,.12);color:var(--ink)}
+.sb-passages button.on{background:rgba(201,168,76,.2);color:var(--ink);font-weight:500}
+.sb-passages .pid{font-family:var(--fd);font-style:italic;color:var(--gold-deep);font-size:12px;flex-shrink:0;min-width:24px}
+.sb-loading{padding:10px 22px;font-size:12px;color:var(--soft);font-style:italic;font-family:var(--fd)}
+
+/* ---------- MAIN PANEL ---------- */
+.main{
+  flex:1;height:100%;overflow-y:auto;position:relative;scroll-behavior:smooth;
+  background:
+    radial-gradient(80% 50% at 50% 0%,rgba(201,168,76,.045),transparent 60%),
+    var(--cream);
+}
+.main-inner{max-width:680px;margin:0 auto;padding:clamp(60px,11vh,130px) clamp(20px,4vw,40px) 160px}
+
+.breadcrumb{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);
+  margin-bottom:clamp(32px,6vh,60px);font-weight:500;
+}
+.breadcrumb a,.breadcrumb button{
+  color:var(--gold-deep);transition:color .25s;opacity:.75;
+  letter-spacing:inherit;font-size:inherit;text-transform:inherit;font-weight:inherit;
+  padding:6px 0;min-height:32px;
+}
+.breadcrumb a:hover,.breadcrumb button:hover{opacity:1}
+.breadcrumb .sep{color:var(--gold);font-size:8px;opacity:.7}
+.breadcrumb .cur{color:var(--ink);opacity:.85}
+
+.passage-title{
+  font-family:var(--fd);font-weight:400;font-size:clamp(34px,5vw,42px);
+  line-height:1.12;color:var(--ink);margin-bottom:10px;
+}
+.passage-verses{
+  font-family:var(--fd);font-style:italic;font-size:19px;color:var(--mid);margin-bottom:6px;
+}
+.passage-rule{
+  display:flex;align-items:center;gap:16px;margin:34px 0 44px;color:var(--gold);
+}
+.passage-rule::before,.passage-rule::after{content:"";flex:1;height:1px;background:var(--line)}
+.passage-rule span{font-size:12px;transform:rotate(0deg)}
+
+.passage-text{
+  font-family:var(--fd);font-size:calc(22px * var(--read-scale,1));line-height:2.0;color:var(--text);
+  letter-spacing:.004em;
+}
+/* passage illustration */
+.passage-plate{margin:30px 0 8px;border:1px solid var(--line);background:var(--ink2,#000);line-height:0}
+.passage-plate img{width:100%;display:block;filter:saturate(.96) contrast(1.02)}
+.passage-plate figcaption{font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.06em;color:var(--mid);padding:10px 14px;line-height:1.4;background:var(--paper)}
+/* reader tools */
+.pp-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:22px 0 4px}
+.pp-t{display:inline-flex;align-items:center;gap:7px;font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.04em;color:var(--mid);background:none;border:1px solid var(--line);border-radius:99px;padding:7px 14px;transition:color .2s,border-color .2s,background .2s}
+.pp-t:hover{color:var(--gold-deep);border-color:var(--gold)}
+.pp-t.on{color:var(--gold-deep);border-color:var(--gold);background:rgba(184,146,74,.08)}
+.pp-t svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pp-t.on svg path:first-child{fill:currentColor}
+.pp-fs{display:inline-flex;margin-left:auto;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.pp-fs button{font-family:var(--fd);font-size:13px;color:var(--mid);background:none;border:none;padding:7px 13px;transition:background .2s,color .2s}
+.pp-fs button:hover{color:var(--gold-deep);background:rgba(184,146,74,.08)}
+.pp-fs button:first-child{border-right:1px solid var(--line)}
+.pp-notebox{margin:12px 0 4px;display:flex;flex-direction:column;gap:8px}
+.pp-notebox textarea{font-family:var(--fb);font-size:15px;line-height:1.6;color:var(--text);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:12px 14px;resize:vertical;width:100%}
+.pp-notebox textarea:focus{outline:none;border-color:var(--gold)}
+.pp-notebox button{align-self:flex-end;font-family:var(--fd);font-style:italic;font-size:14px;color:var(--ink);background:var(--gold);border:none;border-radius:99px;padding:8px 22px}
+#tp-toast{position:fixed;left:50%;bottom:34px;transform:translate(-50%,20px);z-index:600;font-family:var(--fd);font-style:italic;font-size:15px;color:var(--paper);background:rgba(12,9,6,.96);border:1px solid var(--gold);padding:11px 24px;border-radius:99px;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+#tp-toast.on{opacity:1;transform:translate(-50%,0)}
+#bm-panel{position:fixed;top:62px;right:clamp(12px,3vw,40px);z-index:550;width:min(320px,90vw);max-height:70vh;overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:10px;box-shadow:0 24px 60px rgba(0,0,0,.4);padding:8px}
+#bm-panel .bm-h{font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);padding:10px 12px 8px}
+#bm-panel .bm-i{display:flex;flex-direction:column;gap:2px;width:100%;text-align:left;background:none;border:none;border-top:1px solid var(--line);padding:11px 12px;transition:background .2s}
+#bm-panel .bm-i:hover{background:rgba(184,146,74,.08)}
+#bm-panel .bm-r{font-family:var(--fd);font-size:16px;color:var(--ink)}
+#bm-panel .bm-i small{font-family:var(--fd);font-style:italic;font-size:12px;color:var(--soft)}
+#bm-panel .bm-e{font-family:var(--fd);font-style:italic;font-size:14px;color:var(--soft);padding:14px 12px}
+.passage-text::first-letter{
+  font-family:var(--fd);font-size:5.3em;float:left;line-height:.82;
+  padding:10px 18px 0 0;color:var(--gold-deep);font-weight:400;
+}
+.passage-meta{
+  margin-top:54px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--soft);
+}
+
+/* end rule — gold diamond */
+.end-rule{
+  display:flex;align-items:center;gap:18px;margin:46px 0 0;color:var(--gold);
+}
+.end-rule::before,.end-rule::after{content:"";flex:1;height:1px;background:var(--line)}
+.end-rule span{font-size:13px;text-shadow:0 0 10px rgba(201,168,76,.35)}
+
+/* prev / next */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px}
+.pager a{
+  border:1px solid var(--line);background:var(--paper);padding:18px 22px;min-height:48px;border-radius:10px;
+  display:flex;flex-direction:column;gap:4px;transition:border-color .3s,transform .3s var(--ease),box-shadow .3s;
+}
+.pager a:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 14px 34px rgba(60,48,18,.1)}
+.pager a.disabled{opacity:.35;pointer-events:none}
+.pager .dir{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+.pager .lbl{font-family:var(--fd);font-size:18px;color:var(--ink)}
+.pager a.next{text-align:right;align-items:flex-end}
+.kbd-hint{text-align:center;margin-top:26px;font-size:11px;color:var(--soft);letter-spacing:.06em}
+.kbd-hint kbd{
+  font-family:var(--fb);font-size:10px;border:1px solid var(--line);border-radius:4px;
+  padding:1px 7px;background:var(--paper);margin:0 3px;
+}
+
+/* ---------- WELCOME ---------- */
+.welcome{text-align:center;padding-top:clamp(20px,6vh,70px)}
+.welcome .mark{width:68px;height:68px;margin:0 auto 30px;opacity:.9}
+.welcome h1{
+  font-family:var(--fd);font-weight:300;font-size:clamp(40px,6vw,64px);line-height:1.06;
+  margin-bottom:18px;
+}
+.welcome h1 em{font-style:italic;color:var(--gold-deep)}
+.welcome > p{color:var(--mid);max-width:46ch;margin:0 auto 18px;font-size:15px}
+.welcome-verse{
+  font-family:var(--fd);font-style:italic;font-size:18px;color:var(--gold-deep);
+  margin:0 auto 46px;max-width:54ch;
+}
+.welcome-verse small{
+  display:block;font-family:var(--fb);font-style:normal;font-size:9px;
+  letter-spacing:.4em;text-transform:uppercase;color:var(--soft);margin-top:8px;
+}
+.welcome-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;text-align:left}
+.welcome-grid button{
+  border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:20px 22px;min-height:48px;
+  display:flex;flex-direction:column;gap:3px;text-align:left;
+  transition:border-color .3s,transform .3s var(--ease),box-shadow .3s;
+}
+.welcome-grid button:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 16px 36px rgba(60,48,18,.1)}
+.welcome-grid .wb-name{font-family:var(--fd);font-size:23px;font-weight:500}
+.welcome-grid .wb-sub{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+
+/* loading shimmer */
+.loading-passage{padding-top:40px}
+.sk{background:linear-gradient(90deg,#e9e2d2 25%,#f2ecdf 50%,#e9e2d2 75%);background-size:200% 100%;animation:skl 1.4s infinite;border-radius:6px}
+@keyframes skl{to{background-position:-200% 0}}
+.sk.t{height:48px;width:60%;margin-bottom:18px}
+.sk.s{height:18px;width:30%;margin-bottom:42px}
+.sk.l{height:16px;width:100%;margin-bottom:16px}
+.sk.l:nth-last-child(1){width:70%}
+
+/* error */
+.err{
+  border:1px solid #d9b9a8;background:#f7ece4;border-radius:10px;padding:22px 26px;
+  font-size:14px;color:#7a4a30;
+}
+.err b{display:block;font-family:var(--fd);font-size:20px;margin-bottom:6px}
+.err code{font-size:12px;background:rgba(122,74,48,.08);padding:1px 6px;border-radius:4px}
+
+/* fade-in for content swaps */
+.fade-in{animation:fin .6s var(--ease)}
+@keyframes fin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ============================================================
+   SEARCH OVERLAY — dims the page, the Word stays lit
+   ============================================================ */
+#search-overlay{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(26,21,12,.45);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  display:flex;justify-content:center;align-items:flex-start;
+  padding:clamp(70px,12vh,130px) clamp(14px,3vw,32px) 40px;
+  opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s;
+}
+#search-overlay.open{opacity:1;visibility:visible}
+.so-panel{
+  width:min(720px,100%);max-height:100%;display:flex;flex-direction:column;
+  background:var(--cream);border:1px solid var(--line);border-radius:16px;
+  box-shadow:0 60px 140px rgba(20,14,4,.4);overflow:hidden;
+  transform:translateY(18px) scale(.985);transition:transform .4s var(--ease);
+}
+#search-overlay.open .so-panel{transform:none}
+.so-head{
+  display:flex;align-items:center;gap:14px;padding:18px 22px;
+  border-bottom:1px solid var(--line);background:var(--paper);
+}
+.so-head .icon{
+  position:relative;width:15px;height:15px;border:1.7px solid var(--gold-deep);border-radius:50%;flex-shrink:0;
+}
+.so-head .icon::after{
+  content:"";position:absolute;width:7px;height:1.7px;background:var(--gold-deep);
+  bottom:-4px;right:-5px;transform:rotate(45deg);
+}
+.so-head input{
+  flex:1;background:transparent;border:0;outline:0;min-width:0;
+  font-family:var(--fd);font-size:21px;color:var(--ink);
+}
+.so-head input::placeholder{color:var(--soft);font-style:italic}
+.so-close{
+  width:40px;height:40px;min-width:40px;border-radius:50%;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--mid);
+  transition:border-color .3s,color .3s,transform .3s var(--ease);
+}
+.so-close:hover{border-color:var(--gold);color:var(--gold-deep);transform:rotate(90deg)}
+.so-meta{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:12px 22px;border-bottom:1px solid var(--line);
+}
+.so-meta .count{font-size:11.5px;letter-spacing:.1em;color:var(--mid)}
+.search-scope{
+  display:inline-flex;align-items:center;gap:9px;font-size:12px;color:var(--mid);
+  cursor:pointer;user-select:none;min-height:32px;
+}
+.search-scope input{accent-color:var(--gold-deep);width:15px;height:15px}
+.so-progress{font-size:12px;color:var(--soft);font-style:italic;font-family:var(--fd);padding:0 22px 8px}
+.so-results{overflow-y:auto;padding:14px 16px 20px;scrollbar-width:thin}
+.sr-item{
+  display:block;width:100%;text-align:left;
+  border:1px solid transparent;border-radius:10px;
+  padding:14px 16px;margin-bottom:4px;cursor:pointer;
+  transition:border-color .25s,background .25s;
+}
+.sr-item:hover,.sr-item:focus-visible{border-color:var(--gold);background:var(--paper);outline:none}
+.sr-item .sr-ref{font-family:var(--fd);font-size:19px;font-weight:500;margin-bottom:3px;color:var(--ink)}
+.sr-item .sr-ref small{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);
+  font-family:var(--fb);font-weight:600;margin-left:10px;
+}
+.sr-item .sr-txt{font-family:var(--fd);font-size:16px;color:var(--mid);line-height:1.6}
+.sr-item mark{background:rgba(201,168,76,.35);color:var(--ink);border-radius:3px;padding:0 2px}
+.sr-empty{font-family:var(--fd);font-style:italic;font-size:20px;color:var(--soft);text-align:center;padding:50px 0}
+.so-hint{
+  text-align:center;font-family:var(--fd);font-style:italic;font-size:17px;color:var(--soft);
+  padding:46px 22px;
+}
+
+/* ---------- MOBILE — drawer with X ---------- */
+.sb-overlay{display:none}
+@media(max-width:920px){
+  .tb-burger{display:flex}
+  .tb-title{display:none}
+  .tb-home{display:none}
+  .tb-divider{display:none}
+  .tb-search-btn span.lbl,.tb-search-btn .kbd{display:none}
+  .tb-search-btn{padding:10px 14px}
+  .sidebar{
+    position:fixed;inset:0;z-index:190;width:100%;height:100%;
+    padding-top:14px;
+    transform:translateX(-102%);transition:transform .5s var(--ease);
+  }
+  .sidebar.open{transform:none}
+  .sb-close{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:6px 18px 14px;border-bottom:1px solid var(--line);margin-bottom:8px;
+  }
+  .sb-close b{font-family:var(--fd);font-weight:500;font-size:19px;letter-spacing:.1em}
+  .sb-close b i{font-style:normal;color:var(--gold-deep)}
+  .sb-close button{
+    width:48px;height:48px;border-radius:50%;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--mid);
+    transition:border-color .3s,color .3s,transform .3s var(--ease);
+  }
+  .sb-close button:hover{border-color:var(--gold);color:var(--gold-deep);transform:rotate(90deg)}
+  .sb-book > button{min-height:48px;font-size:14px;padding:12px 22px}
+  .ch-grid button{min-height:44px}
+  .sb-passages button{min-height:44px}
+  .pager{grid-template-columns:1fr}
+  .kbd-hint{display:none}
+}
+@media(max-width:560px){
+  .tb-brand b{display:none}
+  .passage-text{font-size:20px}
+  .main-inner{padding-top:clamp(40px,8vh,80px)}
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"]{
+  --cream:#0a0906;--cream-2:#111009;--paper:#1a1812;
+  --ink:#f4efe6;--mid:#a09890;--soft:#7a7068;
+  --line:rgba(255,255,255,.08);--text:#e8e2d8;
+  --gold-deep:#c9a84c;
+}
+[data-theme="dark"] .topbar{background:rgba(10,9,6,.92)}
+[data-theme="dark"] ::-webkit-scrollbar-thumb{background:#2c2820}
+[data-theme="dark"] .ch-grid button{background:var(--paper);border-color:var(--line)}
+[data-theme="dark"] .lang-toggle{background:var(--paper);border-color:var(--line)}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;flex-shrink:0;color:var(--mid);transition:background .25s,color .25s}
+.theme-toggle:hover{background:rgba(201,168,76,.15);color:var(--gold-deep)}
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <button class="tb-burger" id="sb-toggle" aria-label="Open book list" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <a class="tb-brand" href="index.html" title="Back to TruthPrints">
+    <img src="brand/truthprints-mark.png" alt="">
+    <b>TRUTH<i>PRINTS</i></b>
+  </a>
+  <span class="tb-divider"></span>
+  <span class="tb-title" id="tb-title">The Bible</span>
+  <span class="tb-spacer"></span>
+  <button class="tb-search-btn" id="bm-open" aria-label="Bookmarks" title="Bookmarks" style="margin-right:6px"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-6-4-6 4z"/></svg></button>
+  <button class="tb-search-btn" id="search-open" aria-label="Search the Scriptures">
+    <span class="icon"></span>
+    <span class="lbl">Search the Scriptures&hellip;</span>
+    <span class="kbd">/</span>
+  </button>
+  <div class="lang-toggle" role="group" aria-label="Language">
+    <button id="lang-en" class="on">EN</button>
+    <button id="lang-de" title="Deutsch — derzeit fuer Matthaeus, Markus, Lukas, Johannes">DE</button>
+  </div>
+  <button class="theme-toggle" id="theme-toggle" title="Toggle light / dark mode"><svg id="theme-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+  <a class="tb-home" href="index.html">← truthprints.de</a>
+</header>
+
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-close">
+      <b>TRUTH<i>PRINTS</i></b>
+      <button id="sb-x" aria-label="Close book list">✕</button>
+    </div>
+    <div class="sb-section">Old Testament</div>
+    <div id="sb-ot"></div>
+    <div class="sb-section">New Testament</div>
+    <div id="sb-nt"></div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main" id="main">
+    <div class="main-inner" id="content"><!-- rendered by JS --></div>
+  </main>
+
+</div>
+
+<!-- ============ SEARCH OVERLAY ============ -->
+<div id="search-overlay" role="dialog" aria-modal="true" aria-label="Search the Scriptures">
+  <div class="so-panel">
+    <div class="so-head">
+      <span class="icon" aria-hidden="true"></span>
+      <input type="search" id="search" placeholder="Search the Scriptures&hellip;" autocomplete="off" spellcheck="false">
+      <button class="so-close" id="search-close" aria-label="Close search">✕</button>
+    </div>
+    <div class="so-meta">
+      <span class="count" id="sr-count"></span>
+      <label class="search-scope">
+        <input type="checkbox" id="scope-all">
+        <span id="scope-label">Search the entire Bible (all 66 books)</span>
+      </label>
+    </div>
+    <div class="so-progress" id="sr-progress"></div>
+    <div class="so-results" id="sr-list">
+      <div class="so-hint" id="so-hint">Type a word, a name, a promise.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DATA — 66 BOOKS (slug = pericopes/SLUG.json)
+   ============================================================ */
+const BOOKS=[
+ {s:"genesis",n:"Genesis",de:"1. Mose",t:"OT"},
+ {s:"exodus",n:"Exodus",de:"2. Mose",t:"OT"},
+ {s:"leviticus",n:"Leviticus",de:"3. Mose",t:"OT"},
+ {s:"numbers",n:"Numbers",de:"4. Mose",t:"OT"},
+ {s:"deuteronomy",n:"Deuteronomy",de:"5. Mose",t:"OT"},
+ {s:"joshua",n:"Joshua",de:"Josua",t:"OT"},
+ {s:"judges",n:"Judges",de:"Richter",t:"OT"},
+ {s:"ruth",n:"Ruth",de:"Rut",t:"OT"},
+ {s:"1samuel",n:"1 Samuel",de:"1. Samuel",t:"OT"},
+ {s:"2samuel",n:"2 Samuel",de:"2. Samuel",t:"OT"},
+ {s:"1kings",n:"1 Kings",de:"1. Könige",t:"OT"},
+ {s:"2kings",n:"2 Kings",de:"2. Könige",t:"OT"},
+ {s:"1chronicles",n:"1 Chronicles",de:"1. Chronik",t:"OT"},
+ {s:"2chronicles",n:"2 Chronicles",de:"2. Chronik",t:"OT"},
+ {s:"ezra",n:"Ezra",de:"Esra",t:"OT"},
+ {s:"nehemiah",n:"Nehemiah",de:"Nehemia",t:"OT"},
+ {s:"esther",n:"Esther",de:"Ester",t:"OT"},
+ {s:"job",n:"Job",de:"Hiob",t:"OT"},
+ {s:"psalms",n:"Psalms",de:"Psalmen",t:"OT"},
+ {s:"proverbs",n:"Proverbs",de:"Sprüche",t:"OT"},
+ {s:"ecclesiastes",n:"Ecclesiastes",de:"Prediger",t:"OT"},
+ {s:"songofsongs",n:"Song of Songs",de:"Hoheslied",t:"OT"},
+ {s:"isaiah",n:"Isaiah",de:"Jesaja",t:"OT"},
+ {s:"jeremiah",n:"Jeremiah",de:"Jeremia",t:"OT"},
+ {s:"lamentations",n:"Lamentations",de:"Klagelieder",t:"OT"},
+ {s:"ezekiel",n:"Ezekiel",de:"Hesekiel",t:"OT"},
+ {s:"daniel",n:"Daniel",de:"Daniel",t:"OT"},
+ {s:"hosea",n:"Hosea",de:"Hosea",t:"OT"},
+ {s:"joel",n:"Joel",de:"Joel",t:"OT"},
+ {s:"amos",n:"Amos",de:"Amos",t:"OT"},
+ {s:"obadiah",n:"Obadiah",de:"Obadja",t:"OT"},
+ {s:"jonah",n:"Jonah",de:"Jona",t:"OT"},
+ {s:"micah",n:"Micah",de:"Micha",t:"OT"},
+ {s:"nahum",n:"Nahum",de:"Nahum",t:"OT"},
+ {s:"habakkuk",n:"Habakkuk",de:"Habakuk",t:"OT"},
+ {s:"zephaniah",n:"Zephaniah",de:"Zefanja",t:"OT"},
+ {s:"haggai",n:"Haggai",de:"Haggai",t:"OT"},
+ {s:"zechariah",n:"Zechariah",de:"Sacharja",t:"OT"},
+ {s:"malachi",n:"Malachi",de:"Maleachi",t:"OT"},
+ {s:"matthew",n:"Matthew",de:"Matthäus",t:"NT",st:"complete",deAvail:true},
+ {s:"mark",n:"Mark",de:"Markus",t:"NT",st:"complete",deAvail:true},
+ {s:"luke",n:"Luke",de:"Lukas",t:"NT",st:"complete",deAvail:true},
+ {s:"john",n:"John",de:"Johannes",t:"NT",st:"complete",deAvail:true},
+ {s:"acts",n:"Acts",de:"Apostelgeschichte",t:"NT",st:"progress"},
+ {s:"romans",n:"Romans",de:"Römer",t:"NT"},
+ {s:"1corinthians",n:"1 Corinthians",de:"1. Korinther",t:"NT"},
+ {s:"2corinthians",n:"2 Corinthians",de:"2. Korinther",t:"NT"},
+ {s:"galatians",n:"Galatians",de:"Galater",t:"NT"},
+ {s:"ephesians",n:"Ephesians",de:"Epheser",t:"NT"},
+ {s:"philippians",n:"Philippians",de:"Philipper",t:"NT"},
+ {s:"colossians",n:"Colossians",de:"Kolosser",t:"NT",st:"complete"},
+ {s:"1thessalonians",n:"1 Thessalonians",de:"1. Thessalonicher",t:"NT"},
+ {s:"2thessalonians",n:"2 Thessalonians",de:"2. Thessalonicher",t:"NT"},
+ {s:"1timothy",n:"1 Timothy",de:"1. Timotheus",t:"NT"},
+ {s:"2timothy",n:"2 Timothy",de:"2. Timotheus",t:"NT"},
+ {s:"titus",n:"Titus",de:"Titus",t:"NT"},
+ {s:"philemon",n:"Philemon",de:"Philemon",t:"NT",st:"complete"},
+ {s:"hebrews",n:"Hebrews",de:"Hebräer",t:"NT"},
+ {s:"james",n:"James",de:"Jakobus",t:"NT"},
+ {s:"1peter",n:"1 Peter",de:"1. Petrus",t:"NT"},
+ {s:"2peter",n:"2 Peter",de:"2. Petrus",t:"NT"},
+ {s:"1john",n:"1 John",de:"1. Johannes",t:"NT"},
+ {s:"2john",n:"2 John",de:"2. Johannes",t:"NT"},
+ {s:"3john",n:"3 John",de:"3. Johannes",t:"NT",st:"complete"},
+ {s:"jude",n:"Jude",de:"Judas",t:"NT"},
+ {s:"revelation",n:"Revelation",de:"Offenbarung",t:"NT"},
+];
+const bookBySlug=Object.fromEntries(BOOKS.map(b=>[b.s,b]));
+const DE_BOOKS=new Set(BOOKS.filter(b=>b.deAvail).map(b=>b.s));
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const state={
+  lang:'en',          // 'en' | 'de'
+  book:null,          // slug
+  chapter:null,       // number
+  passageId:null,     // pericope id (number)
+  cache:{},           // 'en/matthew' -> normalized book data
+  searchAll:false,
+};
+try{if(localStorage.getItem('tp_lang')==='de')state.lang='de'}catch(_){}
+
+/* ============================================================
+   DATA LOADING + NORMALIZATION
+   ============================================================ */
+function jsonPath(slug,lang){
+  return lang==='de'?`pericopes/de/${slug}.json`:`pericopes/${slug}.json`;
+}
+function chapterOf(p){
+  // verses like "Matthew 1:1-5" — chapter = number before first colon
+  const m=String(p.verses||p.title||'').match(/(\d+):\d+/);
+  if(m)return +m[1];
+  const m2=String(p.verses||p.title||'').match(/\s(\d+)\s*$/);
+  return m2?+m2[1]:1;
+}
+async function loadBook(slug,lang){
+  const key=`${lang}/${slug}`;
+  if(state.cache[key])return state.cache[key];
+  const res=await fetch(jsonPath(slug,lang));
+  if(!res.ok)throw new Error(`HTTP ${res.status}`);
+  const raw=await res.json();
+  const pericopes=raw.pericopes.map(p=>({
+    id:+p.id,title:p.title,verses:p.verses,slug:p.slug,
+    text:p.text,chapter:chapterOf(p),
+  }));
+  const chapters={};
+  pericopes.forEach(p=>{(chapters[p.chapter]=chapters[p.chapter]||[]).push(p)});
+  const data={
+    slug,lang,
+    name:raw.book_name||bookBySlug[slug].n,
+    total:raw.total||pericopes.length,
+    version:raw.bible_version_full||raw.bible_version||(lang==='de'?'Deutsche Ausgabe':'World English Bible'),
+    pericopes,chapters,
+    chapterNums:Object.keys(chapters).map(Number).sort((a,b)=>a-b),
+  };
+  state.cache[key]=data;
+  return data;
+}
+function displayName(slug){
+  const b=bookBySlug[slug];
+  return state.lang==='de'?b.de:b.n;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+const sbOT=document.getElementById('sb-ot');
+const sbNT=document.getElementById('sb-nt');
+function buildSidebar(){
+  sbOT.innerHTML='';sbNT.innerHTML='';
+  const deMode=state.lang==='de';
+  BOOKS.forEach(b=>{
+    const wrap=document.createElement('div');
+    const enOnly=deMode&&!DE_BOOKS.has(b.s);
+    wrap.className=`sb-book${b.st?' '+b.st:''}${enOnly?' en-only':''}`;
+    wrap.dataset.slug=b.s;
+    wrap.innerHTML=`
+      <button type="button">
+        <span>${deMode?b.de:b.n}</span>
+        ${enOnly?'<span class="en-tag" title="Noch nicht auf Deutsch — Text auf Englisch">EN</span>':''}
+        <span class="dot" title="${b.st==='complete'?'Illustrated edition complete':b.st==='progress'?'Being painted now':''}"></span>
+      </button>
+      <div class="sb-chapters"><div class="sb-loading">…</div></div>`;
+    wrap.querySelector('button').addEventListener('click',()=>selectBook(b.s));
+    (b.t==='OT'?sbOT:sbNT).appendChild(wrap);
+  });
+}
+function sbEl(slug){return document.querySelector(`.sb-book[data-slug="${slug}"]`)}
+
+async function renderChapters(slug){
+  const el=sbEl(slug);if(!el)return;
+  const box=el.querySelector('.sb-chapters');
+  box.innerHTML='<div class="sb-loading">Loading chapters…</div>';
+  try{
+    const lang=effectiveLang(slug);
+    const data=await loadBook(slug,lang);
+    box.innerHTML=`
+      <div class="ch-grid">${data.chapterNums.map(c=>
+        `<button type="button" data-ch="${c}" class="${c===state.chapter&&slug===state.book?'on':''}">${c}</button>`).join('')}
+      </div>
+      <div class="sb-passages"></div>`;
+    box.querySelectorAll('.ch-grid button').forEach(btn=>{
+      btn.addEventListener('click',()=>selectChapter(slug,+btn.dataset.ch));
+    });
+    if(slug===state.book&&state.chapter)renderPassageList(data,state.chapter);
+  }catch(e){
+    box.innerHTML='<div class="sb-loading">Could not load this book.</div>';
+  }
+}
+function renderPassageList(data,ch){
+  const el=sbEl(data.slug);if(!el)return;
+  const list=el.querySelector('.sb-passages');if(!list)return;
+  const passages=data.chapters[ch]||[];
+  list.classList.add('show');
+  list.innerHTML=passages.map(p=>
+    `<button type="button" data-id="${p.id}" class="${p.id===state.passageId?'on':''}">
+       <span class="pid">${p.id}</span><span>${esc(p.verses)}</span>
+     </button>`).join('');
+  list.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click',()=>{go(data.slug,+btn.dataset.id);closeMobileSidebar()});
+  });
+  el.querySelectorAll('.ch-grid button').forEach(b=>b.classList.toggle('on',+b.dataset.ch===ch));
+}
+
+/* ============================================================
+   NAVIGATION / ROUTING (#book/passageId)
+   ============================================================ */
+function go(slug,id){
+  const target=id?`#${slug}/${id}`:`#${slug}`;
+  if(location.hash===target){route()}else{location.hash=target}
+}
+async function selectBook(slug){
+  const wasActive=sbEl(slug)?.classList.contains('active');
+  document.querySelectorAll('.sb-book.active').forEach(e=>e.classList.remove('active'));
+  if(wasActive&&slug!==state.book)return;
+  if(wasActive){return} // collapse toggle
+  sbEl(slug)?.classList.add('active');
+  if(slug!==state.book){state.chapter=null;state.passageId=null}
+  state.book=slug;
+  await renderChapters(slug);
+  if(state.passageId===null){
+    try{
+      const data=await loadBook(slug,effectiveLang(slug));
+      go(slug,data.pericopes[0].id);
+    }catch(e){renderError(slug,e)}
+  }
+}
+async function selectChapter(slug,ch){
+  state.chapter=ch;
+  const data=await loadBook(slug,effectiveLang(slug));
+  renderPassageList(data,ch);
+  const first=(data.chapters[ch]||[])[0];
+  if(first)go(slug,first.id);
+}
+function effectiveLang(slug){
+  return (state.lang==='de'&&DE_BOOKS.has(slug))?'de':'en';
+}
+
+async function route(){
+  const h=location.hash.replace(/^#/,'');
+  if(!h){renderWelcome();return}
+  const [slug,idStr]=h.split('/');
+  if(!bookBySlug[slug]){renderWelcome();return}
+  const id=idStr?+idStr:null;
+  const isNewBook=state.book!==slug;
+  state.book=slug;
+  document.querySelectorAll('.sb-book.active').forEach(e=>e.classList.remove('active'));
+  sbEl(slug)?.classList.add('active');
+  renderLoading();
+  try{
+    const data=await loadBook(slug,effectiveLang(slug));
+    const p=id?data.pericopes.find(x=>x.id===id):data.pericopes[0];
+    if(!p){renderError(slug,new Error('Passage not found'));return}
+    state.passageId=p.id;
+    state.chapter=p.chapter;
+    if(isNewBook||!sbEl(slug).querySelector('.ch-grid'))await renderChapters(slug);
+    renderPassageList(data,p.chapter);
+    renderPassage(data,p);
+  }catch(e){renderError(slug,e)}
+}
+window.addEventListener('hashchange',route);
+
+/* ============================================================
+   RENDERING
+   ============================================================ */
+const content=document.getElementById('content');
+const main=document.getElementById('main');
+const tbTitle=document.getElementById('tb-title');
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+function renderLoading(){
+  content.innerHTML=`<div class="loading-passage">
+    <div class="sk t"></div><div class="sk s"></div>
+    ${'<div class="sk l"></div>'.repeat(9)}
+  </div>`;
+}
+function renderWelcome(){
+  state.passageId=null;
+  tbTitle.textContent=state.lang==='de'?'Die Bibel':'The Bible';
+  const featured=['genesis','psalms','matthew','john','romans','revelation'];
+  const de=state.lang==='de';
+  content.innerHTML=`<div class="welcome fade-in">
+    <img class="mark" src="brand/truthprints-mark.png" alt="">
+    <h1>${de?'Das Wort,<br><em>schön gelesen.</em>':'The Word,<br><em>beautifully read.</em>'}</h1>
+    <p>${de
+      ?'Alle sechsundsechzig Bücher, Passage für Passage. Wähle links ein Buch — oder beginne hier.'
+      :'All sixty-six books, passage by passage. Choose a book on the left — or begin here.'}</p>
+    <p class="welcome-verse">${de
+      ?'„Im Anfang war das Wort, und das Wort war bei Gott, und das Wort war Gott.“<small>Johannes 1,1</small>'
+      :'“In the beginning was the Word, and the Word was with God, and the Word was God.”<small>John 1:1</small>'}</p>
+    <div class="welcome-grid">
+      ${featured.map(s=>`<button type="button" data-go="${s}">
+        <span class="wb-sub">${bookBySlug[s].t==='OT'?(de?'Altes Testament':'Old Testament'):(de?'Neues Testament':'New Testament')}</span>
+        <span class="wb-name">${displayName(s)}</span>
+      </button>`).join('')}
+    </div>
+  </div>`;
+  content.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>selectBook(b.dataset.go)));
+}
+function renderError(slug,e){
+  const de=state.lang==='de';
+  content.innerHTML=`<div class="err fade-in">
+    <b>${de?`„${esc(displayName(slug))}“ konnte nicht geöffnet werden`:`Could not open ${esc(displayName(slug))}`}</b>
+    ${de
+      ?`Die Texte konnten nicht geladen werden. Bitte öffne den Reader über <code>truthprints.de/bible.html</code> — nicht durch direktes Anklicken der Datei (lokale Dateien können die Bibeltexte aus Browser-Sicherheitsgründen nicht laden).`
+      :`The passage data could not be loaded. Please open the reader at <code>truthprints.de/bible.html</code> — not by double-clicking the file directly (local files can't fetch the texts due to browser security).`}
+  </div>`;
+}
+
+function renderPassage(data,p){
+  const idx=data.pericopes.findIndex(x=>x.id===p.id);
+  const prev=data.pericopes[idx-1]||null;
+  const next=data.pericopes[idx+1]||null;
+  const name=displayName(data.slug);
+  tbTitle.textContent=`${name} · ${p.verses}`;
+  document.title=`${p.verses} · TruthPrints Bible`;
+  const L=state.lang==='de'?{
+    bible:'Bibel',ch:'Kapitel',passage:'Passage',of:'von',
+    prevL:'Vorherige Passage',nextL:'Nächste Passage',
+    hint:'für vorherige / nächste Passage',plates:'Illustrierte Ausgabe verfügbar',
+    save:'Merken',saved:'Gemerkt',note:'Notiz',share:'Teilen',copied:'Link kopiert',
+    notePh:'Deine Notiz zu dieser Passage…',noteSave:'Speichern',
+  }:{
+    bible:'Bible',ch:'Chapter',passage:'Passage',of:'of',
+    prevL:'Previous passage',nextL:'Next passage',
+    hint:'for previous / next passage',plates:'Illustrated edition available',
+    save:'Save',saved:'Saved',note:'Note',share:'Share',copied:'Link copied',
+    notePh:'Your note on this passage…',noteSave:'Save',
+  };
+  const pkey=data.slug+'/'+p.id;
+  const isSaved=tpBookmarks().some(b=>b.key===pkey);
+  const noteVal=tpNotes()[pkey]||'';
+  content.innerHTML=`<article class="fade-in">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <button type="button" id="bc-bible">${L.bible}</button><span class="sep">✦</span>
+      <button type="button" id="bc-book">${esc(name)}</button><span class="sep">✦</span>
+      <button type="button" id="bc-ch">${L.ch} ${p.chapter}</button><span class="sep">✦</span>
+      <span class="cur">${esc(p.verses)}</span>
+    </nav>
+    <h1 class="passage-title">${esc(p.title)}</h1>
+    <div class="passage-verses">${esc(p.verses)} · ${L.passage} ${p.id} ${L.of} ${data.total}</div>
+    <figure class="passage-plate" hidden><img alt="${esc(p.title)}" src="assets/${data.slug}/plates/p${p.id}.jpg" onload="this.closest('.passage-plate').hidden=false" onerror="this.closest('.passage-plate').remove()"><figcaption>${esc(p.verses)}</figcaption></figure>
+    <div class="pp-tools">
+      <button type="button" class="pp-t${isSaved?' on':''}" id="ppSave"><svg viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg><span>${isSaved?L.saved:L.save}</span></button>
+      <button type="button" class="pp-t${noteVal?' on':''}" id="ppNote"><svg viewBox="0 0 24 24"><path d="M4 4h12l4 4v12H4z"/><path d="M8 11h8M8 15h5"/></svg><span>${L.note}</span></button>
+      <button type="button" class="pp-t" id="ppShare"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8 11l8-4M8 13l8 4"/></svg><span>${L.share}</span></button>
+      <span class="pp-fs"><button type="button" id="ppFsm" aria-label="Smaller">A−</button><button type="button" id="ppFsp" aria-label="Larger">A+</button></span>
+    </div>
+    <div class="pp-notebox" id="ppNoteBox"${noteVal?'':' hidden'}><textarea id="ppNoteTxt" placeholder="${L.notePh}" rows="3">${esc(noteVal)}</textarea><button type="button" id="ppNoteSave">${L.noteSave}</button></div>
+    <div class="passage-rule"><span>✦</span></div>
+    ${state.lang==='de'&&!DE_BOOKS.has(data.slug)?`<div class="de-fallback-note">Dieses Buch ist noch nicht auf Deutsch verfügbar — der Text wird auf Englisch angezeigt. Deutsch gibt es derzeit für Matthäus, Markus, Lukas und Johannes.</div>`:''}
+    <div class="passage-text">${esc(p.text)}</div>
+    <div class="passage-meta">
+      <span>${esc(data.version)}</span>
+      ${bookBySlug[data.slug].st==='complete'?`<span style="color:var(--gold-deep)">✦ ${L.plates}</span>`:''}
+    </div>
+    <div class="end-rule"><span>✦</span></div>
+    <div class="pager">
+      <a href="${prev?`#${data.slug}/${prev.id}`:'#'}" class="prev ${prev?'':'disabled'}">
+        <span class="dir">← ${L.prevL}</span><span class="lbl">${prev?esc(prev.verses):'—'}</span>
+      </a>
+      <a href="${next?`#${data.slug}/${next.id}`:'#'}" class="next ${next?'':'disabled'}">
+        <span class="dir">${L.nextL} ←’</span><span class="lbl">${next?esc(next.verses):'—'}</span>
+      </a>
+    </div>
+    <div class="kbd-hint"><kbd>←</kbd><kbd>←’</kbd> ${L.hint}</div>
+  </article>`;
+  content.querySelector('#bc-bible').addEventListener('click',()=>{location.hash=''});
+  content.querySelector('#bc-book').addEventListener('click',()=>go(data.slug,data.pericopes[0].id));
+  content.querySelector('#bc-ch').addEventListener('click',()=>{
+    const first=(data.chapters[p.chapter]||[])[0];
+    if(first)go(data.slug,first.id);
+  });
+  /* ── reader tools: bookmark / note / share / font ── */
+  const saveBtn=content.querySelector('#ppSave');
+  saveBtn.addEventListener('click',()=>{
+    const on=tpToggleBookmark({key:pkey,book:data.slug,id:p.id,ref:p.verses,name:displayName(data.slug),ts:Date.now()});
+    saveBtn.classList.toggle('on',on);
+    saveBtn.querySelector('span').textContent=on?L.saved:L.save;
+  });
+  const noteBox=content.querySelector('#ppNoteBox'),noteBtn=content.querySelector('#ppNote');
+  noteBtn.addEventListener('click',()=>{
+    noteBox.hidden=!noteBox.hidden;
+    if(!noteBox.hidden)content.querySelector('#ppNoteTxt').focus();
+  });
+  content.querySelector('#ppNoteSave').addEventListener('click',()=>{
+    const v=content.querySelector('#ppNoteTxt').value.trim();
+    tpSetNote(pkey,v);
+    noteBtn.classList.toggle('on',!!v);
+    noteBox.hidden=true;
+  });
+  content.querySelector('#ppShare').addEventListener('click',async()=>{
+    const url=location.origin+location.pathname+'#'+pkey;
+    const title=displayName(data.slug)+' '+p.verses+' — TruthPrints';
+    try{
+      if(navigator.share){await navigator.share({title,url});}
+      else{await navigator.clipboard.writeText(url);tpToast(L.copied);}
+    }catch(_){}
+  });
+  content.querySelector('#ppFsm').addEventListener('click',()=>tpFont(-1));
+  content.querySelector('#ppFsp').addEventListener('click',()=>tpFont(1));
+  main.scrollTo({top:0,left:0,behavior:"auto"});
+  try{window.scrollTo(0,0)}catch(_){}
+}
+
+/* ── reader personalisation: bookmarks, notes, font (localStorage) ── */
+function tpBookmarks(){try{return JSON.parse(localStorage.getItem('tp_bookmarks')||'[]')||[]}catch(_){return[]}}
+function tpToggleBookmark(b){
+  let list=tpBookmarks();
+  const i=list.findIndex(x=>x.key===b.key);
+  if(i>=0){list.splice(i,1);}else{list.unshift(b);}
+  try{localStorage.setItem('tp_bookmarks',JSON.stringify(list))}catch(_){}
+  return i<0;
+}
+function tpNotes(){try{return JSON.parse(localStorage.getItem('tp_notes')||'{}')||{}}catch(_){return{}}}
+function tpSetNote(key,val){
+  const n=tpNotes();
+  if(val)n[key]=val;else delete n[key];
+  try{localStorage.setItem('tp_notes',JSON.stringify(n))}catch(_){}
+}
+function tpFont(d){
+  let s=parseFloat(localStorage.getItem('tp_fontscale')||'1')||1;
+  s=Math.min(1.5,Math.max(0.85,Math.round((s+d*0.08)*100)/100));
+  try{localStorage.setItem('tp_fontscale',s)}catch(_){}
+  document.documentElement.style.setProperty('--read-scale',s);
+}
+function tpApplyFont(){document.documentElement.style.setProperty('--read-scale',parseFloat(localStorage.getItem('tp_fontscale')||'1')||1);}
+let tpToastT=0;
+function tpToast(msg){
+  let t=document.getElementById('tp-toast');
+  if(!t){t=document.createElement('div');t.id='tp-toast';document.body.appendChild(t);}
+  t.textContent=msg;t.classList.add('on');
+  clearTimeout(tpToastT);tpToastT=setTimeout(()=>t.classList.remove('on'),2200);
+}
+
+/* ============================================================
+   KEYBOARD NAV
+   ============================================================ */
+document.addEventListener('keydown',async e=>{
+  const inInput=/input|textarea|select/i.test(document.activeElement.tagName);
+  if(e.key==='/'&&!inInput){e.preventDefault();openSearch();return}
+  if(e.key==='Escape'){
+    if(overlay.classList.contains('open')){closeSearch();return}
+    if(inInput){document.activeElement.blur();return}
+  }
+  if(inInput)return;
+  if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;
+  if(!state.book||state.passageId===null)return;
+  try{
+    const data=await loadBook(state.book,effectiveLang(state.book));
+    const idx=data.pericopes.findIndex(x=>x.id===state.passageId);
+    const target=e.key==='ArrowRight'?data.pericopes[idx+1]:data.pericopes[idx-1];
+    if(target){go(state.book,target.id);return;}
+    // at a book boundary → cross into the neighbouring book
+    const bi=BOOKS.findIndex(b=>b.s===state.book);
+    if(e.key==='ArrowRight'&&bi<BOOKS.length-1){
+      const nb=BOOKS[bi+1];
+      const nd=await loadBook(nb.s,effectiveLang(nb.s));
+      if(nd.pericopes.length)go(nb.s,nd.pericopes[0].id);
+    }else if(e.key==='ArrowLeft'&&bi>0){
+      const pb=BOOKS[bi-1];
+      const pd=await loadBook(pb.s,effectiveLang(pb.s));
+      if(pd.pericopes.length)go(pb.s,pd.pericopes[pd.pericopes.length-1].id);
+    }
+  }catch(_){}
+});
+
+/* ============================================================
+   SEARCH — overlay that dims the page
+   ============================================================ */
+const overlay=document.getElementById('search-overlay');
+const searchInput=document.getElementById('search');
+const srList=document.getElementById('sr-list');
+const srCount=document.getElementById('sr-count');
+const srProgress=document.getElementById('sr-progress');
+const scopeAllInput=document.getElementById('scope-all');
+const scopeLabel=document.getElementById('scope-label');
+let searchTimer=null;
+
+function openSearch(){
+  overlay.classList.add('open');
+  updateScopeLabel();
+  setTimeout(()=>searchInput.focus(),120);
+}
+function closeSearch(){
+  overlay.classList.remove('open');
+  searchInput.blur();
+}
+function updateScopeLabel(){
+  const de=state.lang==='de';
+  scopeLabel.textContent=de
+    ?'Die ganze Bibel durchsuchen (alle 66 Bücher)'
+    :'Search the entire Bible (all 66 books)';
+  searchInput.placeholder=de?'Die Schrift durchsuchen…':'Search the Scriptures…';
+  if(!searchInput.value.trim()){
+    srList.innerHTML=`<div class="so-hint">${de?'Ein Wort, ein Name, eine Verheißung.':'Type a word, a name, a promise.'}</div>`;
+    srCount.textContent='';
+  }
+}
+document.getElementById('search-open').addEventListener('click',openSearch);
+document.getElementById('search-close').addEventListener('click',closeSearch);
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeSearch()});
+scopeAllInput.addEventListener('change',()=>{
+  state.searchAll=scopeAllInput.checked;
+  runSearch(searchInput.value.trim());
+});
+searchInput.addEventListener('input',()=>{
+  clearTimeout(searchTimer);
+  searchTimer=setTimeout(()=>runSearch(searchInput.value.trim()),260);
+});
+searchInput.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){clearTimeout(searchTimer);runSearch(searchInput.value.trim())}
+});
+
+async function ensureAllBooks(progressCb){
+  const todo=BOOKS.filter(b=>!state.cache[`en/${b.s}`]);
+  let done=BOOKS.length-todo.length;
+  const CHUNK=8;
+  for(let i=0;i<todo.length;i+=CHUNK){
+    await Promise.all(todo.slice(i,i+CHUNK).map(b=>
+      loadBook(b.s,'en').catch(()=>null)
+    ));
+    done+=Math.min(CHUNK,todo.length-i);
+    if(progressCb)progressCb(done,BOOKS.length);
+  }
+}
+function highlight(text,q){
+  const i=text.toLowerCase().indexOf(q.toLowerCase());
+  if(i<0)return esc(text.slice(0,180))+(text.length>180?'…':'');
+  const start=Math.max(0,i-70);
+  const before=(start>0?'…':'')+text.slice(start,i);
+  const hit=text.slice(i,i+q.length);
+  const after=text.slice(i+q.length,i+q.length+110)+(i+q.length+110<text.length?'…':'');
+  return esc(before)+'<mark>'+esc(hit)+'</mark>'+esc(after);
+}
+let searchToken=0;
+async function runSearch(q){
+  const de=state.lang==='de';
+  const token=++searchToken;
+  if(!q||q.length<2){
+    srList.innerHTML=`<div class="so-hint">${de?'Ein Wort, ein Name, eine Verheißung.':'Type a word, a name, a promise.'}</div>`;
+    srCount.textContent='';srProgress.textContent='';
+    return;
+  }
+  const scopeAll=state.searchAll;
+  if(scopeAll){
+    srProgress.textContent=de?'Lade alle Bücher…':'Loading all books…';
+    await ensureAllBooks((d,t)=>{if(token===searchToken)srProgress.textContent=(de?'Lade Bücher… ':'Loading books… ')+d+' / '+t});
+    if(token!==searchToken)return;
+    srProgress.textContent='';
+  }else if(state.book){
+    try{await loadBook(state.book,effectiveLang(state.book))}catch(_){}
+    if(token!==searchToken)return;
+  }
+  const ql=q.toLowerCase();
+  const results=[];
+  const scopeKeys=Object.keys(state.cache).filter(k=>{
+    if(!scopeAll){return state.book&&k.endsWith('/'+state.book)&&k.startsWith(effectiveLang(state.book))}
+    return k.startsWith('en/')||DE_BOOKS.has(k.split('/')[1])&&state.lang==='de'&&k.startsWith('de/');
+  });
+  const seen=new Set();
+  for(const key of scopeKeys){
+    const data=state.cache[key];
+    if(seen.has(data.slug))continue;seen.add(data.slug);
+    for(const p of data.pericopes){
+      if(p.title.toLowerCase().includes(ql)||p.verses.toLowerCase().includes(ql)||p.text.toLowerCase().includes(ql)){
+        results.push({book:data.slug,p});
+        if(results.length>=200)break;
+      }
+    }
+    if(results.length>=200)break;
+  }
+  if(token!==searchToken)return;
+  if(!scopeAll&&!state.book){
+    srCount.textContent='';
+    srList.innerHTML=`<div class="so-hint">${de
+      ?'Wähle zuerst ein Buch — oder durchsuche die ganze Bibel.'
+      :'Choose a book first — or search the entire Bible.'}</div>`;
+    return;
+  }
+  srCount.textContent=results.length
+    ?(de?`${results.length} Treffer${scopeAll?'':' in '+displayName(state.book)}`:`${results.length} result${results.length===1?'':'s'}${scopeAll?'':' in '+displayName(state.book)}`)
+    :'';
+  if(!results.length){
+    srList.innerHTML=`<div class="sr-empty">${de?'Nichts gefunden. Versuche ein anderes Wort.':'Nothing found. Try another word.'}</div>`;
+    return;
+  }
+  srList.innerHTML=results.map(r=>`
+    <button type="button" class="sr-item" data-b="${r.book}" data-id="${r.p.id}">
+      <div class="sr-ref">${esc(r.p.verses)}<small>${esc(displayName(r.book))}</small></div>
+      <div class="sr-txt">${highlight(r.p.text,q)}</div>
+    </button>`).join('');
+  srList.querySelectorAll('.sr-item').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      closeSearch();
+      searchInput.value='';
+      go(btn.dataset.b,+btn.dataset.id);
+    });
+  });
+}
+
+/* ============================================================
+   LANGUAGE TOGGLE
+   ============================================================ */
+const langEn=document.getElementById('lang-en');
+const langDe=document.getElementById('lang-de');
+function applyLangButtons(){
+  langEn.classList.toggle('on',state.lang==='en');
+  langDe.classList.toggle('on',state.lang==='de');
+}
+async function setLang(lang){
+  state.lang=lang;
+  try{localStorage.setItem('tp_lang',lang)}catch(_){}
+  applyLangButtons();
+  updateScopeLabel();
+  buildSidebar();
+  if(state.book){
+    sbEl(state.book)?.classList.add('active');
+    await renderChapters(state.book);
+  }
+  if(state.passageId!==null&&state.book){
+    try{
+      const data=await loadBook(state.book,effectiveLang(state.book));
+      const p=data.pericopes.find(x=>x.id===state.passageId)||data.pericopes[0];
+      renderPassage(data,p);
+      renderPassageList(data,p.chapter);
+    }catch(e){renderError(state.book,e)}
+  }else if(!overlay.classList.contains('open')){
+    renderWelcome();
+  }
+}
+langEn.addEventListener('click',()=>setLang('en'));
+langDe.addEventListener('click',()=>setLang('de'));
+langDe.title='Deutsch — derzeit für Matthäus, Markus, Lukas, Johannes';
+
+/* ============================================================
+   MOBILE SIDEBAR — full-screen drawer with ✕
+   ============================================================ */
+const sidebar=document.getElementById('sidebar');
+const sbToggle=document.getElementById('sb-toggle');
+const sbX=document.getElementById('sb-x');
+function closeMobileSidebar(){
+  sidebar.classList.remove('open');
+  sbToggle.setAttribute('aria-expanded','false');
+}
+sbToggle.addEventListener('click',()=>{
+  const open=sidebar.classList.toggle('open');
+  sbToggle.setAttribute('aria-expanded',open);
+});
+sbX.addEventListener('click',closeMobileSidebar);
+window.addEventListener('hashchange',()=>{if(window.innerWidth<=920)closeMobileSidebar()});
+
+/* ============================================================
+   INIT
+   ============================================================ */
+/* ── bookmarks panel ── */
+(function(){
+  const btn=document.getElementById('bm-open');if(!btn)return;
+  let panel=null;
+  function close(){if(panel){panel.remove();panel=null;}}
+  btn.addEventListener('click',()=>{
+    if(panel){close();return;}
+    const de=state.lang==='de';
+    const list=tpBookmarks();
+    panel=document.createElement('div');panel.id='bm-panel';
+    panel.innerHTML='<div class="bm-h">'+(de?'Lesezeichen':'Bookmarks')+'</div>'+
+      (list.length?list.map(b=>'<button class="bm-i" data-b="'+b.book+'" data-id="'+b.id+'"><span class="bm-r">'+esc(b.ref)+'</span><small>'+esc(b.name)+'</small></button>').join('')
+        :'<div class="bm-e">'+(de?'Noch keine. Tippe „Merken" bei einer Passage.':'None yet. Tap “Save” on a passage.')+'</div>');
+    document.body.appendChild(panel);
+    panel.querySelectorAll('.bm-i').forEach(it=>it.addEventListener('click',()=>{go(it.dataset.b,+it.dataset.id);close();}));
+    setTimeout(()=>document.addEventListener('click',outside),0);
+  });
+  function outside(e){if(panel&&!panel.contains(e.target)&&e.target!==btn&&!btn.contains(e.target)){close();document.removeEventListener('click',outside);}}
+})();
+
+buildSidebar();
+applyLangButtons();
+updateScopeLabel();
+tpApplyFont();
+route();
+</script>
+
+<script>
+(function(){
+  var btn=document.getElementById('theme-toggle');
+  var icon=document.getElementById('theme-icon');
+  function setTheme(t){
+    document.documentElement.setAttribute('data-theme',t);
+    icon.innerHTML=t==='dark'
+      ?'<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>'
+      :'<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+    try{localStorage.setItem('tp_theme',t)}catch(e){}
+  }
+  try{var s=localStorage.getItem('tp_theme');if(s==='dark'||s==='light')setTheme(s)}catch(e){}
+  if(btn)btn.addEventListener('click',function(){
+    var cur=document.documentElement.getAttribute('data-theme')||'light';
+    setTheme(cur==='dark'?'light':'dark');
+  });
+})();
+</script>
+</body>
+</html>
+

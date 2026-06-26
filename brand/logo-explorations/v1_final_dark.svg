@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="TruthPrints"><defs>
+    <linearGradient id="g" x1="100" y1="6" x2="100" y2="195" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F3DDA0"/><stop offset="0.5" stop-color="#C9A24E"/>
+      <stop offset="1" stop-color="#977230"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="100" cy="24" r="34" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF6DD" stop-opacity="0.92"/>
+      <stop offset="0.32" stop-color="#F1D38C" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#F1D38C" stop-opacity="0"/>
+    </radialGradient></defs><rect x="14" y="14" width="172" height="172" rx="20" fill="none" stroke="url(#g)" stroke-width="3"/><rect x="23" y="23" width="154" height="154" rx="13" fill="none" stroke="url(#g)" stroke-width="1.1" opacity="0.55"/><path d="M14 95 L19 100 L14 105 L9 100 Z" fill="url(#g)"/><path d="M186 95 L191 100 L186 105 L181 100 Z" fill="url(#g)"/><path d="M100 9 L105 14 L100 19 L95 14 Z" fill="url(#g)"/><path d="M100 181 L105 186 L100 191 L95 186 Z" fill="url(#g)"/><circle cx="100" cy="30" r="44" fill="url(#glow)"/><path d="M100 24 C103.0 31.200000000000003 105.1 36.6 102.16 41.1 C100.78 42.54 99.22 42.54 97.84 41.1 C94.9 36.6 97.0 31.200000000000003 100 24 Z" fill="url(#g)"/><g fill="url(#g)"><path d="M32 40 L168 40 L168 60 L158 60 C155 56 153 54 149 53 L108 53 L92 53 L51 53 C47 54 45 56 42 60 L32 60 Z"/><path d="M92.5 52 L107.5 52 L106.5 158 C108.5 165 112 169 120 171 L130 171 L130 175 L70 175 L70 171 L80 171 C88 169 91.5 165 93.5 158 L93.5 52 Z"/></g></svg>

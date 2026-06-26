@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="TruthPrints mark">
+  <defs>
+    <linearGradient id="tpGold" x1="120" y1="46" x2="120" y2="196" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E9CB83"></stop>
+      <stop offset="0.5" stop-color="#C39A4E"></stop>
+      <stop offset="1" stop-color="#8A6526"></stop>
+    </linearGradient>
+    <radialGradient id="tpFlame" cx="120" cy="56" r="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FBE8C0"></stop>
+      <stop offset="0.55" stop-color="#E6B85A"></stop>
+      <stop offset="1" stop-color="#B07F2E"></stop>
+    </radialGradient>
+    <radialGradient id="tpHalo" cx="120" cy="60" r="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E6B85A" stop-opacity="0.30"></stop>
+      <stop offset="1" stop-color="#E6B85A" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+
+  <circle cx="120" cy="120" r="113" fill="none" stroke="url(#tpGold)" stroke-width="2"></circle>
+  <circle cx="120" cy="120" r="104" fill="none" stroke="url(#tpGold)" stroke-width="0.9" opacity="0.7"></circle>
+
+  <circle cx="120" cy="60" r="60" fill="url(#tpHalo)"></circle>
+  <g stroke="url(#tpGold)" stroke-width="1.4" opacity="0.55" stroke-linecap="round">
+    <line x1="120" y1="22" x2="120" y2="36"></line>
+    <line x1="92" y1="30" x2="99" y2="42"></line>
+    <line x1="148" y1="30" x2="141" y2="42"></line>
+    <line x1="72" y1="48" x2="83" y2="56"></line>
+    <line x1="168" y1="48" x2="157" y2="56"></line>
+  </g>
+
+  <path d="M120 44 C 127 54, 128 63, 122 70 C 121 71, 119 71, 118 70 C 112 63, 113 54, 120 44 Z" fill="url(#tpFlame)"></path>
+  <ellipse cx="120" cy="65" rx="3.2" ry="4.6" fill="#FBEED0" opacity="0.9"></ellipse>
+
+  <g fill="url(#tpGold)">
+    <rect x="74" y="84" width="92" height="15"></rect>
+    <rect x="74" y="84" width="6.5" height="24"></rect>
+    <rect x="159.5" y="84" width="6.5" height="24"></rect>
+    <rect x="112" y="84" width="16" height="80"></rect>
+    <rect x="95" y="160" width="50" height="8" rx="1"></rect>
+  </g>
+</svg>

@@ -1,0 +1,82 @@
+{
+  "book": "philemon",
+  "book_name": "Philemon",
+  "total": 5,
+  "bible_source_key": "web",
+  "bible_version": "WEB",
+  "bible_version_full": "World English Bible",
+  "bible_license_name": "Public Domain",
+  "source_file": "C:/Users/canzm/Desktop/bible-project-v2/data/web_raw.json",
+  "pericopes": [
+    {
+      "id": 1,
+      "title": "Philemon 1:1-6",
+      "verses": "Philemon 1:1-6",
+      "slug": "philemon-1-1-6",
+      "keywords": [
+        "paul",
+        "prisoner",
+        "christ",
+        "jesus",
+        "timothy"
+      ],
+      "text": "Paul, a prisoner of Christ Jesus, and Timothy our brother, to Philemon, our beloved fellow worker, to the beloved Apphia, to Archippus our fellow soldier, and to the assembly in your house: Grace to you and peace from God our Father and the Lord Jesus Christ. I thank my God always, making mention of you in my prayers, hearing of your love and of the faith which you have toward the Lord Jesus and toward all the saints, that the fellowship of your faith may become effective in the knowledge of every good thing which is in us in Christ Jesus."
+    },
+    {
+      "id": 2,
+      "title": "Philemon 1:7-12",
+      "verses": "Philemon 1:7-12",
+      "slug": "philemon-1-7-12",
+      "keywords": [
+        "much",
+        "comfort",
+        "love",
+        "because",
+        "hearts"
+      ],
+      "text": "For we have much joy and comfort in your love, because the hearts of the saints have been refreshed through you, brother. Therefore though I have all boldness in Christ to command you that which is appropriate, yet for love’s sake I rather appeal to you, being such a one as Paul, the aged, but also a prisoner of Jesus Christ. I appeal to you for my child Onesimus, whom I have become the father of in my chains, who once was useless to you, but now is useful to you and to me. I am sending him back. Therefore receive him, that is, my own heart,"
+    },
+    {
+      "id": 3,
+      "title": "Philemon 1:13-17",
+      "verses": "Philemon 1:13-17",
+      "slug": "philemon-1-13-17",
+      "keywords": [
+        "whom",
+        "desired",
+        "keep",
+        "behalf",
+        "might"
+      ],
+      "text": "whom I desired to keep with me, that on your behalf he might serve me in my chains for the Good News. But I was willing to do nothing without your consent, that your goodness would not be as of necessity, but of free will. For perhaps he was therefore separated from you for a while that you would have him forever, no longer as a slave, but more than a slave, a beloved brother—especially to me, but how much rather to you, both in the flesh and in the Lord. If then you count me a partner, receive him as you would receive me."
+    },
+    {
+      "id": 4,
+      "title": "Philemon 1:18-23",
+      "verses": "Philemon 1:18-23",
+      "slug": "philemon-1-18-23",
+      "keywords": [
+        "wronged",
+        "owes",
+        "anything",
+        "account",
+        "paul"
+      ],
+      "text": "But if he has wronged you at all or owes you anything, put that to my account. I, Paul, write this with my own hand: I will repay it (not to mention to you that you owe to me even your own self besides). Yes, brother, let me have joy from you in the Lord. Refresh my heart in the Lord. Having confidence in your obedience, I write to you, knowing that you will do even beyond what I say. Also, prepare a guest room for me, for I hope that through your prayers I will be restored to you. Epaphras, my fellow prisoner in Christ Jesus, greets you,"
+    },
+    {
+      "id": 5,
+      "title": "Philemon 1:24-25",
+      "verses": "Philemon 1:24-25",
+      "slug": "philemon-1-24-25",
+      "keywords": [
+        "mark",
+        "aristarchus",
+        "demas",
+        "luke",
+        "fellow"
+      ],
+      "text": "as do Mark, Aristarchus, Demas, and Luke, my fellow workers. The grace of our Lord Jesus Christ be with your spirit. Amen."
+    }
+  ]
+}

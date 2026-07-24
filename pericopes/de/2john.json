@@ -1,0 +1,55 @@
+{
+  "book": "2john",
+  "book_name": "2 John",
+  "total": 3,
+  "bible_source_key": "web",
+  "bible_version": "ELB1871",
+  "bible_version_full": "Elberfelder 1871",
+  "bible_license_name": "Public Domain",
+  "source_file": "C:/Users/canzm/Desktop/bible-project-v2/data/web_raw.json",
+  "pericopes": [
+    {
+      "id": 1,
+      "title": "2 John 1:1-4",
+      "verses": "2. Johannes 1,1-4",
+      "slug": "2john-1-1-4",
+      "keywords": [
+        "elder",
+        "chosen",
+        "lady",
+        "children",
+        "whom"
+      ],
+      "text": "Der Älteste der auserwählten Frau und ihren Kindern, die ich liebe in der Wahrheit; und nicht ich allein, sondern auch alle, welche die Wahrheit erkannt haben, um der Wahrheit willen, die in uns bleibt und mit uns sein wird in Ewigkeit. Es wird mit euch sein Gnade, Barmherzigkeit, Friede von Gott, dem Vater, und von dem Herrn Jesu Christo, dem Sohne des Vaters, in Wahrheit und Liebe. Ich freute mich sehr, daß ich einige von deinen Kindern in der Wahrheit wandelnd gefunden habe, wie wir von dem Vater ein Gebot empfangen haben."
+    },
+    {
+      "id": 2,
+      "title": "2 John 1:5-8",
+      "verses": "2. Johannes 1,5-8",
+      "slug": "2john-1-5-8",
+      "keywords": [
+        "dear",
+        "lady",
+        "though",
+        "wrote",
+        "commandment"
+      ],
+      "text": "Und nun bitte ich dich, Frau, nicht als ob ich ein neues Gebot dir schriebe, sondern das, welches wir von Anfang gehabt haben: daß wir einander lieben sollen. Und dies ist die Liebe, daß wir nach seinen Geboten wandeln. Dies ist das Gebot, wie ihr von Anfang gehört habt, daß ihr darin wandeln sollt. Denn viele Verführer sind in die Welt ausgegangen, die nicht Jesum Christum im Fleische kommend bekennen; dies ist der Verführer und der Antichrist. Sehet auf euch selbst, auf daß wir nicht verlieren, was wir erarbeitet haben, sondern vollen Lohn empfangen."
+    },
+    {
+      "id": 3,
+      "title": "2 John 1:9-13",
+      "verses": "2. Johannes 1,9-13",
+      "slug": "2john-1-9-13",
+      "keywords": [
+        "whoever",
+        "transgresses",
+        "doesn",
+        "remain",
+        "teaching"
+      ],
+      "text": "Jeder, der weitergeht und nicht bleibt in der Lehre des Christus, hat Gott nicht; wer in der Lehre bleibt, dieser hat sowohl den Vater als auch den Sohn. Wenn jemand zu euch kommt und diese Lehre nicht bringt, so nehmet ihn nicht ins Haus auf und grüßet ihn nicht Denn wer ihn grüßt, nimmt teil an seinen bösen Werken. Da ich euch vieles zu schreiben habe, wollte ich es nicht mit Papier und Tinte tun, sondern ich hoffe, zu euch zu kommen und mündlich mit euch zu reden, auf daß unsere Freude völlig sei. Es grüßen dich die Kinder deiner auserwählten Schwester."
+    }
+  ],
+  "lang": "de"
+}

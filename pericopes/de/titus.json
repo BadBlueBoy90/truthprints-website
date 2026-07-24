@@ -1,0 +1,153 @@
+{
+  "book": "titus",
+  "book_name": "Titus",
+  "total": 10,
+  "bible_source_key": "web",
+  "bible_version": "ELB1871",
+  "bible_version_full": "Elberfelder 1871",
+  "bible_license_name": "Public Domain",
+  "source_file": "C:/Users/canzm/Desktop/bible-project-v2/data/web_raw.json",
+  "pericopes": [
+    {
+      "id": 1,
+      "title": "Titus 1:1-4",
+      "verses": "Titus 1,1-4",
+      "slug": "titus-1-1-4",
+      "keywords": [
+        "paul",
+        "servant",
+        "apostle",
+        "jesus",
+        "christ"
+      ],
+      "text": "Paulus, Knecht Gottes, aber Apostel Jesu Christi, nach dem Glauben der Auserwählten Gottes und nach der Erkenntnis der Wahrheit, die nach der Gottseligkeit ist, in der Hoffnung des ewigen Lebens, welches Gott, der nicht lügen kann, verheißen hat vor den Zeiten der Zeitalter, zu seiner Zeit aber sein Wort geoffenbart hat durch die Predigt, die mir anvertraut worden ist nach Befehl unseres Heiland-Gottes Titus, meinem echten Kinde nach unserem gemeinschaftlichen Glauben: Gnade und Friede von Gott, dem Vater, und Christo Jesu, unserem Heilande!"
+    },
+    {
+      "id": 2,
+      "title": "Titus 1:5-8",
+      "verses": "Titus 1,5-8",
+      "slug": "titus-1-5-8",
+      "keywords": [
+        "left",
+        "crete",
+        "reason",
+        "would",
+        "order"
+      ],
+      "text": "Deswegen ließ ich dich in Kreta, daß du, was noch mangelte, in Ordnung bringen und in jeder Stadt Älteste anstellen möchtest, wie ich dir geboten hatte: Wenn jemand untadelig ist, eines Weibes Mann, der gläubige Kinder hat, die nicht eines ausschweifenden Lebens beschuldigt oder zügellos sind. Denn der Aufseher muß untadelig sein als Gottes Verwalter, nicht eigenmächtig, nicht zornmütig, nicht dem Wein ergeben, nicht ein Schläger, nicht schändlichem Gewinn nachgehend, sondern gastfrei, das Gute liebend, besonnen, gerecht, fromm, enthaltsam,"
+    },
+    {
+      "id": 3,
+      "title": "Titus 1:9-13",
+      "verses": "Titus 1,9-13",
+      "slug": "titus-1-9-13",
+      "keywords": [
+        "holding",
+        "faithful",
+        "word",
+        "according",
+        "teaching"
+      ],
+      "text": "anhangend dem zuverlässigen Worte nach der Lehre, auf daß er fähig sei, sowohl mit der gesunden Lehre zu ermahnen, als auch die Widersprechenden zu überführen. Denn es gibt viele zügellose Schwätzer und Betrüger, besonders die aus der Beschneidung, denen man den Mund stopfen muß, welche ganze Häuser umkehren, indem sie um schändlichen Gewinnes willen lehren, was sich nicht geziemt. Es hat einer aus ihnen, ihr eigener Prophet, gesagt: \"Kreter sind immer Lügner, böse, wilde Tiere, faule Bäuche\". Dieses Zeugnis ist wahr; um dieser Ursache willen weise sie streng zurecht, auf daß sie gesund seien im Glauben"
+    },
+    {
+      "id": 4,
+      "title": "Titus 1:14-16",
+      "verses": "Titus 1,14-16",
+      "slug": "titus-1-14-16",
+      "keywords": [
+        "paying",
+        "attention",
+        "jewish",
+        "fables",
+        "commandments"
+      ],
+      "text": "und nicht achten auf jüdische Fabeln und Gebote von Menschen, die sich von der Wahrheit abwenden. Den Reinen ist alles rein; den Befleckten aber und Ungläubigen ist nichts rein, sondern befleckt ist sowohl ihre Gesinnung, als auch ihr Gewissen. Sie geben vor, Gott zu kennen, aber in den Werken verleugnen sie ihn und sind greulich und ungehorsam und zu jedem guten Werke unbewährt."
+    },
+    {
+      "id": 5,
+      "title": "Titus 2:1-6",
+      "verses": "Titus 2,1-6",
+      "slug": "titus-2-1-6",
+      "keywords": [
+        "things",
+        "sound",
+        "doctrine",
+        "older",
+        "should"
+      ],
+      "text": "Du aber rede, was der gesunden Lehre geziemt: daß die alten Männer nüchtern seien, würdig, besonnen, gesund im Glauben, in der Liebe, im Ausharren; die alten Frauen desgleichen in ihrem Betragen, wie es dem heiligen Stande geziemt, nicht verleumderisch, nicht Sklavinnen von vielem Wein, Lehrerinnen des Guten; auf daß sie die jungen Frauen unterweisen, ihre Männer zu lieben, ihre Kinder zu lieben, besonnen, keusch, mit häuslichen Arbeiten beschäftigt, gütig, den eigenen Männern unterwürfig zu sein, auf daß das Wort Gottes nicht verlästert werde. Die Jünglinge desgleichen ermahne, besonnen zu sein,"
+    },
+    {
+      "id": 6,
+      "title": "Titus 2:7-11",
+      "verses": "Titus 2,7-11",
+      "slug": "titus-2-7-11",
+      "keywords": [
+        "things",
+        "show",
+        "yourself",
+        "example",
+        "good"
+      ],
+      "text": "indem du in allem dich selbst als ein Vorbild guter Werke darstellst; in der Lehre Unverderbtheit, würdigen Ernst, gesunde, nicht zu verurteilende Rede, auf daß der von der Gegenpartei sich schäme, indem er nichts Schlechtes über uns zu sagen hat. Die Knechte ermahne, ihren eigenen Herren unterwürfig zu sein, in allem sich wohlgefällig zu machen, nicht widersprechend, nichts unterschlagend, sondern alle gute Treue erweisend, auf daß sie die Lehre, die unseres Heiland-Gottes ist, zieren in allem. Denn die Gnade Gottes ist erschienen, heilbringend für alle Menschen,"
+    },
+    {
+      "id": 7,
+      "title": "Titus 2:12-15",
+      "verses": "Titus 2,12-15",
+      "slug": "titus-2-12-15",
+      "keywords": [
+        "instructing",
+        "intent",
+        "denying",
+        "ungodliness",
+        "worldly"
+      ],
+      "text": "und unterweist uns, auf daß wir, die Gottlosigkeit und die weltlichen Lüste verleugnend, besonnen und gerecht und gottselig leben in dem jetzigen Zeitlauf, indem wir erwarten die glückselige Hoffnung und Erscheinung der Herrlichkeit unseres großen Gottes und Heilandes Jesus Christus, der sich selbst für uns gegeben hat, auf daß er uns loskaufte von aller Gesetzlosigkeit und reinigte sich selbst ein Eigentumsvolk, eifrig in guten Werken. Dieses rede und ermahne und überführe mit aller Machtvollkommenheit. Laß dich niemand verachten."
+    },
+    {
+      "id": 8,
+      "title": "Titus 3:1-5",
+      "verses": "Titus 3,1-5",
+      "slug": "titus-3-1-5",
+      "keywords": [
+        "remind",
+        "subjection",
+        "rulers",
+        "authorities",
+        "obedient"
+      ],
+      "text": "Erinnere sie, Obrigkeiten und Gewalten untertan zu sein, Gehorsam zu leisten, zu jedem guten Werke bereit zu sein; niemand zu lästern, nicht streitsüchtig zu sein, gelinde, alle Sanftmut erweisend gegen alle Menschen. Denn einst waren auch wir unverständig, ungehorsam, irregehend, dienten mancherlei Lüsten und Vergnügungen, führten unser Leben in Bosheit und Neid, verhaßt und einander hassend. Als aber die Güte und die Menschenliebe unseres Heiland-Gottes erschien, errettete er uns, nicht aus Werken, die, in Gerechtigkeit vollbracht, wir getan hatten, sondern nach seiner Barmherzigkeit durch die Waschung der Wiedergeburt und Erneuerung des Heiligen Geistes,"
+    },
+    {
+      "id": 9,
+      "title": "Titus 3:6-11",
+      "verses": "Titus 3,6-11",
+      "slug": "titus-3-6-11",
+      "keywords": [
+        "whom",
+        "poured",
+        "richly",
+        "through",
+        "jesus"
+      ],
+      "text": "welchen er reichlich über uns ausgegossen hat durch Jesum Christum, unseren Heiland, auf daß wir, gerechtfertigt durch seine Gnade, Erben würden nach der Hoffnung des ewigen Lebens. Das Wort ist gewiß; und ich will, daß du auf diesen Dingen fest bestehst, auf daß die, welche Gott geglaubt haben, Sorge tragen, gute Werke zu betreiben. Dies ist gut und nützlich für die Menschen. Törichte Streitfragen aber und Geschlechtsregister und Zänkereien und Streitigkeiten über das Gesetz vermeide, denn sie sind unnütz und eitel. Einen sektiererischen Menschen weise ab nach einer ein- und zweimaligen Zurechtweisung, da du weißt, daß ein solcher verkehrt ist und sündigt, indem er durch sich selbst verurteilt ist."
+    },
+    {
+      "id": 10,
+      "title": "Titus 3:12-15",
+      "verses": "Titus 3,12-15",
+      "slug": "titus-3-12-15",
+      "keywords": [
+        "send",
+        "artemas",
+        "tychicus",
+        "diligent",
+        "come"
+      ],
+      "text": "Wenn ich Artemas oder Tychikus zu dir senden werde, so befleißige dich, zu mir nach Nikopolis zu kommen, denn ich habe beschlossen, daselbst zu überwintern. Zenas, dem Gesetzgelehrten, und Apollos gib mit Sorgfalt das Geleit, auf daß ihnen nichts mangle. Laß aber auch die Unsrigen lernen, für die notwendigen Bedürfnisse gute Werke zu betreiben, auf daß sie nicht unfruchtbar seien. Es grüßen dich alle, die bei mir sind. Grüße, die uns lieben im Glauben. Die Gnade sei mit euch allen!"
+    }
+  ],
+  "lang": "de"
+}

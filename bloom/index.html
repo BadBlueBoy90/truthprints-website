@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bloom · Discover · TruthPrints</title>
+<meta name="description" content="A quiet, endless stream of the illustrated New Testament, one painting at a time. The opposite of doomscrolling. By TruthPrints.">
+<link rel="icon" type="image/png" href="../brand/truthprints-favicon.png">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+/* ============================================================
+   BLOOM / DISCOVER — an endless, still stream of the illustrated
+   New Testament. Tokens copied verbatim from index.html. No new tokens.
+   ============================================================ */
+:root{
+  --ink:#0A0705;--ink2:#110D08;--ink3:#1A1410;
+  --rule:#251D12;--rules:#1B1510;
+  --p:#EAE1CC;--p2:#D8CEB5;--pd:#BCB196;--pm:#9A8F73;
+  --g:#B8924A;--gb:#D4AC63;--gd:#7A5C2B;
+  --fd:"Cormorant Garamond",Georgia,serif;
+  --fb:"EB Garamond",Georgia,serif;
+  --ease:cubic-bezier(.2,.7,.15,1);
+  --eout:cubic-bezier(.16,1,.3,1);
+  --ar:1.934;                 /* wide chapter paintings (5120x2880, signature cropped) */
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--ink);color:var(--p);font-family:var(--fb)}
+body{overflow:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{display:block;max-width:100%}
+::selection{background:var(--g);color:var(--ink)}
+[data-de]{display:none}
+body.de [data-en]{display:none}
+body.de [data-de]{display:inline}
+
+/* ── the scroll surface: one screen per painting, snap like reels ── */
+.feed{
+  height:100dvh;overflow-y:scroll;overflow-x:hidden;
+  scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+  scroll-behavior:smooth;   /* sanft einrasten statt hart springen (PC-Wheel) */
+}
+@media (prefers-reduced-motion:reduce){.feed{scroll-behavior:auto}}
+.feed::-webkit-scrollbar{display:none}
+
+.slide{
+  height:100dvh;width:100vw;scroll-snap-align:start;scroll-snap-stop:always;
+  position:relative;display:grid;place-items:center;overflow:hidden;background:var(--ink);
+}
+/* blurred, dimmed copy of the same painting fills the whole screen — no dead black bars */
+.slide .bg{
+  position:absolute;inset:-8%;z-index:0;pointer-events:none;
+  background-size:cover;background-position:center;
+  filter:blur(48px) saturate(1.12) brightness(.42);transform:scale(1.14);
+  opacity:0;transition:opacity 1.2s var(--eout);
+}
+.slide.seen .bg{opacity:1}
+/* ── DER MUSEUMSRAHMEN: ein echter Barock-Goldrahmen (KI-generiert, Flux Pro),
+   fix am Bildschirmrand — der Feed scrollt durch den Rahmen wie Bilder in einem
+   Museum. border-image ohne fill = Mitte bleibt durchsichtig. ── */
+:root{
+  --fwh: clamp(30px,5.5vw,86px);            /* Leiste links/rechts */
+  --fwt: calc(var(--fwh) * .79);            /* oben  (Slice-Proportion 143/182) */
+  --fwb: calc(var(--fwh) * .86);            /* unten (155/182) */
+}
+/* inset:-9px = der Rahmen ragt 9px über den Bildschirmrand hinaus, damit der
+   weisse/rötliche Foto-Hintergrundrand von frame-ornate.jpg (6–10px) off-screen
+   liegt und nur das Gold sichtbar bleibt — kein heller Streifen mehr. */
+.museum-frame{
+  position:fixed;inset:-9px;z-index:6;pointer-events:none;
+  border:0 solid transparent;
+  border-image-source:url("../assets/bloom/frame-ornate.jpg?v=3");
+  border-image-slice:137 155 143 152;
+  border-image-width:var(--fwt) var(--fwh) var(--fwb) var(--fwh);
+  border-image-repeat:round;
+  filter:drop-shadow(0 0 26px rgba(0,0,0,.85));
+}
+/* das Gemälde FÜLLT das Rahmenfenster (cover) — es schaut 3px unter den Rahmen,
+   damit der weisse Bildrand (unten/links) sauber unter dem Goldrahmen verschwindet.
+   Der Rahmen selbst bleibt unverändert fix am Bildschirmrand. */
+/* --tuck: wie weit das Bild UNTER den Rahmen geschoben wird. So verschwinden
+   der weisse Rand (unten/links) und der leicht rote Rand (oben) des Bildes
+   komplett hinter dem Goldrahmen — ohne Trick, ohne Hintergrund. */
+.slide .art{
+  --tuck:20px;
+  position:absolute;z-index:1;
+  top:calc(var(--fwt) - var(--tuck));left:calc(var(--fwh) - var(--tuck));
+  width:calc(100vw - 2*var(--fwh) + 2*var(--tuck));
+  height:calc(100dvh - var(--fwt) - var(--fwb) + 2*var(--tuck));
+  max-width:none;object-fit:cover;object-position:center;
+  opacity:0;transition:opacity 1s var(--eout);
+}
+.slide .art.in{opacity:1}
+
+/* ── the Word: reference + the actual passage, over a soft scrim ── */
+/* KEIN Hintergrundbalken hinter dem Text (Leo) — Text sitzt direkt auf dem Bild,
+   Lesbarkeit nur über einen kräftigen Schlagschatten. Voller Vers, nichts abgeschnitten. */
+.verse{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;pointer-events:none;
+  padding:clamp(18px,3.5vh,34px) calc(var(--fwh) + 16px) calc(var(--fwb) + max(14px,env(safe-area-inset-bottom)));
+  background:none;
+  display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;
+  opacity:0;transform:translateY(10px);transition:opacity 1s var(--eout) .2s,transform 1s var(--eout) .2s;
+}
+.slide.seen .verse{opacity:1;transform:none}
+/* Referenz als klares Label: KEINE Sterne, Versalien, helles Gold das raussticht */
+.verse .vref{font-family:var(--fd);font-style:normal;font-weight:600;font-size:clamp(14px,1.8vw,18px);letter-spacing:.26em;text-transform:uppercase;color:#F0D699;text-shadow:0 1px 2px #000,0 0 8px rgba(0,0,0,.98),0 0 18px rgba(0,0,0,.85)}
+.verse .vtext{
+  font-family:var(--fd);font-size:clamp(17px,2.05vw,22px);line-height:1.58;
+  color:var(--p);max-width:min(120ch, calc(100vw - 2*var(--fwh) - 48px));
+  letter-spacing:.012em;text-wrap:pretty;
+  text-shadow:0 1px 2px #000,0 0 7px rgba(0,0,0,.98),0 0 16px rgba(0,0,0,.9);
+}
+/* Text komplett ausblendbar (dritter Schalter im Sprach-Pill) */
+body.no-text .verse{display:none!important}
+
+/* ── Aktions-Stapel unten rechts: „Diese Stelle lesen" (Reader) + „Kaufen" (Wallart-Lead) ── */
+.act-stack{
+  position:fixed;right:calc(var(--fwh) + 14px);bottom:calc(var(--fwb) + 12px);z-index:11;
+  display:flex;flex-direction:column;align-items:flex-end;gap:9px;
+}
+.act-btn{
+  white-space:nowrap;display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.12em;
+  color:#fff;border:1px solid rgba(255,255,255,.85);border-radius:99px;
+  padding:9px 17px;
+  text-shadow:0 1px 8px rgba(0,0,0,.9);
+  box-shadow:0 0 15px rgba(255,255,255,.32),0 0 5px rgba(255,255,255,.5),inset 0 0 9px rgba(255,255,255,.12);
+  transition:color .3s,border-color .3s,background .3s,box-shadow .3s;
+}
+.act-btn:hover{color:var(--ink);background:#fff;border-color:#fff;text-shadow:none;box-shadow:0 0 24px rgba(255,255,255,.6)}
+.wa-sheet{
+  position:fixed;inset:0;z-index:40;display:none;align-items:flex-end;justify-content:center;
+  background:rgba(8,5,3,.55);
+}
+.wa-sheet.open{display:flex}
+.wa-panel{
+  width:min(480px,94vw);margin-bottom:max(20px,env(safe-area-inset-bottom));
+  background:var(--ink2);border:1px solid var(--rule);border-radius:14px;
+  padding:clamp(20px,4vw,30px);display:flex;flex-direction:column;gap:14px;
+  box-shadow:0 40px 120px rgba(0,0,0,.7);
+}
+.wa-panel h3{font-family:var(--fd);font-weight:500;font-size:20px;color:var(--p);letter-spacing:.02em}
+.wa-panel h3 i{font-style:italic;color:var(--gb)}
+.wa-panel .wa-ref{font-family:var(--fd);font-style:italic;font-size:15px;color:var(--pm)}
+.wa-opt{display:flex;gap:8px}
+.wa-opt button{
+  flex:1;font-family:var(--fd);font-style:italic;font-size:14px;color:var(--pd);
+  border:1px solid var(--rule);border-radius:9px;padding:11px 8px;transition:all .25s;
+}
+.wa-opt button.sel{color:var(--ink);background:var(--g);border-color:var(--g);font-weight:600}
+.wa-send{
+  display:block;text-align:center;font-family:var(--fd);font-size:14px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink);background:var(--gb);border-radius:9px;padding:13px 10px;
+}
+.wa-note{font-family:var(--fd);font-style:italic;font-size:12.5px;color:var(--pm);text-align:center}
+.wa-close{position:absolute;top:10px;right:14px;font-size:18px;color:var(--pm);padding:8px}
+.wa-panel{position:relative}
+
+/* ── top chrome: wordmark (home) + language pill ── */
+.top{
+  position:fixed;top:0;left:0;right:0;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:max(16px,env(safe-area-inset-top)) clamp(16px,4vw,34px) 16px;
+  background:linear-gradient(180deg,rgba(10,7,5,.72),rgba(10,7,5,0));pointer-events:none;
+}
+.top a,.top .lang{pointer-events:auto}
+.home{display:inline-flex;align-items:center;gap:11px;opacity:1;transition:opacity .3s;text-shadow:0 1px 8px rgba(0,0,0,.95),0 1px 2px rgba(0,0,0,.85)}
+.home img{width:24px;height:24px;filter:drop-shadow(0 1px 5px rgba(0,0,0,.9))}
+/* schlichter Zurück-Pfeil OHNE Kreis (Leo: Kreis sah schlecht aus) — nur Pfeil + Schatten */
+.home .backarw{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:20px;height:32px;line-height:1;
+  font-size:21px;color:#fff;
+  text-shadow:0 1px 8px rgba(0,0,0,.95),0 1px 2px rgba(0,0,0,.85);
+  transition:transform .3s;
+}
+.home:hover .backarw{transform:translateX(-3px)}
+.home b{font-family:var(--fd);font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:var(--p)}
+.home b i{font-style:normal;color:var(--gb)}
+/* dezent statt greller Voll-Pille — nur ein leises Aufhellen fuer den aktiven Stand */
+.lang{display:inline-flex;gap:8px;opacity:1;transition:opacity .3s}
+.lang button{font-family:var(--fd);font-style:normal;font-size:13px;letter-spacing:.16em;text-transform:uppercase;padding:6px 8px;min-height:32px;color:rgba(255,255,255,.7);border-radius:7px;transition:color .3s;text-shadow:0 1px 8px rgba(0,0,0,.95),0 1px 2px rgba(0,0,0,.85)}
+.lang button:hover{color:#fff}
+.lang button.on{color:#fff;font-weight:600}
+
+/* first-run scroll hint */
+.hint{position:fixed;left:0;right:0;top:calc(max(16px,env(safe-area-inset-top)) + 64px);z-index:9;text-align:center;color:var(--pd);font-family:var(--fd);font-style:italic;font-size:15px;letter-spacing:.04em;pointer-events:none;transition:opacity .6s ease;text-shadow:0 1px 10px rgba(0,0,0,.7)}
+.hint .chev{display:block;margin:10px auto 0;width:16px;height:16px;border-right:1.5px solid var(--g);border-bottom:1.5px solid var(--g);transform:rotate(45deg);animation:bob 1.8s var(--ease) infinite}
+@keyframes bob{0%,100%{transform:rotate(45deg) translateY(0);opacity:.5}50%{transform:rotate(45deg) translateY(5px);opacity:1}}
+.hint.gone{opacity:0}
+
+@media (prefers-reduced-motion:reduce){.slide .art,.slide .bg,.verse{transition:none}.hint .chev{animation:none}}
+
+/* ── portrait phones (Leo Option B): das Gemälde füllt GROSS den oberen Bereich
+   (~58% Höhe, leichter Seiten-Crop via cover), Referenz + Verstext darunter auf
+   der dunklen Wand — kein Hintergrundbalken, nur Schatten. ── */
+@media (orientation:portrait){
+  :root{--fwh:clamp(18px,6vw,40px)}
+  .slide{display:flex;flex-direction:column;place-items:stretch;align-items:stretch}
+  /* festes, ruhiges Bildformat (44dvh). Der volle Text passt darunter, weil die
+     Schrift per JS (fitVerse) so skaliert, dass ALLES reinpasst: kein Scroll, kein Fade. */
+  .slide .art{
+    position:static;transform:none;left:auto;top:auto;
+    flex:0 0 auto;width:100vw;height:44dvh;
+    object-fit:cover;object-position:center;
+  }
+  .verse{
+    position:static;left:auto;right:auto;bottom:auto;background:none;
+    flex:1 1 auto;min-height:0;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    padding:14px calc(var(--fwh) + 8px) 12px;
+    /* margin (NICHT padding) = feste Button-Spur AUSSERHALB der Textbox:
+       der Text sitzt IMMER ueber den beiden Buttons, nie darunter. */
+    margin-bottom:calc(var(--fwb) + 106px + env(safe-area-inset-bottom));
+    gap:10px;text-align:center;
+    opacity:0;transform:translateY(10px);transition:opacity 1s var(--eout) .2s,transform 1s var(--eout) .2s;
+  }
+  .slide.seen .verse{opacity:1;transform:none}
+  /* Startgroesse; fitVerse() setzt die echte Groesse (12–22px) je Textlaenge. */
+  .verse .vtext{color:#fff;font-size:16px;line-height:1.46;max-width:none}
+  /* Button-Stapel zentriert in seiner Spur UNTER dem Text (nicht mehr in der Ecke) */
+  .act-stack{left:50%;right:auto;transform:translateX(-50%);align-items:center;bottom:calc(var(--fwb) + 12px + env(safe-area-inset-bottom))}
+  /* Top-Leiste passt sich schmalen Screens an, sonst kollidieren Wortmarke + EN/DE/ART */
+  .top{padding-left:10px;padding-right:12px}
+  .home{gap:7px}
+  .home b{font-size:11.5px;letter-spacing:.1em}
+  .home .backarw{width:18px;height:28px;font-size:19px}
+  .lang{gap:2px}
+  .lang button{font-size:11.5px;letter-spacing:.07em;padding:6px 5px}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <a class="home" href="../index.html" aria-label="TruthPrints — home"><span class="backarw">←</span>
+    <img src="../brand/truthprints-mark.svg" alt="">
+    <b>Truth<i>Prints</i></b>
+  </a>
+  <div class="lang" role="group" aria-label="Language">
+    <button id="langEn" class="on">EN</button>
+    <button id="langDe">DE</button>
+    <button id="langOff" title="Nur das Gemälde · painting only"><span data-en>Art</span><span data-de>Bild</span></button>
+  </div>
+</div>
+
+<div class="act-stack">
+  <a class="act-btn" id="readBtn" href="../bible.html"><span data-en>Read this passage</span><span data-de>Diese Stelle lesen</span></a>
+  <button class="act-btn" id="waBtn" type="button"><span data-en>Buy this Masterpiece</span><span data-de>Dieses Meisterwerk kaufen</span></button>
+</div>
+<div class="wa-sheet" id="waSheet" role="dialog" aria-modal="true">
+  <div class="wa-panel">
+    <button class="wa-close" id="waClose" aria-label="Close">✕</button>
+    <h3><span data-en>This painting, <i>yours.</i></span><span data-de>Dieses Gemälde, <i>für dich.</i></span></h3>
+    <div class="wa-ref" id="waRef"></div>
+    <a class="wa-send" id="waBook" href="../shop.html" style="background:none;border:1px solid var(--g);color:var(--gb)"><span data-en>As illustrated book →</span><span data-de>Als illustriertes Buch →</span></a>
+    <div class="wa-note" style="margin:-4px 0 2px"><span data-en>— or as wall art —</span><span data-de>— oder als Wallart —</span></div>
+    <div class="wa-opt">
+      <button type="button" id="waOptArt" class="sel"><span data-en>Painting only</span><span data-de>Nur das Gemälde</span></button>
+      <button type="button" id="waOptVerse"><span data-en>With the verse</span><span data-de>Mit Verstext</span></button>
+    </div>
+    <a class="wa-send" id="waSend" href="#"><span data-en>Request an offer</span><span data-de>Angebot anfragen</span></a>
+    <div class="wa-note"><span data-en>Opens your e-mail — we reply personally with sizes &amp; prices.</span><span data-de>Öffnet deine E-Mail — wir melden uns persönlich mit Größen &amp; Preisen.</span></div>
+  </div>
+</div>
+
+<div class="hint" id="hint">
+  <span data-en>Scroll to breathe</span><span data-de>Scrollen zum Durchatmen</span>
+  <span class="chev"></span>
+</div>
+
+<main class="feed" id="feed" aria-label="Discover feed"></main>
+<div class="museum-frame" aria-hidden="true"></div>
+
+<!-- wide chapter paintings (whole NT) + reference + full passage EN/DE -->
+<script src="../discover-data.js?v=2"></script>
+<script src="../bloom-verses.js?v=2"></script>
+<script>
+(function(){
+  "use strict";
+  var IMG_BASE = "../";
+  var DATA = (window.TP_DISCOVER && window.TP_DISCOVER.length) ? window.TP_DISCOVER
+           : (window.TP_BLOOM || []);
+  var feed = document.getElementById("feed");
+  /* ?art=1 -> nur die Gemaelde (kein Verstext) · ?book=&id= -> bei genau dieser Stelle starten
+     (vom Reader-Button „Nur das Gemaelde") */
+  var PARAMS = new URLSearchParams(location.search);
+
+  /* ---------- language (shared with the whole site) ---------- */
+  function readLang(){ try{ return localStorage.getItem("tp_lang") || localStorage.getItem("tp-lang"); }catch(e){ return null; } }
+  var lang = readLang() || ((navigator.language||"en").toLowerCase().indexOf("de")===0 ? "de" : "en");
+  lang = (lang==="de") ? "de" : "en";
+  function applyLang(l){
+    lang = l; var de = (l==="de");
+    document.documentElement.lang = l;
+    document.body.classList.toggle("de", de);
+    document.getElementById("langEn").classList.toggle("on", l==="en");
+    document.getElementById("langDe").classList.toggle("on", de);
+    try{ localStorage.setItem("tp_lang", l); localStorage.setItem("tp-lang", l); }catch(e){}
+    document.querySelectorAll(".verse .vref").forEach(function(n){ n.textContent = n.getAttribute(de?"data-vde":"data-ven") || ""; });
+    document.querySelectorAll(".verse .vtext").forEach(function(n){ n.textContent = n.getAttribute(de?"data-vde":"data-ven") || ""; });
+    if(typeof fitAll==="function") fitAll();   /* neue Textlaenge -> neu einpassen */
+  }
+  document.getElementById("langEn").addEventListener("click", function(){ setText(true); applyLang("en"); });
+  document.getElementById("langDe").addEventListener("click", function(){ setText(true); applyLang("de"); });
+
+  /* dritter Schalter: Verstext komplett aus (nur die Gemaelde) */
+  var textOn = true;
+  try{ textOn = localStorage.getItem("tp_bloom_text") !== "0"; }catch(e){}
+  if(PARAMS.get("art") === "1") textOn = false;   /* vom Reader: nur das Gemaelde */
+  function setText(on){
+    textOn = on;
+    document.body.classList.toggle("no-text", !on);
+    document.getElementById("langOff").classList.toggle("on", !on);
+    try{ localStorage.setItem("tp_bloom_text", on ? "1" : "0"); }catch(e){}
+  }
+  document.getElementById("langOff").addEventListener("click", function(){ setText(!textOn); });
+  setText(textOn);
+
+  /* ── Wallart-Anfrage: aktuelle Tafel als Lead per vorbefuellter E-Mail ── */
+  var waSheet = document.getElementById("waSheet");
+  var waVariant = "art";
+  function currentRef(){
+    var s = slides[current];
+    if(!s) return "";
+    return s.getAttribute(lang==="de" ? "data-ref-de" : "data-ref-en") || "";
+  }
+  function waUpdate(){
+    document.getElementById("waRef").textContent = currentRef();
+    var s0 = slides[current];
+    var bookSlug = s0 ? ((s0.getAttribute("data-ref-en")||"").length, (function(){ var img=s0.querySelector(".art"); var src=img&&(img.getAttribute("src")||img.getAttribute("data-src"))||""; var m=src.match(/scripture\/([a-z0-9]+)\//); return m?m[1]:""; })()) : "";
+    var isGospel = ["matthew","mark","luke","john"].indexOf(bookSlug)>=0;
+    document.getElementById("waBook").href = "../shop.html#" + (isGospel?"gospels":"volumes");
+    var de = (lang==="de");
+    var ref = currentRef();
+    var variantTxt = waVariant==="art" ? (de?"Nur das Gemälde":"Painting only") : (de?"Gemälde mit Verstext":"Painting with the verse");
+    var subject = (de?"Wallart-Anfrage: ":"Wall art request: ") + ref;
+    var body = de
+      ? "Hallo TruthPrints,%0D%0A%0D%0Aich interessiere mich für dieses Gemälde als Wallart:%0D%0A%0D%0AStelle: " + encodeURIComponent(ref) + "%0D%0AVariante: " + encodeURIComponent(variantTxt) + "%0D%0A%0D%0ABitte sendet mir ein Angebot mit Größen und Preisen.%0D%0A%0D%0ADanke!"
+      : "Hello TruthPrints,%0D%0A%0D%0AI am interested in this painting as wall art:%0D%0A%0D%0APassage: " + encodeURIComponent(ref) + "%0D%0AVariant: " + encodeURIComponent(variantTxt) + "%0D%0A%0D%0APlease send me an offer with sizes and prices.%0D%0A%0D%0AThank you!";
+    document.getElementById("waSend").href = "mailto:hello.truthprints@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + body;
+  }
+  document.getElementById("waBtn").addEventListener("click", function(){ waUpdate(); waSheet.classList.add("open"); });
+  document.getElementById("waClose").addEventListener("click", function(){ waSheet.classList.remove("open"); });
+  waSheet.addEventListener("click", function(e){ if(e.target===waSheet) waSheet.classList.remove("open"); });
+  document.getElementById("waOptArt").addEventListener("click", function(){ waVariant="art"; this.classList.add("sel"); document.getElementById("waOptVerse").classList.remove("sel"); waUpdate(); });
+  document.getElementById("waOptVerse").addEventListener("click", function(){ waVariant="verse"; this.classList.add("sel"); document.getElementById("waOptArt").classList.remove("sel"); waUpdate(); });
+
+  /* ---------- endless order: a reshuffled sequence that never runs out ---------- */
+  function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+  var order = shuffle(DATA.map(function(_,i){ return i; }));
+  /* vom Reader-Deeplink: die gewuenschte Stelle nach vorne holen -> Feed startet dort */
+  var _sb = PARAMS.get("book"), _si = PARAMS.get("id");
+  if(_sb && _si){
+    var _idx = DATA.findIndex(function(p){ return p.book === _sb && String(p.id) === String(_si); });
+    if(_idx >= 0){ order = order.filter(function(x){ return x !== _idx; }); order.unshift(_idx); }
+  }
+  var cursor = 0;
+  function nextItem(){
+    if(cursor >= order.length){ shuffle(order); cursor = 0; }   /* wrap → fresh shuffle → endless */
+    return DATA[order[cursor++]];
+  }
+
+  /* ---------- build one slide ---------- */
+  function makeSlide(p){
+    var slide = document.createElement("section");
+    slide.className = "slide";
+
+    var bg = document.createElement("div");
+    bg.className = "bg";
+    bg.setAttribute("data-bg", IMG_BASE + p.img);
+    slide.appendChild(bg);
+
+    var art = document.createElement("img");
+    art.className = "art";
+    art.alt = "";
+    art.decoding = "async";
+    art.setAttribute("data-src", IMG_BASE + p.img);
+    art.addEventListener("load", function(){ art.classList.add("in"); });
+    slide.appendChild(art);
+    slide.setAttribute("data-ref-en", p.ref_en||"");
+    slide.setAttribute("data-ref-de", p.ref_de||p.ref_en||"");
+    slide.setAttribute("data-book", p.book||"");
+    if(p.id!=null) slide.setAttribute("data-id", p.id);
+
+    var verse = document.createElement("div");
+    verse.className = "verse";
+    /* eigene Attribut-Namen (data-ven/data-vde), damit die globale Sprach-Regel
+       [data-de]{display:none} den Verstext NICHT versteckt — sonst blieb EN leer. */
+    var vref = document.createElement("div"); vref.className = "vref";
+    vref.setAttribute("data-ven", p.ref_en||""); vref.setAttribute("data-vde", p.ref_de||p.ref_en||"");
+    var vtext = document.createElement("div"); vtext.className = "vtext";
+    vtext.setAttribute("data-ven", p.text_en||""); vtext.setAttribute("data-vde", p.text_de||p.text_en||"");
+    var de = (lang==="de");
+    vref.textContent = (de ? (p.ref_de||p.ref_en) : p.ref_en) || "";
+    vtext.textContent = (de ? (p.text_de||p.text_en) : p.text_en) || "";
+    verse.appendChild(vref); verse.appendChild(vtext);
+    slide.appendChild(verse);
+
+    return slide;
+  }
+
+  var CHUNK = 6;
+  function appendChunk(){
+    if(!DATA.length) return;
+    var frag = document.createDocumentFragment();
+    for(var i=0;i<CHUNK;i++){ frag.appendChild(makeSlide(nextItem())); }
+    feed.appendChild(frag);
+    refreshObservers();
+  }
+
+  /* ---------- Portrait: den vollen Vers per Schriftgroesse einpassen ----------
+     Kein Scroll, kein Fade — die Schrift wird so lange verkleinert (max 22 → min 12px),
+     bis der ganze Text in die Zone zwischen Bild und Buy-Button passt. Im Querformat
+     bleibt die CSS-Groesse (Style wird zurueckgesetzt). */
+  var mqPortrait = window.matchMedia("(orientation:portrait)");
+  function fitVerse(s){
+    var t = s.querySelector(".vtext"), v = s.querySelector(".verse");
+    if(!t || !v) return;
+    if(!mqPortrait.matches){ t.style.fontSize = ""; return; }
+    var fs = 22; t.style.fontSize = fs + "px";
+    var guard = 0;
+    while(v.scrollHeight > v.clientHeight + 1 && fs > 12 && guard < 32){
+      fs -= 0.5; t.style.fontSize = fs + "px"; guard++;
+    }
+  }
+  function fitAll(){ for(var i=0;i<slides.length;i++) fitVerse(slides[i]); }
+
+  /* ---------- load images only near the viewport (bounded memory) + reveal ---------- */
+  var slides = [];
+  function loadSlide(s){
+    var art = s.querySelector(".art"), bg = s.querySelector(".bg");
+    if(art && !art.src){ art.src = art.getAttribute("data-src"); }
+    if(bg && !bg.style.backgroundImage){ bg.style.backgroundImage = 'url("'+bg.getAttribute("data-bg")+'")'; }
+    fitVerse(s);   /* Bild hat feste Hoehe -> Zone steht sofort, Vers gleich einpassen (kein Flash) */
+  }
+  function unloadSlide(s){
+    var art = s.querySelector(".art"), bg = s.querySelector(".bg");
+    if(art){ art.removeAttribute("src"); art.classList.remove("in"); }
+    if(bg){ bg.style.backgroundImage = ""; }
+    s.classList.remove("seen");
+  }
+
+  var current = 0;
+  var seenIO = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var idx = slides.indexOf(e.target);
+      if(e.isIntersecting){
+        e.target.classList.add("seen");
+        current = idx;
+        /* „Diese Stelle lesen" -> Reader an der exakten Perikope (#buch/id) */
+        var rb = document.getElementById("readBtn");
+        if(rb){ var bk = e.target.getAttribute("data-book"), pid = e.target.getAttribute("data-id");
+          rb.href = (bk && pid) ? ("../bible.html#" + bk + "/" + pid) : "../bible.html"; }
+        for(var k=idx-1;k<=idx+3;k++){ if(slides[k]) loadSlide(slides[k]); }   /* preload next 2–3 */
+        for(var j=0;j<slides.length;j++){ if(Math.abs(j-idx)>6) unloadSlide(slides[j]); }  /* free far ones */
+        if(idx >= slides.length - 3){ appendChunk(); }                          /* endless */
+      }
+    });
+  }, { threshold:0.3 });   /* 0.55 kippte auf iOS (dvh vs. Browser-Chrome) → Vers blieb unsichtbar */
+
+  function refreshObservers(){
+    var all = Array.prototype.slice.call(feed.querySelectorAll(".slide"));
+    all.forEach(function(s){ if(slides.indexOf(s)===-1){ slides.push(s); seenIO.observe(s); } });
+  }
+
+  /* first fill — first slide is always visible: mark it seen directly */
+  appendChunk();
+  if(slides[0]){ loadSlide(slides[0]); slides[0].classList.add("seen");
+    var _rb=document.getElementById("readBtn"),_b0=slides[0].getAttribute("data-book"),_i0=slides[0].getAttribute("data-id");
+    if(_rb&&_b0&&_i0)_rb.href="../bible.html#"+_b0+"/"+_i0; }
+  if(slides[1]) loadSlide(slides[1]);
+
+  /* sanftes Gleiten ins naechste Bild (Tastatur + Mausrad am PC).
+     Eigene rAF-Animation — scrollTo({smooth}) wird vom Snap-Container gecancelt.
+     Ease-in-out (statt nur -out) = weicher Start UND weiches Einrasten. */
+  var _kbAnim = 0, _glideEnd = 0;
+  function glideTo(target){
+    cancelAnimationFrame(_kbAnim);
+    feed.style.scrollBehavior = "auto";   /* native smooth nicht doppelt draufrechnen */
+    /* mandatory-Snap MUSS waehrend der Animation aus: sonst schnappt jeder
+       Zwischenwert sofort auf den naechsten Snap-Punkt zurueck -> es springt. */
+    feed.style.scrollSnapType = "none";
+    var from = feed.scrollTop, dist = target - from, t0 = performance.now(), DUR = 560;
+    _glideEnd = t0 + DUR;
+    function step(now){
+      var p = Math.min((now - t0) / DUR, 1);
+      var ease = p < .5 ? 4*p*p*p : 1 - Math.pow(-2*p+2,3)/2;   /* easeInOutCubic */
+      feed.scrollTop = from + dist * ease;
+      if(p < 1){ _kbAnim = requestAnimationFrame(step); }
+      else { feed.style.scrollSnapType = ""; }   /* Snap wieder an (steht exakt am Punkt) */
+    }
+    _kbAnim = requestAnimationFrame(step);
+  }
+  function glideStep(dir){
+    var h = feed.clientHeight;
+    glideTo(Math.max(0, (Math.round(feed.scrollTop/h)+dir)*h));
+    killHint();
+  }
+  document.addEventListener("keydown", function(e){
+    if(e.altKey||e.ctrlKey||e.metaKey) return;
+    var dir = (e.key==="ArrowRight"||e.key==="ArrowDown"||e.key==="PageDown"||e.key===" ") ? 1
+            : (e.key==="ArrowLeft"||e.key==="ArrowUp"||e.key==="PageUp") ? -1 : 0;
+    if(!dir) return;
+    e.preventDefault();
+    glideStep(dir);
+  });
+
+  /* Mausrad am PC: ein Rad-Gesture = ein sanfter Uebergang ins naechste Bild
+     (kein hartes natives Snap-Springen). Touch/Trackpad im Hochformat bleibt nativ. */
+  feed.addEventListener("wheel", function(e){
+    if(mqPortrait.matches) return;            /* Handy: natives Scrollen lassen */
+    if(Math.abs(e.deltaY) < 4) return;
+    e.preventDefault();
+    if(performance.now() < _glideEnd) return; /* laeuft schon eine Transition -> ignorieren */
+    glideStep(e.deltaY > 0 ? 1 : -1);
+  }, {passive:false});
+
+  /* fade the scroll hint after first move */
+  var hint = document.getElementById("hint"); var hid=false;
+  function killHint(){ if(hid)return; hid=true; hint.classList.add("gone"); }
+  feed.addEventListener("scroll", function(){ if(feed.scrollTop>40) killHint(); }, {passive:true});
+  setTimeout(killHint, 6000);
+
+  applyLang(lang);
+
+  /* Verse bei Groessen-/Ausrichtungswechsel neu einpassen (debounced) */
+  var _fitT = 0;
+  function refit(){ clearTimeout(_fitT); _fitT = setTimeout(fitAll, 140); }
+  window.addEventListener("resize", refit, {passive:true});
+  if(mqPortrait.addEventListener) mqPortrait.addEventListener("change", refit);
+  else if(mqPortrait.addListener) mqPortrait.addListener(refit);
+
+  if(!DATA.length){ feed.innerHTML = '<section class="slide"><div class="verse" style="opacity:1"><div class="vtext">…</div></div></section>'; }
+})();
+</script>
+</body>
+</html>

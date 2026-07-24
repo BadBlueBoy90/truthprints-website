@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unsubscribed · TruthPrints</title>
+<link rel="icon" type="image/png" href="brand/truthprints-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0906;--cream:#f4efe6;--gold:#c9a84c;--gold-dim:rgba(201,168,76,.2);
+  --mid:#7a7068;--body:#c8c2ba;--white:#fafaf8;
+  --fd:"Cormorant Garamond",Georgia,serif;--fb:"Inter",-apple-system,sans-serif;
+  --pad:clamp(20px,5vw,72px);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);color:var(--cream);font-family:var(--fb);
+  font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased;
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:var(--pad);
+}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.page{max-width:560px;text-align:center}
+.icon{
+  font-size:48px;margin-bottom:32px;opacity:.7;
+  color:var(--gold);
+}
+.kicker{
+  font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:24px;
+}
+h1{
+  font-family:var(--fd);font-weight:300;font-size:clamp(36px,6vw,64px);
+  line-height:1.1;color:var(--white);margin-bottom:24px;
+}
+p{color:var(--body);font-size:15px;line-height:1.9;margin-bottom:16px}
+.divider{width:48px;height:1px;background:var(--gold-dim);margin:32px auto}
+.btn{
+  display:inline-block;margin-top:24px;padding:12px 32px;
+  border:1px solid var(--gold-dim);color:var(--gold);
+  font-size:11px;letter-spacing:.25em;text-transform:uppercase;
+  transition:all .3s;border-radius:2px;
+}
+.btn:hover{background:var(--gold);color:var(--ink);text-decoration:none}
+.re-subscribe{margin-top:32px}
+.re-subscribe form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.re-subscribe input{
+  background:rgba(244,239,230,.07);border:1px solid var(--gold-dim);
+  color:var(--cream);padding:10px 16px;font-size:14px;font-family:var(--fb);
+  outline:none;border-radius:2px;min-width:220px;
+}
+.re-subscribe input::placeholder{color:var(--mid)}
+.re-subscribe button{
+  background:var(--gold);color:var(--ink);border:none;
+  padding:10px 22px;font-size:12px;letter-spacing:.15em;text-transform:uppercase;
+  cursor:pointer;font-family:var(--fb);font-weight:500;border-radius:2px;
+}
+.re-subscribe button:hover{background:var(--gold-light)}
+.success-msg{display:none;color:var(--gold);font-size:14px;margin-top:12px}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="icon">✦</div>
+  <div class="kicker">TruthPrints Letter</div>
+  <h1>You have been unsubscribed.</h1>
+  <p>Your email address has been removed from the TruthPrints mailing list. You will receive no further emails from us.</p>
+  <p>We respect your decision. The work continues — for His glory alone.</p>
+
+  <div class="divider"></div>
+
+  <p style="font-size:13px;color:var(--mid)">Changed your mind? You can re-subscribe below.</p>
+  <div class="re-subscribe">
+    <form id="resub-form" novalidate>
+      <input type="email" id="resub-email" placeholder="your@email.com" aria-label="Email address" required>
+      <button type="submit">Re-subscribe</button>
+    </form>
+    <p class="success-msg" id="resub-ok">Welcome back. ✦</p>
+  </div>
+
+  <a class="btn" href="index.html">← Back to TruthPrints</a>
+</div>
+
+<script>
+document.getElementById('resub-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const email = document.getElementById('resub-email').value.trim();
+  if (!email) return;
+  try {
+    const r = await fetch('/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, lang: navigator.language?.startsWith('de') ? 'de' : 'en' })
+    });
+    if (r.ok) {
+      document.getElementById('resub-form').style.display = 'none';
+      document.getElementById('resub-ok').style.display = 'block';
+    }
+  } catch(_) {}
+});
+</script>
+
+</body>
+</html>

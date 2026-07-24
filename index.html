@@ -1,0 +1,2450 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="p:domain_verify" content="7f531c41f028272809ed17292e685964"/>
+<!-- Pinterest Tag — lädt NUR nach Cookie-Zustimmung (DSGVO/ePrivacy) -->
+<script>
+window.tpLoadPinterest=function(){
+  if(window.__pintLoaded)return; window.__pintLoaded=true;
+  !function(e){if(!window.pintrk){window.pintrk=function(){window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var n=window.pintrk;n.queue=[],n.version="3.0";var t=document.createElement("script");t.async=!0,t.src=e;var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r)}}("https://s.pinimg.com/ct/core.js");
+  pintrk('load','2612343205453');pintrk('page');
+};
+try{if(localStorage.getItem('tp_consent')==='yes')window.tpLoadPinterest();}catch(e){}
+</script>
+<!-- end Pinterest Tag -->
+<title>TruthPrints · The Illustrated Bible</title>
+<meta name="description" content="The entire Bible, illustrated. Every passage painted in the tradition of Caravaggio and Rembrandt. The complete New Testament — 27 books, 1885 plates — illustrated and available now.">
+<meta property="og:title" content="TruthPrints · The Illustrated Bible">
+<meta property="og:description" content="Every passage of Scripture, painted like a lost museum masterpiece. The complete New Testament — 27 books, 1885 plates.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://truthprints.de/">
+<meta property="og:image" content="https://truthprints.de/assets/hero-dawn.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://truthprints.de/assets/hero-dawn.jpg">
+<link rel="icon" type="image/png" href="brand/truthprints-favicon.png">
+<link rel="preload" href="fonts/cormorant-garamond-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/eb-garamond-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{
+  --ink:#0A0705;--ink2:#110D08;--ink3:#1A1410;
+  --rule:#251D12;--rules:#1B1510;
+  --p:#EAE1CC;--p2:#D8CEB5;--pd:#BCB196;--pm:#9A8F73;
+  --g:#B8924A;--gb:#D4AC63;--gd:#7A5C2B;
+  --fd:"Cormorant Garamond",Georgia,serif;
+  --fb:"EB Garamond",Georgia,serif;
+  --e:clamp(24px,3.5vw,60px);
+  --ease:cubic-bezier(.2,.7,.15,1);
+  --eout:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;cursor:none!important}
+html{scroll-behavior:smooth}
+html,body{background:var(--ink);color:var(--p);font-family:var(--fb)}
+body{font-size:28px;line-height:1.72;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0}
+::selection{background:var(--g);color:var(--ink)}
+
+/* CURSOR */
+#cur{
+  position:fixed;z-index:9999;pointer-events:none;
+  width:7px;height:7px;background:#fff;border-radius:50%;
+  transform:translate(-50%,-50%);
+  transition:width .25s var(--eout),height .25s var(--eout),
+    background .25s,border-radius .25s,opacity .3s;
+  box-shadow:0 0 0 1px rgba(0,0,0,.55),0 0 6px rgba(0,0,0,.4);
+  opacity:0;
+}
+#cur.vis{opacity:1}
+#cur.h{width:40px;height:40px;background:transparent;border:1px solid var(--g);box-shadow:0 0 12px rgba(212,172,99,.4)}
+#cur.p{width:3px;height:3px;background:var(--gb)}
+@media(hover:none){#cur{display:none}}
+/* soft golden halo that follows the pointer and rests on the Lord's head */
+/* KEIN mix-blend-mode: das war der Hover-Lag (520px-Fläche wurde bei jeder Bewegung
+   gegen den ganzen Hero neu verrechnet). Auf dem dunklen Hero sieht ein normaler
+   goldener Schein praktisch gleich aus — Opazität leicht angehoben, eigene GPU-Ebene. */
+#curglow{position:fixed;z-index:1;pointer-events:none;left:0;top:0;width:480px;height:480px;margin:-240px 0 0 -240px;border-radius:50%;opacity:0;transition:opacity .6s ease;background:radial-gradient(circle,rgba(224,182,104,.17) 0%,rgba(198,148,52,.08) 34%,rgba(198,148,52,0) 70%);will-change:transform;contain:layout paint size}
+#curglow.vis{opacity:1}
+body.motion-off #curglow{display:none}
+@media(hover:none){#curglow{display:none}}
+
+/* PROGRESS */
+.prog{position:fixed;top:0;left:0;right:0;height:2px;z-index:300}
+.prog-b{height:100%;width:0;background:linear-gradient(90deg,var(--g),var(--gb));transition:width .08s linear}
+
+/* NAV */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:26px var(--e);
+  border-bottom:1px solid transparent;
+  transition:background .5s var(--ease),border-color .5s;
+}
+.nav.s{background:rgba(10,7,5,.92);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);border-bottom-color:var(--rules)}
+.brand{display:flex;align-items:center;gap:14px}
+.bmark{width:40px;height:40px;display:grid;place-items:center;transition:transform .4s var(--ease),filter .3s}
+.bmark img{width:100%;height:100%;display:block}
+.brand:hover .bmark{transform:rotate(-4deg) scale(1.05);filter:drop-shadow(0 0 10px rgba(184,146,74,.4))}
+.bname{font-family:var(--fd);font-size:18px;letter-spacing:.2em;text-transform:uppercase;color:var(--p)}
+.bname b{font-weight:400;color:var(--gb)}
+.nlinks{display:flex;gap:40px}
+.nlinks a{font-family:var(--fd);font-size:17px;letter-spacing:.18em;text-transform:uppercase;color:var(--pd);position:relative;padding:6px 0;transition:color .25s;white-space:nowrap}
+.nlinks a::after{content:"";position:absolute;left:50%;bottom:0;width:0;height:1px;background:var(--g);transition:width .32s var(--ease),left .32s var(--ease)}
+.nlinks a:hover,.nlinks a.act{color:var(--gb)}
+.nlinks a:hover::after,.nlinks a.act::after{width:100%;left:0}
+.nord{font-family:var(--fd);font-size:16px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:var(--g);padding:14px 30px;border:1px solid var(--g);transition:background .25s,border-color .25s}
+.nord:hover{background:var(--gb);border-color:var(--gb)}
+/* schlicht statt leuchtender Box — passt sich der stillen Nav-Farbe an, kein Rahmen/Glow */
+.ham{display:none;flex-direction:column;gap:5px;width:44px;min-height:44px;padding:16px 11px;justify-content:center;align-items:center}
+.ham span{display:block;width:22px;height:1.4px;background:var(--pd);transition:transform .35s var(--ease),opacity .35s,width .35s,background .3s;transform-origin:center}
+.ham:hover span{background:var(--gb)}
+.ham.o span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.ham.o span:nth-child(2){opacity:0;width:0}
+.ham.o span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:190;background:rgba(10,7,5,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:110px 0 46px;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+.mnav.o{opacity:1;pointer-events:auto}
+.mnav a{font-family:var(--fd);font-size:clamp(30px,8vw,52px);letter-spacing:.08em;color:var(--pd);transition:color .25s}
+.mnav a:hover{color:var(--gb)}
+.mnav .mo{margin-top:20px;font-family:var(--fd);font-style:italic;font-size:16px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);background:var(--g);padding:18px 40px}
+@media(max-width:820px){.nlinks,.nord{display:none}.ham{display:flex}}
+
+/* HERO */
+.hero{position:relative;height:100svh;min-height:700px;overflow:hidden;background:#000}
+.marq{position:relative}
+section{position:relative}
+footer{position:relative}
+.hero-bg{
+  position:absolute;inset:0;z-index:1;will-change:transform;transform-origin:center center;
+  background-image:url('assets/hero-dawn.jpg');
+  background-size:cover;background-position:center 35%;
+  filter:saturate(.94) brightness(.82) contrast(1.04);
+  opacity:0;
+  animation:heroBgIn 2.4s cubic-bezier(.16,1,.3,1) .1s forwards;
+}
+@keyframes heroBgIn{
+  0%{opacity:0;transform:scale(1.08)}
+  100%{opacity:1;transform:scale(1)}
+}
+.hero-vid{display:none}
+
+/* Cinematic overlay: vignette bottom + top fade */
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:
+    radial-gradient(ellipse 120% 60% at 50% 110%, rgba(4,2,1,.98) 0%, transparent 60%),
+    linear-gradient(to top,rgba(4,2,1,.85) 0%,rgba(4,2,1,.1) 32%,transparent 55%),
+    linear-gradient(to bottom,rgba(4,2,1,.55) 0%,transparent 22%)
+}
+
+canvas#torch{position:absolute;inset:0;z-index:2;pointer-events:none;width:100%;height:100%}
+.hgrain{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.12;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/></svg>")}
+
+/* Content: flex column, centered vertically */
+.hc{
+  position:relative;z-index:4;height:100%;
+  display:flex;flex-direction:column;
+  justify-content:center;
+  padding:0 var(--e);
+  padding-top:12vh;
+}
+.heyebrow{
+  font-family:var(--fb);font-weight:600;
+  font-size:clamp(11px,1.05vw,14px);letter-spacing:.30em;text-transform:uppercase;
+  color:var(--gb);display:flex;align-items:center;gap:14px;
+  margin-bottom:clamp(24px,3vh,44px);
+  opacity:0;animation:rUp .9s .2s var(--eout) forwards
+}
+.heyebrow .erule{width:34px;height:1px;flex-shrink:0;background:linear-gradient(90deg,var(--g),transparent)}
+.htitle{
+  font-family:var(--fd);font-weight:300;
+  font-size:min(clamp(42px,8vw,128px),12.5vh);
+  line-height:.88;
+  color:var(--p);letter-spacing:-.022em;
+  text-shadow:0 8px 80px rgba(0,0,0,.9),0 2px 16px rgba(0,0,0,.8);
+  max-width:14ch;
+}
+.htitle .ln{display:block;overflow:hidden;padding:.06em .04em .22em;margin:-.06em -.04em -.22em}
+.htitle .ln .lnw{display:block;transform:translateY(110%);animation:rIn 1.1s var(--eout) forwards}
+.htitle .ln:nth-child(1) .lnw{animation-delay:.35s}
+.htitle .ln:nth-child(2) .lnw{animation-delay:.52s;font-style:italic;color:var(--gb)}
+.htitle .ln:nth-child(3) .lnw{animation-delay:.68s}
+.hsub{
+  font-family:var(--fd);font-style:italic;
+  font-size:min(clamp(15px,1.5vw,21px),2.6vh);
+  line-height:1.6;color:rgba(234,225,204,.85);
+  max-width:54ch;margin-top:clamp(16px,2.2vh,30px);
+  text-shadow:0 2px 24px rgba(0,0,0,.9);
+  opacity:0;animation:rUp 1s 1s var(--eout) forwards
+}
+.hbtns{
+  display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+  margin-top:clamp(24px,4vh,48px);
+  opacity:0;animation:rUp 1s 1.2s var(--eout) forwards
+}
+
+/* Bottom strip: full-width bar with stats */
+.hbot{
+  position:absolute;left:0;right:0;bottom:0;z-index:4;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:clamp(18px,2.5vh,28px) var(--e);
+  border-top:1px solid rgba(184,146,74,.18);
+  background:linear-gradient(to top,rgba(4,2,1,.7),transparent);
+  opacity:0;animation:rUp .9s 1.4s var(--eout) forwards
+}
+.hstats{display:flex;gap:clamp(24px,5vw,64px)}
+.hstat{display:flex;flex-direction:column;gap:4px}
+.hstat .k{font-family:var(--fd);font-style:italic;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--pm)}
+.hstat .v{font-family:var(--fd);font-size:18px;color:var(--p);text-shadow:0 2px 12px rgba(0,0,0,.8)}
+.scrl{display:flex;align-items:center;gap:12px;font-family:var(--fd);font-style:italic;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--pm)}
+.scrl .ln2{width:32px;height:1px;background:linear-gradient(90deg,var(--g),transparent);position:relative;overflow:hidden}
+.scrl .ln2::after{content:"";position:absolute;top:0;left:-32px;width:32px;height:100%;background:var(--g);animation:sdrop 2.4s var(--ease) 2s infinite}
+@keyframes sdrop{0%{left:-32px}60%{left:32px}100%{left:32px}}
+@media(max-width:640px){
+  .hbot{padding:14px var(--e)}
+  .hstats{gap:clamp(16px,4vw,32px)}
+  .hstat .v{font-size:14px}
+  .scrl{display:none}
+}
+
+/* BUTTONS */
+.btn-g{display:inline-flex;align-items:center;gap:20px;font-family:var(--fd);font-style:normal;font-weight:600;font-size:18px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);background:var(--g);padding:24px 52px;border:1px solid var(--g);position:relative;transition:background .25s,gap .3s,transform .3s var(--ease)}
+.btn-g:hover{background:var(--gb);gap:28px;transform:translateY(-2px);border-color:var(--gb)}
+.btn-g .ar{width:24px;height:1px;background:currentColor;position:relative}
+.btn-g .ar::after{content:"";position:absolute;right:0;top:-4px;width:9px;height:9px;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:rotate(45deg)}
+.btn-o{display:inline-flex;align-items:center;gap:16px;font-family:var(--fd);font-style:normal;font-weight:500;font-size:18px;letter-spacing:.22em;text-transform:uppercase;color:var(--g);padding:24px 0;border-bottom:1.5px solid rgba(184,146,74,.5);transition:color .25s,border-color .25s,gap .3s}
+.btn-o:hover{color:var(--gb);border-color:var(--gb);gap:22px}
+
+/* MARQUEE */
+.marq{padding:18px 0;border-top:1px solid var(--rules);border-bottom:1px solid var(--rules);overflow:hidden;white-space:nowrap;font-family:var(--fd);font-style:italic;font-size:16px;letter-spacing:.26em;text-transform:uppercase;color:var(--g)}
+.marq-in{display:inline-block;animation:slide 52s linear infinite;padding-left:100%}
+.marq-in span{margin:0 36px;opacity:.8}
+.marq-in .d{display:inline-block;width:4px;height:4px;background:var(--g);transform:rotate(45deg);vertical-align:middle;margin:0 8px}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+/* SECTION SCAFFOLD */
+section{position:relative;padding:clamp(80px,12vw,160px) var(--e)}
+.wrap{max-width:1640px;margin:0 auto}
+.slabel{display:flex;align-items:center;gap:14px;margin-bottom:36px;font-family:var(--fd);font-style:italic;font-size:18px;letter-spacing:.2em;text-transform:uppercase;color:var(--g)}
+.slabel .bar{display:none}
+.slabel .num{color:var(--pm)}
+.h2{font-family:var(--fd);font-weight:300;font-size:clamp(38px,4.6vw,72px);line-height:1.06;color:var(--p);letter-spacing:-.01em}
+.h2 em{font-style:italic;color:var(--gb)}
+.h2 em.nb{white-space:nowrap}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1.1s var(--eout),transform 1.1s var(--eout)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
+
+/* MANIFESTO */
+/* kein background-attachment:fixed — erzwang Voll-Repaints bei jedem Scroll-Frame (Lag) */
+.mani{position:relative;background:linear-gradient(rgba(8,5,3,.82),rgba(8,5,3,.9)),url('assets/scene/galilee-dawn.jpg') center/cover}
+.mani::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 0%, rgba(184,146,74,.06), transparent 60%);z-index:0;pointer-events:none}
+@media(max-width:680px){.mani{background-attachment:scroll}}
+.mani .wrap{position:relative;z-index:1}
+.mani-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(48px,8vw,100px);align-items:start}
+@media(max-width:860px){.mani-grid{grid-template-columns:1fr}}
+.mani-left .h2{margin-bottom:40px;font-size:clamp(42px,6.5vw,100px)}
+.mani-quote{font-family:var(--fd);font-style:italic;font-size:clamp(20px,2.4vw,34px);line-height:1.48;color:var(--g);border-left:2px solid var(--g);padding-left:28px;margin:40px 0}
+.mani-quote cite{display:block;margin-top:10px;font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--pm);font-style:normal}
+.mani-body{font-family:var(--fb);font-size:22px;line-height:1.85;color:var(--p2)}
+.mani-body p+p{margin-top:1.3em}
+.mani-body strong{color:var(--p);font-weight:500}
+.mani-sig{margin-top:40px;display:flex;align-items:center;gap:16px;font-family:var(--fd);font-style:italic;font-size:17px;color:var(--p);letter-spacing:.08em}
+.mani-sig .bar{display:none}
+.mani-imgs{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:6px}
+.mani-imgs img{width:100%;object-fit:cover;filter:saturate(.85) contrast(1.04);transition:filter .9s var(--ease),transform 1.2s var(--eout)}
+.mani-imgs img:hover{filter:saturate(1) contrast(1.06);transform:scale(1.02)}
+.mani-imgs img:first-child{grid-row:1/3;aspect-ratio:3/4}
+.mani-imgs img:not(:first-child){aspect-ratio:3/2}
+/* Das Projekt — decluttered + visual */
+.mani-hero{position:relative;overflow:hidden;line-height:0;border:1px solid rgba(184,146,74,.16)}
+.mani-hero img{width:100%;height:clamp(540px,86vh,900px);object-fit:cover;object-position:center 28%;display:block;filter:saturate(.9) brightness(.88) contrast(1.05);transition:transform 1.4s var(--eout)}
+.mani-hero:hover img{transform:scale(1.03)}
+.mani-hero figcaption{position:absolute;inset:auto 0 0 0;padding:30px 26px;background:linear-gradient(to top,rgba(8,5,2,.92) 0%,rgba(8,5,2,.1) 70%,transparent);line-height:1.5}
+.mh-ref{display:block;font-family:var(--fd);font-style:italic;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--g);margin-bottom:8px}
+.mh-verse{font-family:var(--fd);font-style:italic;font-size:clamp(15px,1.4vw,19px);color:var(--p);line-height:1.5}
+.mani-trip{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4vw,18px);margin-top:clamp(44px,5vw,76px)}
+.mani-trip figure{position:relative;overflow:hidden;line-height:0;border:1px solid rgba(184,146,74,.12)}
+.mani-trip img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:saturate(.85) contrast(1.04);transition:transform 1.2s var(--eout),filter .9s var(--ease)}
+.mani-trip figure:hover img{transform:scale(1.04);filter:saturate(1) contrast(1.06)}
+.mani-trip figcaption{position:absolute;left:0;right:0;bottom:0;padding:16px 14px;background:linear-gradient(to top,rgba(8,5,2,.88),transparent)}
+.mani-trip figcaption span{font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.03em;color:var(--p);line-height:1.4}
+@media(max-width:680px){.mani-trip{grid-template-columns:1fr}.mani-hero img{height:46vh}}
+
+/* COLLECTIONS */
+.project{background:var(--ink)}
+.coll-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rules);border:1px solid var(--rules);margin-top:clamp(40px,5vw,64px)}
+@media(max-width:1100px){.coll-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){.coll-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.coll-grid{grid-template-columns:1fr}}
+.coll{background:var(--ink);padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;transition:background .4s var(--ease)}
+.coll:hover{background:var(--ink2)}
+.coll.avail{background:var(--ink2)}
+.coll.avail::before{content:"Now Available";position:absolute;top:0;right:0;font-family:var(--fd);font-style:italic;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink);background:var(--g);padding:6px 12px}
+.coll img{width:100%;aspect-ratio:3/4;object-fit:cover;filter:saturate(.75) brightness(.8);transition:filter .7s var(--ease),transform .9s var(--ease)}
+.coll:hover img{filter:saturate(.95) brightness(.92);transform:scale(1.04)}
+.coll-n{font-family:var(--fd);font-style:italic;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--g)}
+.coll-name{font-family:var(--fd);font-weight:300;font-size:clamp(18px,2vw,26px);color:var(--p);line-height:1.1;letter-spacing:-.005em}
+.coll-desc{font-family:var(--fb);font-size:14px;line-height:1.55;color:var(--pd);margin-top:auto}
+.coll-st{font-family:var(--fd);font-style:italic;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--pm);display:flex;align-items:center;gap:8px}
+.coll-st .dot{width:5px;height:5px;border-radius:50%;background:var(--pm)}
+.coll-st .dot.live{background:var(--g);box-shadow:0 0 6px var(--g)}
+
+/* GALLERY */
+.gallery{
+  background:var(--ink2);padding-bottom:clamp(80px,10vw,120px);
+  position:relative;overflow:hidden;
+}
+.gallery::before{
+  content:"";position:absolute;inset:0;
+  background-image:url('assets/matthew/plates/p24.jpg');
+  background-size:cover;background-position:center top;
+  opacity:.04;pointer-events:none;z-index:0;
+}
+.gallery .wrap,.gallery .gal-head,.gallery .gvp,.gallery .gfut{position:relative;z-index:1}
+.gal-head{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end;margin-bottom:52px}
+@media(max-width:680px){.gal-head{grid-template-columns:1fr}}
+.gal-ctrls{display:flex;gap:8px}
+.ibtn{width:50px;height:50px;border:1px solid var(--rule);color:var(--p);display:grid;place-items:center;background:var(--ink3);transition:border-color .25s,color .25s}
+.ibtn:hover{border-color:var(--g);color:var(--gb)}
+.ibtn:disabled{opacity:.22}
+.ibtn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.2}
+.gvp{overflow:hidden;position:relative}
+.gtrack{display:flex;gap:20px;transition:transform .85s var(--ease);will-change:transform;user-select:none}
+.plate{flex:0 0 calc((100% - 40px)/3);aspect-ratio:4/5;background:var(--ink3);overflow:hidden;position:relative}
+@media(max-width:940px){.plate{flex-basis:calc((100% - 20px)/2)}}
+@media(max-width:560px){.plate{flex-basis:100%}}
+.plate img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.86);transition:filter .7s var(--ease),transform 1.1s var(--ease);pointer-events:none}
+.plate:hover img{filter:saturate(1) brightness(1);transform:scale(1.04)}
+.pframe{position:absolute;inset:12px;border:1px solid rgba(232,223,203,.14);pointer-events:none;transition:inset .4s var(--ease),border-color .4s}
+.plate:hover .pframe{inset:8px;border-color:rgba(212,172,99,.65)}
+.pmeta{position:absolute;left:0;right:0;bottom:0;padding:18px 22px;z-index:2;background:linear-gradient(transparent,rgba(10,7,5,.9) 55%,rgba(10,7,5,.97));display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.pmeta .l{display:flex;flex-direction:column;gap:4px;min-width:0}
+.pnum{font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--g)}
+.pref{font-family:var(--fd);font-size:19px;color:var(--p);line-height:1.15}
+.pzoom{width:36px;height:36px;border:1px solid rgba(232,223,203,.22);display:grid;place-items:center;color:var(--p);flex-shrink:0;transition:border-color .3s,color .3s}
+.plate:hover .pzoom{border-color:var(--g);color:var(--gb)}
+.pzoom svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.6}
+.gfut{display:flex;justify-content:space-between;align-items:center;margin-top:30px;font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--pd)}
+.gfut .cnt{color:var(--g)}
+.gfut .tr{flex:1;margin:0 30px;height:1px;background:var(--rule);position:relative;overflow:hidden}
+.gfut .tf{position:absolute;top:0;left:0;height:100%;background:var(--g);transition:width .6s var(--ease),left .6s var(--ease)}
+@media(max-width:560px){.gfut{flex-wrap:wrap;gap:12px}}
+
+/* READER */
+.reader{
+  position:relative;background:var(--ink);
+}
+.reader::before{content:"";position:absolute;inset:0;background-image:url('assets/matthew/plates/p48.jpg');background-size:cover;background-position:center;opacity:.07;z-index:0;pointer-events:none}
+.reader .wrap{position:relative;z-index:1}
+.rgrid{display:grid;grid-template-columns:220px 1fr;gap:clamp(32px,5vw,72px);align-items:start}
+@media(max-width:800px){.rgrid{grid-template-columns:1fr}}
+.rnav{position:sticky;top:100px}
+.rnav ol{list-style:none}
+.rnav button{display:flex;align-items:baseline;gap:14px;width:100%;padding:13px 0;border-bottom:1px solid var(--rules);font-family:var(--fd);font-size:16px;color:var(--pd);text-align:left;transition:color .25s}
+.rnav button:hover{color:var(--p)}
+.rnav button.act{color:var(--gb)}
+.rnav .ch{font-style:italic;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--pm);min-width:58px}
+.rnav button.act .ch{color:var(--g)}
+.rpanel{background:linear-gradient(180deg,var(--ink2),var(--ink));border:1px solid var(--rule);padding:clamp(28px,5vw,60px);position:relative;min-height:480px}
+.rpanel::before{content:"";position:absolute;inset:16px;border:1px solid rgba(184,146,74,.1);pointer-events:none}
+.rhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--rules)}
+.rref{font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--g)}
+.rpg{font-family:var(--fd);font-style:italic;font-size:13px;color:var(--pm);letter-spacing:.18em}
+.rtitle{font-family:var(--fd);font-weight:300;font-size:clamp(26px,3vw,42px);line-height:1.1;color:var(--p);margin-bottom:24px}
+.rtitle em{font-style:italic;color:var(--gb)}
+.rbody{font-family:var(--fb);font-size:21px;line-height:1.88;color:var(--p2);max-width:60ch}
+.rbody p{margin-bottom:.8em;text-align:justify;hyphens:auto}
+.rbody p:first-of-type::first-letter{font-family:var(--fd);font-size:4.8em;line-height:.85;float:left;color:var(--gb);padding:.04em .1em 0 0;font-weight:400}
+.vn{font-family:var(--fd);font-size:11px;color:var(--g);font-style:italic;vertical-align:super;line-height:0;margin-right:5px;letter-spacing:.08em}
+.rfoot{margin-top:28px;padding-top:18px;border-top:1px solid var(--rules);display:flex;justify-content:space-between;align-items:center;font-family:var(--fd);font-style:italic;font-size:13px;color:var(--pm);letter-spacing:.18em;text-transform:uppercase}
+.rfoot button{color:var(--g);border-bottom:1px solid var(--g);padding:2px 0;transition:color .25s,border-color .25s}
+.rfoot button:hover{color:var(--gb);border-color:var(--gb)}
+.ranim{animation:rfade .55s var(--eout)}
+@keyframes rfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* EDITIONS */
+.editions{
+  position:relative;background:var(--ink2);
+}
+.editions::before{content:"";position:absolute;inset:0;background-image:url('assets/matthew/plates/p207.jpg');background-size:cover;background-position:center;opacity:.1;z-index:0;pointer-events:none}
+.editions .wrap{position:relative;z-index:1}
+.egrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rules);border:1px solid var(--rules)}
+@media(max-width:820px){.egrid{grid-template-columns:1fr}}
+.ed{background:rgba(10,7,5,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:clamp(30px,4vw,56px);display:flex;flex-direction:column;gap:18px;transition:background .4s var(--ease),transform .4s var(--eout),box-shadow .4s var(--ease)}
+.ed:hover{background:rgba(16,11,7,.9)}
+.ed-n{font-family:var(--fd);font-style:italic;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--g)}
+.ed-head{display:flex;justify-content:space-between;align-items:baseline}
+.ed-badge{font-family:var(--fd);font-style:italic;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);background:var(--g);padding:5px 10px}
+.ed-name{font-family:var(--fd);font-weight:300;font-size:clamp(36px,3.6vw,60px);color:var(--p);line-height:1}
+.ed-desc{font-family:var(--fb);font-size:19px;line-height:1.68;color:var(--pd);padding-bottom:18px;border-bottom:1px solid var(--rules)}
+.ed-price{display:flex;align-items:baseline;gap:4px;font-family:var(--fd)}
+.ed-cur{font-size:26px;color:var(--g)}
+.ed-num{font-size:80px;line-height:1;color:var(--p);letter-spacing:-.02em;font-weight:300}
+.ed-unit{margin-left:auto;font-style:italic;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pm)}
+.ed ul{list-style:none;flex:1;display:flex;flex-direction:column;gap:11px}
+.ed li{font-family:var(--fb);font-size:17px;color:var(--p2);padding-left:18px;position:relative}
+.ed li::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:1px;background:var(--g)}
+.ed-cta{padding-top:16px;border-top:1px solid var(--rules)}
+.ed-link{font-family:var(--fd);font-style:italic;font-size:14px;letter-spacing:.24em;text-transform:uppercase;color:var(--g);display:inline-flex;align-items:center;gap:12px;transition:gap .3s,color .25s}
+.ed-link:hover{gap:18px;color:var(--gb)}
+.ed-link .a{width:18px;height:1px;background:currentColor;position:relative}
+.ed-link .a::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+
+/* WAITLIST */
+.waitlist{background:var(--ink);text-align:center}
+.wbg{position:absolute;inset:0;background-image:url('assets/scene/tomb-light.jpg');background-size:cover;background-position:center;opacity:.32;filter:grayscale(.1) contrast(1.08)}
+.wbg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at center,rgba(10,7,5,.5),rgba(10,7,5,.95) 75%),linear-gradient(180deg,rgba(10,7,5,.9),transparent 12%,transparent 88%,rgba(10,7,5,.95))}
+.win{position:relative;z-index:2;max-width:680px;margin:0 auto}
+.wpulse{display:flex;align-items:center;justify-content:center;gap:12px;font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--g);margin-bottom:28px}
+.wpulse .dot{width:7px;height:7px;background:var(--g);border-radius:50%;animation:pulse 2s ease infinite}
+.wprev{width:min(440px,82%);margin:0 auto 30px;padding:10px;background:linear-gradient(160deg,rgba(184,146,74,.28),rgba(184,146,74,.06));border:1px solid rgba(184,146,74,.32);box-shadow:0 24px 70px -24px rgba(0,0,0,.85)}
+.wprev img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;filter:brightness(.98) contrast(1.04)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(184,146,74,.5)}50%{box-shadow:0 0 0 9px rgba(184,146,74,0)}}
+.waitlist .h2{margin:0 auto 18px}
+.wsub{font-family:var(--fd);font-style:italic;font-size:clamp(20px,2vw,28px);color:var(--p2);line-height:1.6;margin-bottom:44px}
+.wform{display:flex;max-width:520px;margin:0 auto}
+.wform input{flex:1;background:var(--ink2);border:1px solid var(--rule);border-right:none;color:var(--p);font-family:var(--fd);font-style:italic;font-size:16px;padding:18px 22px;outline:none;letter-spacing:.06em;transition:border-color .25s}
+.wform input::placeholder{color:var(--pm)}
+.wform input:focus{border-color:var(--g)}
+.wform button{font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);background:var(--g);padding:18px 24px;border:1px solid var(--g);white-space:nowrap;transition:background .25s,border-color .25s}
+.wform button:hover{background:var(--gb);border-color:var(--gb)}
+.wnote{margin-top:14px;font-family:var(--fd);font-style:italic;font-size:16px;letter-spacing:.14em;color:var(--pm)}
+.wsuccess{display:none;margin-top:24px;font-family:var(--fd);font-style:italic;font-size:18px;color:var(--gb)}
+@media(max-width:520px){.wform{flex-direction:column}.wform input{border-right:1px solid var(--rule);border-bottom:none}}
+
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;z-index:500;background:rgba(5,4,2,.97);display:flex;align-items:center;justify-content:center;padding:30px;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+.lb.on{opacity:1;pointer-events:auto}
+.lbf{max-width:min(980px,90vw);max-height:88vh;position:relative;transform:scale(.95);transition:transform .6s var(--eout)}
+.lb.on .lbf{transform:scale(1)}
+.lbf img{max-height:78vh;width:auto;margin:0 auto;object-fit:contain;border:1px solid var(--rule)}
+.lbmeta{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:14px;border-top:1px solid var(--rules);font-family:var(--fd);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--pd)}
+.lbmeta .t{color:var(--gb);font-style:italic}
+.lbc{position:absolute;top:-16px;right:-16px;width:40px;height:40px;background:var(--ink);border:1px solid var(--g);color:var(--g);display:grid;place-items:center;transition:background .2s,color .2s}
+.lbc:hover{background:var(--g);color:var(--ink)}
+.lbnav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;background:rgba(10,7,5,.7);border:1px solid var(--rule);color:var(--p);display:grid;place-items:center;transition:background .2s,border-color .2s,color .2s}
+.lbnav:hover{border-color:var(--g);color:var(--gb)}
+.lbprev{left:-20px}.lbnext{right:-20px}
+.lbnav svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.3}
+
+/* No fixed background-attachment used — no iOS override needed */
+
+/* MOBILE IMPROVEMENTS */
+@media(max-width:960px){
+  .egrid{grid-template-columns:1fr}
+  .ed{padding:clamp(28px,4vw,44px)}
+}
+@media(max-width:640px){
+  body{font-size:18px}
+  .mani-body{font-size:17px;line-height:1.82}
+  .hbtns{margin-bottom:clamp(32px,5vh,80px)}
+  .mani-grid{gap:clamp(32px,6vw,64px)}
+  .sc-title{font-size:clamp(32px,8vw,72px)}
+  .sc-desc{font-size:16px}
+  .rm-desc{font-size:15px}
+  .rm-inner{gap:clamp(16px,3vw,40px)}
+  .band-name{font-size:17px}
+  .vision-statement{font-size:clamp(24px,5.5vw,52px)}
+  .vision-sub{font-size:clamp(15px,3.5vw,19px)}
+  .egrid{gap:12px}
+  .wform{flex-direction:column}
+  .wform input{border-right:1px solid var(--rule);border-bottom:none}
+  .hsub{font-size:clamp(14px,3.5vw,22px)}
+}
+@media(max-width:480px){
+  .lib-grid{grid-template-columns:1fr}
+  .hstat .v{font-size:15px}
+  .sc-specs{gap:20px}
+  .fgrid{grid-template-columns:1fr}
+}
+
+/* FOOTER */
+footer{padding:80px var(--e) 40px;background:var(--ink);border-top:1px solid var(--rules)}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;padding-bottom:52px;border-bottom:1px solid var(--rules);margin-bottom:28px}
+@media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
+.fc h4{font-family:var(--fd);font-style:italic;font-size:14px;letter-spacing:.26em;text-transform:uppercase;color:var(--g);margin-bottom:22px}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+.fc a{font-family:var(--fd);font-size:17px;color:var(--pd);transition:color .25s}
+.fc a:hover{color:var(--gb)}
+.fc p{font-family:var(--fb);font-size:16px;line-height:1.72;color:var(--pd)}
+.fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--fd);font-style:italic;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--pm)}
+
+/* LANG TOGGLE */
+.lang-btn{font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--pd);display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid transparent;transition:color .25s,border-color .25s}
+.lang-btn:hover{color:var(--gb)}
+.lang-btn .sep{color:var(--rule);margin:0 2px}
+.lang-btn .lc{transition:color .25s}
+.lang-btn .lc.on{color:var(--gb);border-bottom:1px solid var(--g)}
+[data-de]{display:none}
+body.de [data-en]{display:none}
+body.de [data-de]{display:inline}
+
+/* BOOK COVER SHOWCASE */
+.showcase{
+  overflow:hidden;position:relative;background:var(--ink2);
+}
+.showcase::before{content:"";position:absolute;inset:0;background-image:url('assets/matthew/plates/p214.jpg');background-size:cover;background-position:center;opacity:.12;z-index:0;pointer-events:none}
+.showcase .wrap{position:relative;z-index:1}
+.sc-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(40px,5vw,80px);align-items:center}
+@media(max-width:820px){.sc-grid{grid-template-columns:1fr}}
+.sc-cover{position:relative;max-width:640px;margin:0 auto;width:100%}
+.sc-book{position:relative;transform:perspective(1200px) rotateY(-10deg) rotateX(2deg);transition:transform 1s var(--eout);filter:drop-shadow(40px 50px 80px rgba(0,0,0,.8)) drop-shadow(0 0 40px rgba(184,146,74,.15))}
+.sc-book:hover{transform:perspective(1200px) rotateY(-4deg) rotateX(1deg)}
+.sc-book img{width:100%;display:block;border:1px solid rgba(184,146,74,.2)}
+.sc-spine{position:absolute;left:-18px;top:6px;bottom:6px;width:18px;background:linear-gradient(90deg,#050402,#0a0705 50%,#150f08);transform-origin:right center;transform:rotateY(68deg);border-right:1px solid rgba(184,146,74,.3)}
+.sc-shine{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.04) 0%,transparent 50%);pointer-events:none}
+.sc-info{display:flex;flex-direction:column;gap:20px}
+.sc-avail{display:inline-flex;align-items:center;gap:10px;font-family:var(--fd);font-style:italic;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--g)}
+.sc-avail .dot{width:7px;height:7px;background:var(--g);border-radius:50%;animation:pulse 2s ease infinite}
+.sc-title{font-family:var(--fd);font-weight:300;font-size:clamp(44px,5.5vw,82px);line-height:1;color:var(--p);letter-spacing:-.01em}
+.sc-title em{font-style:italic;color:var(--gb);display:block}
+.sc-desc{font-family:var(--fb);font-size:21px;line-height:1.82;color:var(--p2);max-width:52ch}
+.sc-specs{display:flex;gap:32px;padding:24px 0;border-top:1px solid var(--rules);border-bottom:1px solid var(--rules);flex-wrap:wrap}
+.sc-spec .k{font-family:var(--fd);font-style:italic;font-size:14px;letter-spacing:.24em;text-transform:uppercase;color:var(--pm);margin-bottom:6px}
+.sc-spec .v{font-family:var(--fd);font-size:22px;color:var(--p)}
+.sc-btns{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ===== SCROLL ANIMATIONS & PREMIUM ===== */
+
+/* Word-split reveal — applied by JS to .split-words elements */
+.sw-word{display:inline-block;overflow:hidden;vertical-align:bottom}
+.sw-inner{display:inline-block;transform:translateY(105%);opacity:0;
+  transition:transform .9s var(--eout),opacity .6s ease;will-change:transform}
+.sw-word.in .sw-inner{transform:translateY(0);opacity:1}
+
+/* Section divider lines that grow on scroll */
+.grow-line{width:0;height:1px;background:linear-gradient(90deg,var(--g),transparent);
+  transition:width 1.4s var(--eout)}
+.grow-line.in{width:100%}
+
+/* Staggered band cards (library shelf) */
+.band{opacity:0;transform:translateY(22px);
+  transition:opacity .7s var(--eout),transform .7s var(--eout),
+  background .35s var(--ease),border-color .35s}
+.band.in{opacity:1;transform:translateY(0)}
+
+/* Counter animation */
+.counter{font-variant-numeric:tabular-nums}
+
+/* Horizontal marquee accent on section labels */
+.slabel .bar{transition:flex-basis 1.2s var(--eout)}
+
+/* Deeper plate hover shadow */
+.plate{transition:box-shadow .5s var(--ease)}
+.plate:hover{box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 0 1px rgba(184,146,74,.2)}
+
+/* Edition cards: lift on hover */
+.ed{transition:background .4s var(--ease),transform .4s var(--eout),box-shadow .4s var(--ease)}
+.ed:hover{transform:translateY(-6px);box-shadow:0 32px 64px rgba(0,0,0,.5)}
+
+/* Vision pillars: staggered scale-up */
+.vpill{opacity:0;transform:scale(.96) translateY(18px);
+  transition:opacity .8s var(--eout),transform .8s var(--eout)}
+.vpill.in{opacity:1;transform:none}
+.vpill:nth-child(2){transition-delay:.14s}
+.vpill:nth-child(3){transition-delay:.28s}
+
+/* Section backgrounds use opacity overlay technique — no fixed attachment */
+
+/* ===== BOOK PREVIEW MODAL ===== */
+.bprev{position:fixed;inset:0;z-index:600;background:rgba(4,3,2,.97);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+.bprev.on{opacity:1;pointer-events:auto}
+.bprev-inner{max-width:1100px;width:100%;position:relative}
+.bprev-spread{display:grid;grid-template-columns:1fr 1fr;gap:4px;aspect-ratio:16/10;max-height:78vh;overflow:hidden}
+@media(max-width:680px){.bprev-spread{grid-template-columns:1fr;aspect-ratio:auto}}
+.bprev-page{overflow:hidden;position:relative}
+.bprev-page img{width:100%;height:100%;object-fit:cover;transition:opacity .45s var(--ease)}
+.bprev-page.left{border-right:1px solid rgba(184,146,74,.15)}
+.bprev-foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--pd)}
+.bprev-nav{display:flex;gap:8px}
+.bprev-nbtn{width:46px;height:46px;border:1px solid var(--rule);color:var(--p);display:grid;place-items:center;background:var(--ink3);transition:border-color .25s,color .25s}
+.bprev-nbtn:hover{border-color:var(--g);color:var(--gb)}
+.bprev-nbtn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.3}
+.bprev-close{position:absolute;top:-16px;right:-16px;width:40px;height:40px;background:var(--ink);border:1px solid var(--g);color:var(--g);display:grid;place-items:center;transition:background .2s,color .2s;z-index:1}
+.bprev-close:hover{background:var(--g);color:var(--ink)}
+.bprev-hint{font-family:var(--fd);font-style:italic;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--pm);text-align:center;margin-top:14px}
+/* Showcase preview button */
+.sc-preview-btn{
+  display:inline-flex;align-items:center;gap:14px;margin-top:24px;
+  font-family:var(--fd);font-style:italic;font-weight:500;
+  font-size:16px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--g);border-bottom:1px solid rgba(184,146,74,.4);
+  padding:4px 0;transition:color .25s,border-color .25s,gap .3s;
+  background:none;
+}
+.sc-preview-btn:hover{color:var(--gb);border-color:var(--gb);gap:20px;}
+
+/* About section responsive */
+@media(max-width:860px){
+  .mani-body+div{display:none!important}
+  [style*="grid-template-columns:1fr 340px"]{grid-template-columns:1fr!important}
+}
+
+/* ===== PREMIUM OVERRIDES ===== */
+/* Showcase: allow spine to overflow its parent */
+.sc-cover{overflow:visible}
+
+/* Hero: overlay now defined in hero section CSS above — no override needed */
+
+/* Section headings: tighter tracking for luxury feel */
+.h2{letter-spacing:-.022em}
+
+/* Band cards: slightly stronger border on hover */
+.band:hover{border-color:rgba(184,146,74,.45);border-left-color:var(--gb)}
+.done-band:hover{border-left-color:var(--gb)}
+
+/* Gallery plates: full brightness on hover */
+.plate:hover img{filter:saturate(1.05) brightness(1.04);transform:scale(1.05)}
+
+/* ===== GLOBAL IMAGE TRANSITIONS ===== */
+.mani-imgs img{transition:filter 1.1s var(--ease),transform 1.4s var(--eout)!important}
+.mani-imgs img:hover{filter:saturate(1.02) contrast(1.06)!important;transform:scale(1.04)!important}
+.plate img{transition:filter .9s var(--ease),transform 1.2s var(--eout)!important}
+.sc-book img{transition:filter .8s var(--ease),transform 1s var(--eout)}
+.band{transition:background .4s var(--ease),transform .5s var(--eout),border-color .4s,box-shadow .5s var(--ease)!important}
+.band:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.5)!important}
+section img{transition:filter .9s var(--ease),transform 1.2s var(--eout)}
+
+/* Scroll reveal: slightly faster for snappier feel */
+.rv{transition:opacity .85s var(--eout),transform .85s var(--eout)}
+
+/* Vision pillars: centered text alignment */
+.vpill{text-align:center}
+
+/* Mani quote: stronger left border */
+.mani-quote{border-left-width:2px;padding-left:28px}
+
+/* Waitlist: stronger overlay so text is always readable */
+.wbg::after{background:radial-gradient(ellipse 80% 80% at center,rgba(10,7,5,.6),rgba(10,7,5,.97) 80%),linear-gradient(180deg,rgba(10,7,5,.95),transparent 10%,transparent 90%,rgba(10,7,5,.98))}
+
+/* ===== JERUSALEM CINEMATIC BREAK ===== */
+.jbreak{position:relative;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.jbreak-img{position:absolute;inset:-8%;background-size:cover;background-position:center 40%;filter:saturate(.75) brightness(.55) contrast(1.05);will-change:transform}
+.jbreak-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,7,5,.7) 0%,rgba(10,7,5,.2) 40%,rgba(10,7,5,.2) 60%,rgba(10,7,5,.8) 100%)}
+.jbreak-text{position:relative;z-index:2;text-align:center;max-width:720px;padding:0 clamp(24px,5vw,80px)}
+.jbreak-text blockquote{font-family:var(--fd);font-style:italic;font-weight:300;font-size:clamp(26px,3vw,48px);line-height:1.45;color:var(--p);letter-spacing:.01em;margin-bottom:24px}
+.jbreak-text cite{font-family:var(--fd);font-style:italic;font-size:18px;letter-spacing:.28em;text-transform:uppercase;color:var(--g)}
+
+/* ===== ROADMAP ===== */
+.roadmap{overflow:hidden;position:relative}
+.roadmap::after{content:"";position:absolute;inset:0;background:rgba(6,4,2,.90);z-index:0}
+.roadmap .wrap{position:relative;z-index:1}
+/* vertical line left */
+.rm-grid{position:relative;display:flex;flex-direction:column;gap:0;padding-left:36px}
+.rm-grid::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,transparent,rgba(184,146,74,.3) 6%,rgba(184,146,74,.3) 94%,transparent)}
+.rm-item{position:relative;padding:clamp(20px,2.5vw,32px) 0 clamp(20px,2.5vw,32px) clamp(28px,3vw,44px);border-bottom:1px solid rgba(184,146,74,.08)}
+.rm-item:last-child{border-bottom:none}
+/* node dot */
+.rm-item::before{content:"";position:absolute;left:-31px;top:calc(clamp(20px,2.5vw,32px) + 6px);width:11px;height:11px;border-radius:50%;border:2px solid rgba(184,146,74,.35);background:var(--ink)}
+.rm-item.done::before{background:var(--gb);border-color:var(--gb);box-shadow:0 0 10px rgba(212,172,99,.4)}
+.rm-item.live::before{background:var(--g);border-color:var(--g);box-shadow:0 0 10px rgba(184,146,74,.5)}
+/* two-column inside each item */
+.rm-inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,60px)}
+@media(max-width:680px){.rm-inner{grid-template-columns:1fr}}
+.rm-q{font-family:var(--fd);font-style:italic;font-size:17px;letter-spacing:.2em;text-transform:uppercase;color:var(--g);margin-bottom:12px}
+.rm-title{font-family:var(--fd);font-weight:300;font-size:clamp(26px,2.6vw,38px);color:var(--p);line-height:1.2;margin-bottom:10px}
+.rm-title em{font-style:italic;color:var(--gb)}
+.rm-desc{font-family:var(--fb);font-size:20px;line-height:1.82;color:var(--p2)}
+.rm-status{margin-top:14px;font-family:var(--fd);font-style:italic;font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--pm);display:flex;align-items:center;gap:8px}
+.rm-status.done{color:var(--gb)}
+.rm-status.live{color:var(--g)}
+.rm-status .sdot{width:6px;height:6px;border-radius:50%;background:currentColor}
+
+/* TWEAKS PANEL */
+#tw{position:fixed;bottom:24px;right:24px;z-index:1000;width:290px;background:rgba(12,9,6,.97);border:1px solid var(--rule);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 24px 80px rgba(0,0,0,.85);display:none}
+#tw.open{display:block}
+.tw-hd{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--rule)}
+.tw-hd-t{font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.34em;text-transform:uppercase;color:var(--gb)}
+.tw-hd-x{font-family:var(--fd);font-size:22px;line-height:1;color:var(--pd);padding:0 2px;transition:color .2s}
+.tw-hd-x:hover{color:var(--gb)}
+.tw-sec{padding:18px 18px 16px;border-bottom:1px solid rgba(38,29,18,.6)}
+.tw-lbl{display:block;font-family:var(--fd);font-style:italic;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--g);margin-bottom:14px}
+.tw-pals{display:flex;gap:10px}
+.tw-pal{width:40px;height:40px;border:2px solid transparent;transition:border-color .25s,transform .25s var(--eout);flex-shrink:0}
+.tw-pal.on{border-color:var(--p);transform:scale(1.1)}
+.tw-pal:hover:not(.on){transform:scale(1.06)}
+.tw-pal-wrap{display:flex;flex-direction:column;align-items:center;gap:8px}
+.tw-pal-name{font-family:var(--fd);font-style:italic;font-size:10px;letter-spacing:.2em;color:var(--pm);text-align:center}
+.tw-pals-row{display:flex;gap:16px}
+.tw-radio{display:flex;gap:3px}
+.tw-rb{flex:1;padding:11px 6px;border:1px solid var(--rule);font-family:var(--fd);font-style:italic;font-size:12px;letter-spacing:.18em;color:var(--pd);text-align:center;transition:all .22s;line-height:1.2}
+.tw-rb.on{border-color:var(--g);color:var(--gb);background:rgba(184,146,74,.07)}
+.tw-rb:hover:not(.on){color:var(--p);border-color:rgba(184,146,74,.3)}
+.tw-slide-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.tw-slide-v{font-family:var(--fd);font-style:italic;font-size:14px;color:var(--gb)}
+input[type=range].tw-sl{-webkit-appearance:none;appearance:none;width:100%;height:1px;background:var(--rule);outline:none}
+input[type=range].tw-sl::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--g);cursor:none;border:2px solid var(--ink);box-shadow:0 0 8px rgba(184,146,74,.4)}
+input[type=range].tw-sl::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--g);border:none;cursor:none}
+
+/* ===== ADDED: book switcher, motion, video ===== */
+.bk-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.bk-tab{font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--pd);padding:9px 18px;border:1px solid var(--rule);background:var(--ink3);transition:color .25s,border-color .25s,background .25s}
+.bk-tab .ct{font-size:10px;letter-spacing:.16em;color:var(--pm);margin-left:8px}
+.bk-tab.on{color:var(--gb);border-color:var(--g);background:rgba(184,146,74,.08)}
+.bk-tab.on .ct{color:var(--g)}
+.bk-tab:hover:not(.on){color:var(--p);border-color:rgba(184,146,74,.4)}
+.hslide.on{animation:kenburns 18s var(--ease) forwards}
+@keyframes kenburns{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.12) translate(-1%,-1.5%)}}
+body.motion-subtle .hslide.on{animation-duration:30s}
+body.motion-off .hslide.on{animation:none!important}
+body.motion-off .rv{transition:none!important}
+body.motion-off .marq-in{animation:none!important}
+body.motion-off .scrl .ln2::after{animation:none!important}
+body.motion-off .wpulse .dot,body.motion-off .sc-avail .dot{animation:none!important}
+@media(prefers-reduced-motion:reduce){.hslide.on{animation-duration:30s}.marq-in{animation-duration:120s}}
+
+/* Hero reveal keyframes */
+@keyframes rIn{from{transform:translateY(110%)}to{transform:translateY(0)}}
+@keyframes rUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+body.motion-off .htitle .ln .lnw{animation:none!important;transform:none!important}
+body.motion-off .heyebrow,body.motion-off .hsub,body.motion-off .hbtns,body.motion-off .hbot{animation:none!important;opacity:1!important;transform:none!important}
+
+/* ===== THE VISION ===== */
+.vision{background:linear-gradient(180deg,var(--ink),#0E0A06);text-align:center;position:relative;min-height:100vh;display:flex;align-items:center}
+.vision .wrap{max-width:960px}
+.vision .slabel{justify-content:center}
+.vision-statement{font-family:var(--fd);font-weight:300;font-size:clamp(40px,5vw,72px);line-height:1.22;color:var(--p);letter-spacing:-.008em;text-wrap:balance;margin:0 auto}
+.vision-statement em{font-style:italic;color:var(--gb)}
+.vision-sub{font-family:var(--fb);font-size:clamp(20px,2vw,26px);line-height:1.85;color:var(--p2);max-width:64ch;margin:44px auto 0;text-wrap:pretty}
+.vision-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(184,146,74,.2);border:1px solid rgba(184,146,74,.22);margin-top:clamp(48px,6vw,72px)}
+@media(max-width:680px){.vision-pillars{grid-template-columns:1fr}}
+.vpill{background:rgba(8,5,3,.5);padding:clamp(28px,3.4vw,42px) clamp(20px,2.4vw,30px);display:flex;flex-direction:column;gap:12px;align-items:center;transition:background .4s var(--ease)}
+.vpill:hover{background:rgba(20,15,9,.62)}
+.vpill .vp-num{font-family:var(--fd);font-style:italic;font-size:15px;letter-spacing:.28em;text-transform:uppercase;color:var(--g)}
+.vpill .vp-h{font-family:var(--fd);font-weight:300;font-size:clamp(28px,2.8vw,40px);color:var(--p)}
+.vpill .vp-p{font-family:var(--fb);font-size:18px;line-height:1.68;color:var(--p2);max-width:32ch}
+
+/* ===== Reusable calm section background: darkened image + legibility veil ===== */
+.secbg{position:relative;isolation:isolate;overflow:hidden}
+.secbg>.secbg-img{position:absolute;inset:-9% 0;z-index:-2;background-size:cover;background-position:center;filter:brightness(.64) contrast(1.05) saturate(.92);will-change:transform}
+.secbg>.secbg-veil{position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 94% 80% at 50% 42%,rgba(10,7,5,.5),rgba(10,7,5,.93) 76%),linear-gradient(180deg,rgba(10,7,5,.96),transparent 15%,transparent 84%,rgba(10,7,5,.97))}
+.secbg>.wrap,.secbg>.win{position:relative;z-index:1}
+@media(prefers-reduced-motion:reduce){.secbg>.secbg-img{transform:none!important}}
+
+/* Roadmap progress bar */
+.rm-progress{max-width:600px}
+.rm-pbar{height:9px;background:rgba(184,146,74,.16);border:1px solid rgba(184,146,74,.28);position:relative;overflow:hidden;border-radius:1px}
+.rm-pfill{position:absolute;top:0;left:0;bottom:0;background:linear-gradient(90deg,var(--gd),var(--gb));box-shadow:0 0 18px rgba(212,172,99,.5)}
+.rm-plabel{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;margin-top:12px;font-family:var(--fd);font-style:italic;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--pd)}
+.rm-plabel b{color:var(--gb);font-style:normal;font-weight:500}
+
+/* ===== LIBRARY / SERIES SHELF ===== */
+.library{background:var(--ink);position:relative}
+.library::before{content:"";position:absolute;inset:0;background-image:url('assets/genesis-creation.jpg');background-size:cover;background-position:center top;opacity:.07;z-index:0;pointer-events:none}
+.library .wrap{position:relative;z-index:1}
+.lib-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:14px}
+.lib-legend{display:flex;gap:22px;font-family:var(--fd);font-style:italic;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--pm)}
+.lib-legend span{display:flex;align-items:center;gap:8px}
+.lib-legend i{width:14px;height:2px;display:inline-block}
+.lib-legend i.nt{background:var(--g)}
+.lib-legend i.at{background:#5C6B74}
+.lib-group-t{font-family:var(--fd);font-style:italic;font-size:18px;letter-spacing:.22em;text-transform:uppercase;color:var(--g);margin:clamp(48px,6vw,72px) 0 24px;display:flex;align-items:center;gap:16px}
+.lib-group-t.at{color:#8AA0AD}
+.lib-group-t .ln3{flex:1;height:1px;background:var(--rules)}
+.lib-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:900px){.lib-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.lib-grid{grid-template-columns:1fr}}
+.band{position:relative;display:flex;gap:18px;padding:22px 22px 22px 20px;background:var(--ink2);border:1px solid var(--rules);border-left:2px solid var(--g);transition:background .35s var(--ease),transform .35s var(--ease),border-color .35s}
+.band:hover{background:var(--ink3);transform:translateY(-3px)}
+.band.at{border-left-color:#5C6B74;opacity:.92}
+.band-spine{flex:0 0 46px;height:64px;align-self:flex-start;background:linear-gradient(160deg,#1c150d,#0c0805);border:1px solid rgba(184,146,74,.25);display:grid;place-items:center;font-family:var(--fd);font-style:italic;color:var(--gb);font-size:15px;letter-spacing:.04em}
+.band.at .band-spine{border-color:rgba(140,160,173,.25);color:#9DB2BD}
+.band-body{display:flex;flex-direction:column;gap:6px;min-width:0}
+.band-roman{font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--pm)}
+.band-name{font-family:var(--fd);font-weight:300;font-size:26px;line-height:1.12;color:var(--p)}
+.band-books{font-family:var(--fb);font-size:18px;line-height:1.55;color:var(--pd)}
+.band-st{margin-top:8px;font-family:var(--fd);font-style:italic;font-size:15px;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:8px;color:var(--pm)}
+.band-st .dot{width:6px;height:6px;border-radius:50%;background:var(--pm)}
+.band-st.done{color:var(--gb)}
+.band-st.done .dot{background:var(--g);box-shadow:0 0 7px var(--g)}
+.band-st.prog .dot{background:#C0772E;box-shadow:0 0 6px rgba(192,119,46,.6)}
+.band-tag{position:absolute;top:0;right:0;font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);background:var(--g);padding:6px 12px}
+.band.at .band-tag{background:#5C6B74;color:#0A0705}
+.band.done-band{border-left-color:var(--gb)}
+.band.done-band .band-spine{background:linear-gradient(160deg,#2a200f,#140d06);border-color:rgba(212,172,99,.5)}
+
+/* ===== FULL BIBLE READER ===== */
+/* .fb-wrap removed — reader always visible via .fb-reader */
+.fb-nav{position:sticky;top:110px;max-height:calc(100vh - 150px);overflow-y:auto;padding-right:12px}
+.fb-nav::-webkit-scrollbar{width:3px}
+.fb-nav::-webkit-scrollbar-thumb{background:rgba(184,146,74,.4);border-radius:2px}
+.fb-testament{font-family:var(--fd);font-style:italic;font-size:15px;letter-spacing:.28em;text-transform:uppercase;color:var(--g);padding:18px 0 12px;border-bottom:1px solid var(--rules);margin-bottom:6px;opacity:.85}
+.fb-book-btn{display:block;width:100%;text-align:left;font-family:var(--fd);font-size:19px;color:var(--pd);padding:11px 0;border-bottom:1px solid rgba(184,146,74,.07);transition:color .2s;background:none;border-left:none;border-right:none;border-top:none;cursor:pointer}
+.fb-book-btn:hover{color:var(--p)}
+.fb-book-btn.on{color:var(--gb);font-style:italic;font-weight:500}
+.fb-ch-row{display:none;flex-wrap:wrap;gap:6px;margin:8px 0 16px;padding-left:4px}
+.fb-ch-row.on{display:flex}
+.fb-ch{width:44px;height:44px;display:grid;place-items:center;font-family:var(--fd);font-size:16px;color:var(--pd);border:1px solid var(--rules);background:var(--ink2);transition:all .22s;cursor:pointer}
+.fb-ch:hover{border-color:var(--g);color:var(--gb)}
+.fb-ch.on{background:var(--g);color:var(--ink);border-color:var(--g);font-weight:700}
+.fb-panel{background:linear-gradient(180deg,var(--ink2),var(--ink));border:1px solid var(--rule);padding:clamp(32px,5vw,64px);min-height:520px;max-height:86vh;overflow-y:auto;position:relative;scroll-behavior:smooth}
+.fb-panel::before{content:"";position:absolute;inset:16px;border:1px solid rgba(184,146,74,.08);pointer-events:none}
+.fb-panel-inner{position:relative;z-index:1}
+.fb-heading{font-family:var(--fd);font-weight:300;font-size:clamp(30px,3.2vw,48px);color:var(--p);margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--rules);line-height:1.1}
+.fb-heading em{font-style:italic;color:var(--gb)}
+.fb-verse{display:flex;gap:18px;margin-bottom:20px;align-items:baseline}
+.fb-vnum{font-family:var(--fd);font-style:italic;font-size:14px;color:var(--g);min-width:36px;text-align:right;flex-shrink:0;line-height:2.2;opacity:.75}
+.fb-vtext{font-family:var(--fb);font-size:23px;line-height:1.88;color:var(--p2)}
+.fb-status{font-family:var(--fd);font-style:italic;font-size:20px;color:var(--pm);text-align:center;padding:80px 40px;opacity:.7}
+.fb-nav-ch{display:flex;justify-content:space-between;align-items:center;margin-top:36px;padding-top:20px;border-top:1px solid var(--rules)}
+.fb-nav-ch button{font-family:var(--fd);font-style:italic;font-weight:500;font-size:17px;letter-spacing:.18em;text-transform:uppercase;color:var(--g);border-bottom:1px solid var(--g);padding:2px 0;transition:color .25s;background:none;border-left:none;border-right:none;border-top:none;cursor:pointer}
+.fb-nav-ch button:hover{color:var(--gb)}
+.fb-nav-ch span{font-family:var(--fd);font-style:italic;font-size:17px;color:var(--pm)}
+
+/* ===== MINIMUM READABLE SIZE — FINAL OVERRIDE ===== */
+/* All small UI labels, captions, status lines → minimum 16px */
+.ed-n{font-size:16px!important;letter-spacing:.22em!important}
+.ed-badge{font-size:14px!important}
+.ed-unit{font-size:16px!important}
+.ed-link{font-size:17px!important;letter-spacing:.2em!important}
+.wpulse{font-size:17px!important;letter-spacing:.24em!important}
+.sc-avail{font-size:16px!important;letter-spacing:.24em!important}
+.sc-avail .dot{width:9px!important;height:9px!important}
+.coll-n{font-size:15px!important}
+.coll-desc{font-size:17px!important}
+.coll-st{font-size:15px!important}
+.pnum{font-size:16px!important}
+.pref{font-size:21px!important}
+.gfut{font-size:16px!important;letter-spacing:.18em!important}
+.rnav button{font-size:20px!important;padding:16px 0!important}
+.rnav .ch{font-size:14px!important;letter-spacing:.24em!important;min-width:72px!important}
+.rref{font-size:17px!important}
+.rpg{font-size:17px!important}
+.rtitle{font-size:clamp(30px,3.2vw,48px)!important}
+.rbody{font-size:22px!important}
+.rfoot{font-size:16px!important}
+.rfoot button{font-size:16px!important}
+.mani-quote cite{font-size:16px!important;letter-spacing:.22em!important}
+.lbmeta{font-size:16px!important}
+.wform input{font-size:20px!important;padding:22px 26px!important}
+.wform button{font-size:17px!important;padding:22px 28px!important}
+.wnote{font-size:17px!important}
+.wsuccess{font-size:20px!important}
+.fc h4{font-size:18px!important;letter-spacing:.22em!important;margin-bottom:24px!important}
+.fc a{font-size:19px!important}
+.fc p{font-size:18px!important}
+.fbot{font-size:16px!important;letter-spacing:.14em!important}
+.lang-btn{font-size:16px!important;letter-spacing:.2em!important}
+.bk-tab{font-size:16px!important;letter-spacing:.18em!important;padding:12px 22px!important}
+.bk-tab .ct{font-size:13px!important}
+.hstat .k{font-size:15px!important;letter-spacing:.24em!important}
+.hstat .v{font-size:20px!important}
+.band-roman{font-size:15px!important;letter-spacing:.2em!important}
+.band-st{font-size:15px!important}
+.sc-spec .k{font-size:15px!important}
+.sc-spec .v{font-size:24px!important}
+.slabel .num{font-size:18px!important}
+
+/* ===== SHOWCASE BOOK ANIMATION ===== */
+.sc-book-anim{
+  position:relative;
+  perspective:2200px;perspective-origin:50% 40%;
+  max-width:500px;margin:0 auto;
+}
+/* Open spread behind the cover */
+.sc-spread{
+  display:grid;grid-template-columns:1fr 1fr;
+  position:relative;aspect-ratio:5/3.4;
+  box-shadow:
+    0 50px 120px rgba(0,0,0,.9),
+    0 20px 40px rgba(0,0,0,.5),
+    0 0 0 1px rgba(184,146,74,.1);
+  transform:perspective(2200px) rotateY(-8deg) rotateX(3deg);
+  transition:transform 1.8s cubic-bezier(.16,1,.3,1);
+}
+.sc-book-anim:hover .sc-spread{
+  transform:perspective(2200px) rotateY(-3deg) rotateX(2deg);
+}
+/* Gutter shadow */
+.sc-sp-gutter{
+  position:absolute;left:calc(50% - 8px);top:0;bottom:0;width:16px;
+  background:linear-gradient(90deg,transparent,rgba(0,0,0,.3) 40%,rgba(0,0,0,.3) 60%,transparent);
+  z-index:5;pointer-events:none;
+}
+/* LEFT PAGE — plate illustration */
+.sc-sp-l{position:relative;overflow:hidden;background:#1a1208;}
+.sc-sp-l img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.88) brightness(.86) contrast(1.06);}
+.sc-sp-pgn{
+  position:absolute;bottom:10px;left:0;right:0;text-align:center;
+  font-family:var(--fd);font-style:italic;font-size:9px;
+  letter-spacing:.2em;color:rgba(232,218,185,.4);pointer-events:none;
+}
+/* RIGHT PAGE — typeset Bible text */
+.sc-sp-r{
+  background:linear-gradient(150deg,#F7EED9 0%,#EEE4CE 100%);
+  padding:clamp(16px,2.4vw,28px) clamp(14px,2vw,24px) clamp(12px,1.8vw,20px);
+  display:flex;flex-direction:column;
+  border-left:1px solid rgba(120,95,42,.14);position:relative;overflow:hidden;
+}
+/* Subtle page texture */
+.sc-sp-r::before{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 22px,rgba(120,95,42,.03) 22px,rgba(120,95,42,.03) 23px);
+  pointer-events:none;
+}
+.sc-sp-rhead{
+  position:relative;z-index:1;
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--fd);font-style:italic;font-size:clamp(7px,.68vw,9.5px);
+  letter-spacing:.24em;text-transform:uppercase;color:rgba(100,75,36,.55);
+  padding-bottom:9px;border-bottom:1px solid rgba(115,88,40,.18);margin-bottom:11px;
+}
+.sc-sp-body{
+  position:relative;z-index:1;
+  font-family:var(--fb);font-size:clamp(8.5px,.82vw,11.5px);
+  line-height:1.82;color:rgba(22,14,5,.75);
+  text-align:justify;hyphens:auto;flex:1;
+}
+.sc-sp-drop{
+  font-family:var(--fd);font-size:3.2em;line-height:.82;
+  float:left;color:#7A5820;padding:.04em .07em 0 0;font-weight:400;
+}
+.sc-sp-vn{
+  font-family:var(--fd);font-style:italic;font-size:.68em;
+  color:rgba(120,90,38,.82);vertical-align:super;line-height:0;margin-right:1px;
+}
+.sc-sp-rule{height:1px;background:rgba(115,88,40,.18);margin:10px 0 8px;position:relative;z-index:1;}
+.sc-sp-cite{
+  position:relative;z-index:1;
+  font-family:var(--fd);font-style:italic;font-size:clamp(7px,.66vw,9px);
+  letter-spacing:.22em;text-transform:uppercase;color:rgba(100,75,36,.5);text-align:right;
+}
+/* COVER — rotates away when opened */
+.sc-book-cover{
+  position:absolute;left:50%;top:0;bottom:0;width:50%;
+  transform-style:preserve-3d;transform-origin:left center;
+  transition:transform 1.6s cubic-bezier(.4,0,.2,1),opacity .7s ease 1.05s;
+  z-index:4;
+}
+.sc-book-cover.open{transform:rotateY(-150deg);opacity:0;pointer-events:none}
+.sc-book-cover-f,.sc-book-cover-b{
+  position:absolute;inset:0;backface-visibility:hidden;
+}
+.sc-book-cover-f{overflow:hidden;}
+.sc-book-cover-f img{width:100%;height:100%;object-fit:cover;display:block;}
+.sc-book-cover-f::after{
+  content:"";position:absolute;right:0;top:0;bottom:0;width:10px;
+  background:linear-gradient(90deg,transparent,rgba(0,0,0,.6));pointer-events:none;
+}
+.sc-book-cover-b{
+  background:linear-gradient(145deg,#EEE4CE 0%,#E2D6B2 100%);
+  transform:rotateY(180deg);
+}
+/* Outer spine */
+.sc-book-outer-spine{
+  position:absolute;left:-14px;top:4px;bottom:4px;width:14px;
+  background:linear-gradient(90deg,#040201 0%,#100b06 25%,#1d1208 52%,#110c06 78%,#030201 100%);
+  transform-origin:right center;
+  transform:perspective(700px) rotateY(68deg);
+  box-shadow:-4px 0 18px rgba(0,0,0,.8);z-index:6;
+}
+
+/* ===== FULL BIBLE READER v2 ===== */
+/* Testament tabs */
+.fb-ttabs{
+  display:flex;margin-bottom:32px;
+  border:1px solid var(--rules);overflow:hidden;
+}
+.fb-ttab{
+  flex:1;font-family:var(--fd);font-style:italic;font-weight:500;
+  font-size:18px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--pd);padding:20px 16px;text-align:center;
+  transition:all .25s;background:none;border:none;
+}
+.fb-ttab.on{background:rgba(184,146,74,.08);color:var(--gb);box-shadow:inset 0 -2px 0 var(--g);}
+.fb-ttab:hover:not(.on){color:var(--p);background:rgba(255,255,255,.02);}
+/* Book button with chapter count */
+.fb-book-btn{
+  display:flex;justify-content:space-between;align-items:baseline;
+  width:100%;text-align:left;
+  font-family:var(--fd);font-size:18px;color:var(--pd);
+  padding:10px 0;border-bottom:1px solid rgba(184,146,74,.06);
+  transition:color .2s;background:none;border-left:none;border-right:none;border-top:none;
+}
+.fb-book-btn:hover{color:var(--p)}
+.fb-book-btn.on{color:var(--gb);font-style:italic;font-weight:500;border-bottom-color:rgba(184,146,74,.18)}
+.fb-book-chs{
+  font-family:var(--fd);font-style:italic;font-size:12px;
+  color:var(--pm);letter-spacing:.12em;flex-shrink:0;margin-left:8px;
+}
+/* Chapter grid */
+.fb-ch{width:38px;height:38px;border-radius:1px;}
+/* Panel verse */
+.fb-verse-first .fb-vtext::first-letter{
+  font-family:var(--fd);font-size:4.4em;line-height:.82;
+  float:left;color:var(--gb);padding:.04em .1em 0 0;font-weight:400;
+}
+.fb-ch-of{font-size:.65em;color:var(--pm);margin-left:8px;font-style:normal;letter-spacing:.08em;}
+/* Reader layout — always visible */
+.fb-reader{
+  display:grid;grid-template-columns:280px 1fr;
+  gap:clamp(24px,4vw,56px);align-items:start;
+}
+@media(max-width:800px){.fb-reader{grid-template-columns:1fr}}
+
+/* conversion + motion layer */
+.ed-feat{position:relative;border-color:var(--g)!important;box-shadow:0 0 0 1px var(--g),0 18px 60px -18px rgba(184,146,74,.35)}
+.ed-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--g),var(--gb));color:var(--ink);font-family:var(--fb);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;padding:6px 16px;white-space:nowrap}
+.trust-row{display:flex;flex-wrap:wrap;gap:26px 44px;justify-content:center;margin-top:54px;padding-top:34px;border-top:1px solid var(--rules)}
+.trust-i{display:flex;align-items:center;gap:11px;font-family:var(--fd);font-style:italic;font-size:15px;color:var(--pd);letter-spacing:.04em}
+.trust-i svg{width:17px;height:17px;stroke:var(--g);flex-shrink:0;fill:none}
+.stickybar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:flex;align-items:center;justify-content:center;gap:18px;padding:13px 20px;background:rgba(10,7,5,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--rule);transform:translateY(110%);transition:transform .5s var(--ease)}
+.stickybar.show{transform:translateY(0)}
+.stickybar .sb-t{font-family:var(--fd);font-style:italic;font-size:15.5px;color:var(--p2);letter-spacing:.04em}
+.stickybar .sb-btn{font-family:var(--fb);font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--ink);background:linear-gradient(135deg,var(--g),var(--gb));padding:11px 22px;white-space:nowrap;transition:filter .25s}
+.stickybar .sb-btn:hover{filter:brightness(1.12)}
+.stickybar .sb-x{color:var(--pm);font-size:18px;padding:6px 10px;line-height:1;background:none;border:none;cursor:pointer}
+@media(max-width:640px){.stickybar .sb-t{font-size:13px}.stickybar{gap:10px}}
+.tp-pop{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(5,3,2,.78);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.tp-pop.open{display:flex}
+.tp-pop-c{position:relative;max-width:430px;width:100%;background:var(--ink2);border:1px solid var(--rule);padding:46px 38px 40px;text-align:center;box-shadow:0 40px 120px -30px rgba(0,0,0,.8)}
+.tp-pop-c::before{content:"";position:absolute;inset:7px;border:1px solid var(--rules);pointer-events:none}
+.tp-pop-k{font-family:var(--fb);font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--g);margin-bottom:18px}
+.tp-pop-h{font-family:var(--fd);font-weight:400;font-size:30px;line-height:1.2;color:var(--p);margin-bottom:12px}
+.tp-pop-h em{font-style:italic;color:var(--gb)}
+.tp-pop-p{font-family:var(--fd);font-style:italic;font-size:15px;color:var(--pd);line-height:1.7;margin-bottom:24px}
+.tp-pop-code{font-family:var(--fb);font-size:17px;letter-spacing:.3em;color:var(--gb);border:1px dashed var(--gd);padding:13px 10px;margin-bottom:22px;user-select:all}
+.tp-pop-btn{display:inline-block;font-family:var(--fb);font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--ink);background:linear-gradient(135deg,var(--g),var(--gb));padding:13px 30px;cursor:pointer;border:none}
+.tp-pop-x{position:absolute;top:10px;right:14px;color:var(--pm);font-size:20px;background:none;border:none;cursor:pointer;padding:8px}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+
+/* ── cinematic layer ── */
+#heroGL{position:absolute;inset:0;z-index:1;width:100%;height:100%;opacity:0;transition:opacity 1.6s ease .2s;pointer-events:none}
+#heroGL.gl-on{opacity:1}
+#preloader{position:fixed;inset:0;z-index:9999;background:#070503;display:flex;align-items:center;justify-content:center;transition:transform 1.05s cubic-bezier(.76,0,.24,1),visibility 0s 1.05s;will-change:transform}
+#preloader.done{transform:translateY(-101%);visibility:hidden}
+#preloader{animation:plSafety .8s 6s forwards}
+@keyframes plSafety{to{transform:translateY(-101%);visibility:hidden}}
+/* Gemälde blendet sanft hinter Marke/Zähler auf — edler Einstieg statt schwarzer Fläche */
+.pl-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  z-index:0;opacity:0;filter:brightness(.42) saturate(.92) contrast(1.05);animation:plBg 2s ease .1s forwards}
+@keyframes plBg{to{opacity:.6}}
+#preloader::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 32%,transparent 32%,rgba(7,5,3,.55)),linear-gradient(180deg,rgba(7,5,3,.34),rgba(7,5,3,.72))}
+.pl-c{text-align:center;position:relative;z-index:2}
+.pl-num{z-index:2}
+.pl-flame{width:46px;height:46px;margin:0 auto 26px;display:block;transform-origin:50% 78%;animation:plFlick 2.3s ease-in-out infinite}
+@keyframes plFlick{0%,100%{transform:scale(1) rotate(0)}24%{transform:scale(1.05,.96) rotate(-1.4deg)}52%{transform:scale(.97,1.06) rotate(1.1deg)}76%{transform:scale(1.03,.98) rotate(-.6deg)}}
+.pl-word{font-family:var(--fb);font-size:12px;letter-spacing:.58em;text-indent:.58em;color:var(--p2);margin-bottom:14px}
+.pl-word b{color:var(--gb);font-weight:500}
+.pl-verse{font-family:var(--fd);font-style:italic;font-size:15px;color:var(--pm);letter-spacing:.08em;opacity:0;animation:plVerse 1.4s ease .5s forwards}
+@keyframes plVerse{to{opacity:1}}
+.pl-bar{width:148px;height:1px;background:var(--rule);margin:30px auto 0;position:relative;overflow:hidden}
+.pl-bar i{position:absolute;inset:0;background:linear-gradient(90deg,var(--g),var(--gb));transform:scaleX(0);transform-origin:left}
+.pl-num{position:absolute;right:clamp(22px,5vw,64px);bottom:clamp(18px,4vh,46px);font-family:var(--fd);font-size:clamp(54px,8vw,104px);font-weight:300;color:var(--gd);line-height:1;font-variant-numeric:tabular-nums}
+.btn-g,.sb-btn,.tp-pop-btn{will-change:transform;transition:transform .35s cubic-bezier(.22,1,.36,1),filter .25s}
+@media(max-width:640px){.stickybar{padding-bottom:calc(13px + env(safe-area-inset-bottom))}}
+@media(max-width:900px){.ed-badge{font-size:9.5px;padding:5px 12px}}
+
+/* ── shop grid ── */
+.sc-sp-l img,.sc-sp-r img{width:100%;height:100%;object-fit:cover;display:block}
+.shop{padding:clamp(90px,12vh,150px) 0;background:linear-gradient(180deg,var(--ink) 0%,var(--ink2) 50%,var(--ink) 100%)}
+.shop .wrap{max-width:1280px;margin:0 auto;padding:0 var(--e)}
+.shopgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:clamp(18px,2.4vw,30px);margin-top:54px}
+.prod{position:relative;background:var(--ink2);border:1px solid var(--rules);padding:26px 22px 24px;display:flex;flex-direction:column;transition:transform .5s var(--ease),border-color .4s,box-shadow .5s}
+.prod:hover{transform:translateY(-7px);border-color:var(--gd);box-shadow:0 30px 70px -25px rgba(0,0,0,.75)}
+.prod-cov{position:relative;margin:0 auto 22px;width:78%;max-width:200px;box-shadow:0 18px 44px -12px rgba(0,0,0,.85);transition:transform .55s var(--ease)}
+.prod:hover .prod-cov{transform:perspective(800px) rotateY(-7deg) rotateX(2deg) translateY(-4px)}
+.prod-cov img{display:block;width:100%}
+.prod-cov::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 38%,rgba(255,244,214,.16) 46%,transparent 55%);opacity:0;transition:opacity .5s}
+.prod:hover .prod-cov::after{opacity:1}
+.prod-tag{align-self:flex-start;font-family:var(--fb);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--gb);border:1px solid var(--gd);padding:4px 9px;margin-bottom:16px;background:rgba(10,7,5,.72)}
+.prod-name{font-family:var(--fd);font-size:21px;color:var(--p);line-height:1.25;margin-bottom:5px}
+.prod-name em{font-style:italic;color:var(--gb)}
+.prod-meta{font-family:var(--fd);font-style:italic;font-size:15px;color:var(--pm);letter-spacing:.05em;margin-bottom:16px}
+.prod-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:16px;border-top:1px solid var(--rules)}
+.prod-price{font-family:var(--fd);font-size:15px;color:var(--pd)}
+.prod-price b{font-size:21px;color:var(--p);font-weight:500}
+.prod-cta{font-family:var(--fb);font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--gb);white-space:nowrap;display:inline-flex;align-items:center;gap:7px;transition:color .3s,gap .3s}
+.prod:hover .prod-cta{color:var(--p);gap:11px}
+.prod-cta::after{content:"→"}
+.prod-best{border-color:var(--gd)}
+.prod-best .prod-tag{background:linear-gradient(135deg,var(--g),var(--gb));color:var(--ink);border-color:transparent}
+@media(max-width:560px){.shopgrid{grid-template-columns:repeat(2,1fr)}.prod{padding:18px 14px 16px}.prod-name{font-size:17px}}
+
+/* ── cart ── */
+#cartFab{position:fixed;right:clamp(16px,3vw,34px);bottom:clamp(74px,11vh,108px);z-index:160;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--gb));color:var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 40px -10px rgba(184,146,74,.55);cursor:pointer;transition:transform .35s var(--ease)}
+#cartFab:hover{transform:translateY(-3px) scale(1.05)}
+#cartFab svg{width:23px;height:23px}
+#cartFab.bump{animation:cartBump .5s var(--ease)}
+@keyframes cartBump{30%{transform:scale(1.18)}60%{transform:scale(.94)}}
+#cartCount{position:absolute;top:-4px;right:-4px;min-width:21px;height:21px;border-radius:11px;background:var(--ink);color:var(--gb);border:1px solid var(--gd);font-family:var(--fb);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;padding:0 5px}
+#cartScrim{position:fixed;inset:0;z-index:170;background:rgba(5,3,2,.6);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);opacity:0;pointer-events:none;transition:opacity .45s}
+body.cart-open #cartScrim{opacity:1;pointer-events:auto}
+#cartDrawer{position:fixed;top:0;right:0;bottom:0;z-index:180;width:min(400px,92vw);background:var(--ink2);border-left:1px solid var(--rule);display:flex;flex-direction:column;transform:translateX(102%);transition:transform .6s cubic-bezier(.22,1,.36,1)}
+body.cart-open #cartDrawer{transform:none}
+.cd-head{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid var(--rules)}
+.cd-title{font-family:var(--fd);font-size:21px;color:var(--p)}
+#cartClose{font-size:24px;color:var(--pm);padding:6px 10px;line-height:1}
+#cartClose:hover{color:var(--p)}
+.cd-items{flex:1;overflow-y:auto;padding:18px 24px}
+.cd-empty{font-family:var(--fd);font-style:italic;font-size:16px;color:var(--pm);text-align:center;padding:60px 10px;line-height:2}
+.cd-item{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--rules)}
+.cd-item img{width:52px;flex-shrink:0;box-shadow:0 8px 20px -6px rgba(0,0,0,.7)}
+.cd-mid{flex:1;min-width:0}
+.cd-name{font-family:var(--fd);font-size:16px;color:var(--p);line-height:1.3}
+.cd-ed{font-family:var(--fd);font-style:italic;font-size:13px;color:var(--pm);margin:3px 0 8px}
+.cd-qty{display:inline-flex;align-items:center;gap:0;border:1px solid var(--rules)}
+.cd-qty button{width:28px;height:26px;color:var(--pd);font-size:15px}
+.cd-qty button:hover{color:var(--gb)}
+.cd-qty span{min-width:30px;text-align:center;font-family:var(--fb);font-size:13px;color:var(--p)}
+.cd-rm{color:var(--pm);font-size:17px;padding:2px 6px}
+.cd-rm:hover{color:#C96A4A}
+.cd-foot{padding:18px 24px 22px;border-top:1px solid var(--rules);background:var(--ink)}
+.cd-row{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--fd);font-size:15px;color:var(--pd);margin-bottom:12px}
+.cd-row b{font-size:24px;color:var(--p);font-weight:500}
+.cd-hint{font-family:var(--fd);font-style:italic;font-size:12.5px;color:var(--pm);line-height:1.6;margin-bottom:14px}
+.cd-hint b{color:var(--gb);font-style:normal;letter-spacing:.12em}
+.cd-checkout{width:100%;font-family:var(--fb);font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--ink);background:linear-gradient(135deg,var(--g),var(--gb));padding:15px 10px;cursor:pointer;transition:filter .25s}
+.cd-checkout:hover{filter:brightness(1.1)}
+.cd-note{font-family:var(--fb);font-size:10.5px;letter-spacing:.04em;color:var(--pm);line-height:1.7;margin-top:11px;text-align:center}
+.prod-buy{display:flex;gap:8px;margin-top:14px}
+.prod-ed{flex:1;min-width:0;background:var(--ink);border:1px solid var(--rules);color:var(--pd);font-family:var(--fb);font-size:11.5px;padding:9px 8px;cursor:pointer;outline:none}
+.prod-ed:focus{border-color:var(--gd)}
+.prod-add{font-family:var(--fb);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--ink);background:linear-gradient(135deg,var(--g),var(--gb));padding:9px 13px;white-space:nowrap;cursor:pointer;transition:filter .25s}
+.prod-add:hover{filter:brightness(1.12)}
+/* ── reader scrolls inside its panel ── */
+#fbContent{max-height:62vh!important;overflow-y:auto!important;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-right:14px;scrollbar-width:thin;scroll-behavior:smooth}
+#fbContent::-webkit-scrollbar{width:7px}
+#fbContent::-webkit-scrollbar-thumb{background:var(--rule);border-radius:4px}
+#fbContent::-webkit-scrollbar-thumb:hover{background:var(--gd)}
+/* ── about ── */
+.about{padding:clamp(90px,13vh,160px) 0;background:linear-gradient(180deg,var(--ink2),var(--ink))}
+.about .wrap{max-width:1200px;margin:0 auto;padding:0 var(--e)}
+.ab-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(34px,5vw,80px);align-items:center}
+/* Portrait im echten Bloom-Ornamentrahmen (border-image, gleiche Frame-Datei wie Bloom) */
+.ab-img{--fw:clamp(26px,3.4vw,52px);position:relative;line-height:0;background:#0a0705;
+  border:var(--fw) solid transparent;
+  border-image:url("assets/bloom/frame-ornate-clean.jpg") 129 143 136 144 / var(--fw) / 0 round;
+  box-shadow:0 44px 110px -26px rgba(0,0,0,.85)}
+.ab-img::before{content:none}
+.ab-img img{display:block;width:100%;filter:brightness(.99) contrast(1.02);transition:transform .8s var(--ease)}
+.ab-img:hover img{transform:scale(1.02)}
+.ab-quote{font-family:var(--fd);font-style:italic;font-size:clamp(19px,2.1vw,24px);line-height:1.75;color:var(--p2);margin:26px 0 30px;border-left:2px solid var(--gd);padding-left:22px}
+.ab-body{font-family:var(--fd);font-size:16.5px;line-height:1.95;color:var(--pd);letter-spacing:.02em}
+.ab-body p{margin-bottom:16px}
+.ab-body em{color:var(--gb)}
+.ab-sig{font-family:var(--fd);font-style:italic;font-size:18px;color:var(--gb);margin-top:26px}
+@media(max-width:880px){.ab-grid{grid-template-columns:1fr}.ab-img{max-width:420px}}
+
+@media(pointer:coarse){
+  .cd-qty button{width:42px;height:42px;font-size:18px}
+  .cd-rm{padding:10px 14px;font-size:20px}
+  #cartClose{padding:12px 16px}
+  .prod-add{padding:13px 16px}
+  .prod-ed{padding:13px 10px;font-size:13px}
+}
+
+/* ── kinetic verse breaks ── */
+.vbreak{position:relative;padding:clamp(110px,18vh,220px) var(--e);text-align:center;background:radial-gradient(ellipse 70% 55% at 50% 50%,#13100A 0%,var(--ink) 75%)}
+.vbreak.heavens{background:linear-gradient(rgba(8,5,3,.62),rgba(8,5,3,.82)),url("assets/verse-heavens.jpg") center/cover no-repeat}
+.vbreak.heavens .vb-line{text-shadow:0 4px 40px rgba(0,0,0,.9),0 2px 12px rgba(0,0,0,.8)}
+.vbreak.creation{background:linear-gradient(rgba(8,5,3,.32),rgba(8,5,3,.62)),url("assets/verse-creation.jpg") center 40%/cover no-repeat}
+.vbreak.creation .vb-line{text-shadow:0 4px 40px rgba(0,0,0,.9),0 2px 12px rgba(0,0,0,.8)}
+
+.vbreak .vb-line{font-family:var(--fd);font-weight:300;font-style:italic;font-size:clamp(26px,4.4vw,52px);line-height:1.5;color:var(--p);max-width:980px;margin:0 auto}
+.vbreak .vb-w{display:inline-block;opacity:0;transform:translateY(.55em) rotate(.5deg);filter:blur(6px);transition:opacity .8s var(--ease),transform .9s var(--ease),filter .9s var(--ease);transition-delay:calc(var(--i)*.07s)}
+.vbreak.lit .vb-w{opacity:1;transform:none;filter:blur(0)}
+.vbreak cite{display:block;margin-top:30px;font-family:var(--fb);font-style:normal;font-size:10.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--gd);opacity:0;transition:opacity 1.2s ease 1.1s}
+.vbreak.lit cite{opacity:1}
+.vbreak::before,.vbreak::after{content:"";position:absolute;left:50%;transform:translateX(-50%);width:1px;height:clamp(38px,6vh,70px);background:linear-gradient(to bottom,transparent,var(--gd))}
+.vbreak::before{top:0}
+.vbreak::after{bottom:0;background:linear-gradient(to top,transparent,var(--gd))}
+/* ── site-wide film grain ── */
+.filmgrain{position:fixed;inset:-60px;z-index:96;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");animation:grainShift 7s steps(8) infinite}
+@keyframes grainShift{0%{transform:translate(0,0)}25%{transform:translate(-22px,14px)}50%{transform:translate(14px,-18px)}75%{transform:translate(-10px,-12px)}100%{transform:translate(0,0)}}
+@media(prefers-reduced-motion:reduce){.filmgrain{animation:none}}
+/* ── sound toggle ── */
+#sndBtn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;color:var(--pm);transition:color .3s;flex-shrink:0}
+#sndBtn:hover{color:var(--gb)}
+#sndBtn.on{color:var(--gb)}
+#sndBtn svg{width:16px;height:16px}
+#sndBtn .sw{transform-origin:left center}
+#sndBtn.on .sw{animation:sndWave 1.6s ease-in-out infinite}
+@keyframes sndWave{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.55)}}
+
+.hbtns{position:relative;z-index:8}
+.hc{pointer-events:auto}
+/* open book pages fill fully */
+.sc-sp-r{padding:0!important}
+.sc-sp-r img,.sc-sp-l img{width:100%;height:100%;object-fit:cover;display:block}
+/* click-to-open + flipping */
+#scBookWrap{cursor:pointer}
+.sc-hint{position:absolute;left:50%;bottom:-34px;transform:translateX(-50%);font-family:var(--fd);font-style:italic;font-size:14px;color:var(--pm);letter-spacing:.06em;white-space:nowrap;transition:opacity .5s}
+.sc-book-anim.reading .sc-hint{opacity:0}
+.sc-flip{position:absolute;top:50%;transform:translateY(-50%);z-index:6;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(10,7,5,.78);border:1px solid var(--rule);color:var(--gb);font-size:19px;opacity:0;pointer-events:none;transition:opacity .5s,background .3s}
+.sc-flip:hover{background:rgba(184,146,74,.25)}
+.sc-flip.prev{left:-12px}
+.sc-flip.next{right:-12px}
+.sc-book-anim.reading .sc-flip{opacity:1;pointer-events:auto;transition-delay:1.2s}
+.sc-sp-l img.turn,.sc-sp-r img.turn{animation:pgTurn .45s ease}
+@keyframes pgTurn{0%{opacity:1}40%{opacity:.25;transform:scale(.992)}100%{opacity:1}}
+.sc-pgno{position:absolute;right:14px;bottom:-34px;font-family:var(--fd);font-style:italic;font-size:13px;color:var(--gd);opacity:0;transition:opacity .5s 1.2s}
+.sc-book-anim.reading .sc-pgno{opacity:1}
+
+.cd-promo{display:flex;gap:8px;margin-bottom:8px}
+.cd-promo input{flex:1;min-width:0;background:var(--ink2);border:1px solid var(--rules);color:var(--p);font-family:var(--fb);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;padding:10px 12px;outline:none}
+.cd-promo input:focus{border-color:var(--gd)}
+.cd-promo button{font-family:var(--fb);font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--gb);border:1px solid var(--gd);padding:10px 16px;cursor:pointer;transition:background .25s}
+.cd-promo button:hover{background:rgba(184,146,74,.15)}
+.cd-msg{font-family:var(--fd);font-style:italic;font-size:12.5px;min-height:18px;margin-bottom:8px}
+.cd-row.sm{font-size:13.5px;margin-bottom:6px}
+.cd-row.sm span:last-child{color:var(--p2)}
+
+/* ── book v2: closed = a single sheet (cover only), open = full spread ── */
+.sc-spread{aspect-ratio:1520/977!important;clip-path:inset(0 0 0 50%);transition:transform 1.8s cubic-bezier(.16,1,.3,1),clip-path 1.25s cubic-bezier(.4,0,.2,1) .25s}
+.sc-book-anim.reading .sc-spread{clip-path:inset(-80px -80px -140px -80px)}
+.sc-sp-l img,.sc-sp-r img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important}
+.sc-sp-r{padding:0!important;border-left:0!important;background:#15100a!important}
+.sc-sp-gutter{opacity:0;transition:opacity .8s ease .95s}
+.sc-book-anim.reading .sc-sp-gutter{opacity:1}
+
+
+/* mobile overflow guards */
+.gallery.museum{overflow:visible!important}
+
+
+/* hero density: never collide at 100% zoom on low viewports */
+.heyebrow{font-size:min(11px,1.6vh)!important}
+.hbtns{margin-top:clamp(18px,2.6vh,34px)!important}
+.hbtns .btn-g,.hbtns .btn-o{padding-top:clamp(10px,1.6vh,16px)!important;padding-bottom:clamp(10px,1.6vh,16px)!important}
+.hbot{padding-bottom:clamp(10px,1.8vh,22px)!important}
+.hstats{gap:clamp(14px,2.4vw,40px)!important}
+.hstat .v{font-size:min(clamp(14px,1.3vw,18px),2.4vh)!important}
+.hstat .k{font-size:min(10px,1.5vh)!important}
+.hc{padding-top:clamp(70px,11vh,130px)!important;justify-content:flex-start!important}
+@media(max-height:760px){
+  .hsub{max-width:60ch}
+  .htitle{line-height:.86}
+}
+
+/* low-viewport polish: title clear of nav, nav fits at 1366 */
+@media(max-height:820px){
+  .hc{padding-top:clamp(120px,17vh,180px)!important}
+}
+@media(max-width:1500px){
+  .nlinks a{font-size:10px;letter-spacing:.12em;padding:8px 9px}
+  .bname{font-size:15px}
+  .nord{font-size:10px;padding:10px 16px}
+}
+
+.sc-bktabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px}
+
+@media(max-width:900px){html,body{overflow-x:clip}}
+
+
+/* roadmap as a register / table of contents */
+.lib-grid{display:block!important;border-top:1px solid var(--rules)}
+.lib-grid .band{display:flex;align-items:baseline;gap:16px;padding:16px 8px;margin:0;
+  border:0!important;border-bottom:1px solid var(--rules)!important;background:transparent!important;
+  box-shadow:none!important;transition:background .25s}
+.lib-grid .band:hover{background:rgba(184,146,74,.05)!important}
+.lib-grid .band-spine{min-width:34px;font-family:var(--fd);font-style:italic;font-size:15px;color:var(--gd);
+  background:none!important;border:0!important;width:auto;height:auto;display:block;text-align:left}
+.lib-grid .band-body{display:flex;flex:1;align-items:baseline;gap:14px;flex-wrap:wrap}
+.lib-grid .band-roman{display:none}
+.lib-grid .band-name{font-family:var(--fd);font-weight:400;font-size:clamp(18px,2vw,23px);color:var(--p);line-height:1.3}
+.lib-grid .band-books{font-family:var(--fd);font-style:italic;font-size:13.5px;color:var(--pm)}
+.lib-grid .band-st{margin-left:auto;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--pm)}
+.lib-grid .band-st.done{color:var(--gb)}
+.lib-grid .band-st .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.8}
+.lib-grid .band-tag{position:static;margin-left:14px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink);background:linear-gradient(135deg,var(--g),var(--gb));padding:3px 9px;border:0}
+@media(max-width:640px){
+  .lib-grid .band{flex-wrap:wrap;gap:8px 12px;padding:14px 2px}
+  .lib-grid .band-st{margin-left:0;width:100%;justify-content:flex-start}
+}
+
+
+/* museum frame for the plates */
+.plate{cursor:pointer}
+.plate img{border:none}
+.plate{
+  padding:13px;background:linear-gradient(160deg,#171209,#0b0805);
+  box-shadow:
+    0 0 0 1px rgba(184,146,74,.55),
+    0 0 0 3px #090604,
+    0 0 0 4px rgba(212,172,99,.6),
+    0 26px 60px -18px rgba(0,0,0,.9),
+    0 8px 18px rgba(0,0,0,.5);
+}
+.plate .pframe{inset:13px!important;box-shadow:inset 0 0 0 1px rgba(184,146,74,.3)!important}
+/* ── wallart section ── */
+.wallart{padding:clamp(90px,12vh,150px) 0;background:linear-gradient(180deg,var(--ink) 0%,#0E0A06 55%,var(--ink) 100%)}
+.wallart .wrap{max-width:1280px;margin:0 auto;padding:0 var(--e)}
+.wa-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(430px,100%),1fr));gap:clamp(30px,3.6vw,56px);margin-top:54px}
+.wa-card{background:#171210;border:1px solid var(--rules);padding:clamp(22px,2.6vw,34px) clamp(18px,2.2vw,28px) 22px;display:flex;flex-direction:column;transition:transform .5s var(--ease),border-color .4s}
+.wa-card:hover{transform:translateY(-6px);border-color:var(--gd)}
+.wa-wall{position:relative;background:linear-gradient(180deg,#241d15,#1a1410);padding:clamp(26px,3vw,44px);display:flex;align-items:center;justify-content:center}
+.wa-mock{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;pointer-events:none}
+.wa-mock img{width:100%;height:100%;object-fit:cover;display:block}
+.wa-card:hover .wa-mock{opacity:1}
+.wa-frame{position:relative;line-height:0;background:#0c0905;padding:10px;
+  box-shadow:0 0 0 1px rgba(184,146,74,.6),0 0 0 2px #090604,0 26px 50px -14px rgba(0,0,0,.95),0 8px 18px rgba(0,0,0,.55);
+  transition:transform .55s var(--ease)}
+.wa-card:hover .wa-frame{transform:scale(1.025)}
+.wa-frame::after{content:"";position:absolute;inset:10px;box-shadow:inset 0 0 0 1px rgba(184,146,74,.25);pointer-events:none}
+.wa-frame img{width:100%;display:block}
+.wa-name{font-family:var(--fd);font-size:19px;color:var(--p);margin:20px 0 3px;line-height:1.3}
+.wa-ref{font-family:var(--fd);font-style:italic;font-size:15px;color:var(--pm);margin-bottom:16px}
+.wa-foot{margin-top:auto;display:flex;gap:8px}
+.wa-size{flex:1;min-width:0;background:var(--ink);border:1px solid var(--rules);color:var(--pd);font-family:var(--fb);font-size:11.5px;padding:9px 8px;cursor:pointer;outline:none}
+.wa-size:focus{border-color:var(--gd)}
+.wa-add{font-family:var(--fb);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--ink);background:linear-gradient(135deg,var(--g),var(--gb));padding:9px 13px;white-space:nowrap;cursor:pointer;transition:filter .25s}
+.wa-add:hover{filter:brightness(1.12)}
+.wa-note{margin-top:34px;text-align:center;font-family:var(--fd);font-style:italic;font-size:14px;color:var(--pm);letter-spacing:.05em}
+
+
+/* ── elegant section dressing (filigree + warm glow over the dark) ── */
+:root{--filigree:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='68' height='68'%3E%3Cg fill='none' stroke='%23b8924a' stroke-opacity='0.06' stroke-width='0.8'%3E%3Cpath d='M34 1 L67 34 L34 67 L1 34 Z'/%3E%3Cpath d='M34 13 L55 34 L34 55 L13 34 Z'/%3E%3C/g%3E%3Ccircle cx='34' cy='34' r='1.3' fill='%23b8924a' fill-opacity='0.10'/%3E%3C/svg%3E")}
+.shop{background:linear-gradient(180deg,rgba(10,7,5,.82),rgba(10,7,5,.9)),url("assets/shop-leather.jpg") center/cover fixed,var(--ink)!important}
+.wallart{background:linear-gradient(180deg,rgba(10,7,5,.82),rgba(10,7,5,.9)),url("assets/shop-leather.jpg") center/cover fixed,var(--ink)!important}
+.about{background:linear-gradient(180deg,rgba(10,7,5,.84),rgba(10,7,5,.92)),url("assets/shop-leather.jpg") center/cover fixed,var(--ink)!important}
+.editions{background:linear-gradient(180deg,rgba(10,7,5,.84),rgba(10,7,5,.92)),url("assets/shop-leather.jpg") center/cover fixed,var(--ink)!important}
+footer{background:linear-gradient(rgba(10,7,5,.86),rgba(10,7,5,.93)),url("assets/shop-leather.jpg") center/cover fixed,var(--ink)!important}
+.shop .wrap,.wallart .wrap,.about .wrap{position:relative;z-index:1}
+
+
+/* ============================ BOOK (clean rebuild) ============================ */
+.b3{position:relative;width:min(620px,100%);margin:0 auto;perspective:2600px;cursor:pointer}
+.b3-inner{position:relative;width:100%;aspect-ratio:1520/977;transform:translateX(-25%) rotateY(5deg);transform-style:preserve-3d;transition:transform 1.1s cubic-bezier(.4,0,.2,1)}
+.b3[data-open="1"] .b3-inner{transform:translateX(0) rotateY(0)}
+/* the open spread: two EQUAL pages */
+.b3-pages{position:absolute;inset:0;transform-style:preserve-3d}
+.b3-pg{position:absolute;top:0;bottom:0;width:50%;overflow:hidden;background:#15100a;opacity:0}
+.b3-pg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.b3-l{left:0}
+.b3-r{left:50%}
+.b3[data-open="1"] .b3-r{opacity:1;transition:opacity .01s}
+.b3[data-open="1"] .b3-l{opacity:1;transition:opacity .01s linear 1.05s}
+/* closing: pages linger so the edge-on cover never shows through */
+.b3-pg{transition:opacity .01s linear 1.15s}
+.b3-pages-shadow,.b3[data-open="1"] .b3-pages{box-shadow:none}
+.b3[data-open="1"] .b3-pg{box-shadow:0 40px 90px rgba(0,0,0,.7)}
+.b3-gutter{position:absolute;left:calc(50% - 9px);top:0;bottom:0;width:18px;z-index:3;pointer-events:none;opacity:0;background:linear-gradient(90deg,transparent,rgba(0,0,0,.45) 42%,rgba(0,0,0,.45) 58%,transparent);transition:opacity .01s linear .62s}
+.b3[data-open="1"] .b3-gutter{opacity:1}
+/* front cover: covers the RIGHT half, hinged at the spine, flips left */
+.b3-cover{position:absolute;top:0;bottom:0;left:50%;width:50%;transform-origin:left center;transform-style:preserve-3d;transition:transform 1.1s cubic-bezier(.4,0,.2,1);z-index:5;pointer-events:none;box-shadow:0 40px 90px rgba(0,0,0,.8)}
+.b3[data-open="1"] .b3-cover{transform:rotateY(-180deg);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.b3-cov-front,.b3-cov-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.b3-cov-front{transform:rotateY(0) translateZ(1px)}
+.b3-cov-back{transform:rotateY(180deg) translateZ(1px);background:#15100a}
+.b3-cov-front img,.b3-cov-back img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* turning leaf for arrow navigation */
+.b3-leaf{position:absolute;top:0;bottom:0;width:50%;transform-style:preserve-3d;z-index:6;pointer-events:none;display:none;will-change:transform}
+.b3-leaf.on{display:block}
+.b3-leaf-f,.b3-leaf-b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:#15100a}
+.b3-leaf-f img,.b3-leaf-b img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.b3-leaf.next{left:50%;transform-origin:left center}
+.b3-leaf.prev{left:0;transform-origin:right center}
+.b3-leaf-b{transform:rotateY(180deg)}
+.b3-leaf.flip{transition:transform .7s cubic-bezier(.33,0,.2,1)}
+.b3-leaf.next.flip{transform:rotateY(-180deg)}
+.b3-leaf.prev.flip{transform:rotateY(180deg)}
+/* controls */
+.b3 .sc-flip{opacity:0;pointer-events:none;transition:opacity .4s}
+.b3[data-open="1"] .sc-flip{opacity:1;pointer-events:auto;transition-delay:.9s}
+.b3 .sc-hint{opacity:1;transition:opacity .3s}
+.b3[data-open="1"] .sc-hint{opacity:0}
+.b3 .sc-pgno{opacity:0;transition:opacity .4s .9s}
+.b3[data-open="1"] .sc-pgno{opacity:1}
+@media(max-width:880px){.b3{width:min(520px,100%)}}
+@media(max-width:680px){
+  .b3{width:100%;max-width:340px}
+  .b3-inner{aspect-ratio:760/977;transform:none!important}
+  .b3-l,.b3-gutter{display:none}
+  .b3-r{left:0;width:100%}
+  .b3-cover{left:0;width:100%}
+  /* Ein-Seiten-Modus: aufgeklappter Deckel (volle Breite) ragte links aus dem
+     Buch heraus und war als Streifen am Bildschirmrand sichtbar -> ausblenden */
+  .b3[data-open="1"] .b3-cover{opacity:0;visibility:hidden;
+    transition:transform 1.1s cubic-bezier(.4,0,.2,1),opacity .25s linear .8s,visibility 0s linear 1.05s}
+  .sc-flip.prev{left:4px}.sc-flip.next{right:4px}
+}
+
+/* clean book-switch: quick crossfade, no flip */
+.b3.switching .b3-inner{transition:transform .36s ease!important}
+.b3.switching .b3-cover{transition:opacity .3s ease!important;transform:rotateY(0)!important;opacity:1!important}
+.b3.switching .b3-pages{transition:opacity .28s ease!important}
+.b3.switching .b3-pg{opacity:0!important;transition:opacity .28s ease!important}
+/* page crossfade (replaces the 3D flip) */
+.b3-pages{transition:opacity .3s ease}
+.b3.xfade .b3-pages{opacity:0}
+
+/* ===== MOBILE READABILITY PASS (phones) ===== */
+@media(max-width:640px){
+  /* tiny letter-spaced caps are the worst offenders on phones: lift size + trim tracking */
+  .scrl,.hstat .k,.mani-quote cite,.coll-n,.coll-st,.coll.avail::before,
+  .pnum,.gfut,.rnav .ch,.rref,.rpg,.rfoot,.vn,.ed-n,.ed-badge,.ed-unit,
+  .wpulse,.lbmeta,.sc-avail,.bprev-foot,.bprev-hint,.lang-btn{
+    font-size:13px;letter-spacing:.16em;
+  }
+  /* generic eyebrow / section-label patterns: never below 12.5px, gentler tracking */
+  [class*="brow"],[class*="kick"],[class*="eyebrow"],[class*="label"],[class*="-n"]{
+    letter-spacing:.16em;
+  }
+  /* body prose: comfortable minimum so reading is never cramped */
+  p{font-size:clamp(16px,4.4vw,18px);line-height:1.62;}
+  /* floating cart shouldn't cover the sticky bottom CTA bar */
+  #cartFab{bottom:96px!important;}
+}
+</style>
+</head>
+<body>
+<div class="filmgrain" aria-hidden="true"></div>
+<div id="preloader" aria-hidden="true">
+  <img class="pl-bg" src="assets/hero-dawn.jpg" alt="" aria-hidden="true">
+  <div class="pl-c">
+    <img class="pl-flame" src="brand/truthprints-mark.svg" alt="">
+    <div class="pl-word">TRUTH<b>PRINTS</b></div>
+    <div class="pl-verse" id="plVerse"></div>
+    <div class="pl-bar"><i id="plbar"></i></div>
+  </div>
+  <div class="pl-num"><span id="plnum">0</span></div>
+</div>
+
+
+<div id="cur"></div>
+<div id="curglow"></div>
+<div class="prog"><div class="prog-b" id="pb"></div></div>
+
+<!-- MOBILE NAV -->
+<div class="mnav" id="mnav">
+  <a href="#book" onclick="closeMnav()">The Edition</a>
+  <a href="#plates" onclick="closeMnav()">Plates</a>
+  <a href="bible.html" onclick="closeMnav()">Read</a>
+  <a href="bloom/" onclick="closeMnav()">Bloom</a>
+  <a href="#editions" onclick="closeMnav()">Editions</a>
+  <a href="#waitlist" onclick="closeMnav()">Join Waitlist</a>
+  <a href="free/" onclick="closeMnav()" style="color:var(--gb)">Free Gospel</a>
+  <a href="shop.html" class="mo" onclick="closeMnav()">Shop</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="brand"><span class="bmark"><img src="brand/truthprints-mark.svg" alt="TruthPrints"></span><span class="bname">Truth<b>Prints</b></span></a>
+  <div class="nlinks">
+    <a href="#mani" data-s="mani"><span data-en>The Project</span><span data-de>Das Projekt</span></a>
+    <a href="shop.html" data-s="shop"><span data-en>Shop</span><span data-de>Shop</span></a>
+    <a href="#plates" data-s="plates"><span data-en>Plates</span><span data-de>Tafeln</span></a>
+    <a href="#wallart" data-s="wallart"><span data-en>Wallart</span><span data-de>Wallart</span></a>
+    <a href="bible.html" data-s="read"><span data-en>Read</span><span data-de>Lesen</span></a>
+    <a href="bloom/" data-s="bloom"><span data-en>Bloom</span><span data-de>Bloom</span></a>
+    <a href="#about" data-s="about"><span data-en>About</span><span data-de>Über</span></a>
+    <a href="#editions" data-s="editions"><span data-en>Editions</span><span data-de>Editionen</span></a>
+    <a href="free/" data-s="gift" style="color:var(--gb)"><span data-en>Free&nbsp;Gospel</span><span data-de>Gratis-Evangelium</span></a>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <button id="sndBtn" aria-label="Ambient sound" title="Ambience"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" stroke="none"/><path class="sw" d="M16.5 8.5a5 5 0 0 1 0 7"/><path class="sw" d="M19 6a8.5 8.5 0 0 1 0 12"/></svg></button>
+    <button class="lang-btn" id="langBtn" aria-label="Toggle language">
+      <span class="lc on" id="lcEn">EN</span><span class="sep">·</span><span class="lc" id="lcDe">DE</span>
+    </button>
+    <a href="shop.html" class="nord"><span data-en>Shop</span><span data-de>Shop</span></a>
+  </div>
+  <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <canvas id="heroGL" aria-hidden="true"></canvas>
+  <canvas id="torch"></canvas>
+  <div class="hgrain"></div>
+  <div class="hc">
+    <div class="heyebrow"><span class="erule"></span><span data-en>TruthPrints · The Illustrated Bible</span><span data-de>TruthPrints · Die Illustrierte Bibel</span></div>
+    <h1 class="htitle">
+      <span class="ln"><span class="lnw"><span data-en>The Entire</span><span data-de>Die gesamte</span></span></span>
+      <span class="ln"><span class="lnw"><span data-en>Bible,</span><span data-de>Bibel,</span></span></span>
+      <span class="ln"><span class="lnw"><span data-en>Illustrated.</span><span data-de>Illustriert.</span></span></span>
+    </h1>
+    <p class="hsub"><span data-en>Every passage of Scripture, painted in the tradition of Caravaggio and Rembrandt.</span><span data-de>Jede Stelle der Schrift, gemalt in der Tradition von Caravaggio und Rembrandt.</span></p>
+    <div class="hbtns">
+      <a href="#book" class="btn-g"><span data-en>Explore the Edition</span><span data-de>Die Edition entdecken</span> <span class="ar"></span></a>
+      <a href="#plates" class="btn-o"><span data-en>See the plates</span><span data-de>Tafeln ansehen</span></a>
+    </div>
+  </div>
+  <div class="hbot">
+    <div class="hstats">
+      <div class="hstat"><span class="k"><span data-en>Now Available</span><span data-de>Jetzt verfügbar</span></span><span class="v"><span data-en>The New Testament</span><span data-de>Das Neue Testament</span></span></div>
+      <div class="hstat"><span class="k"><span data-en>Plates</span><span data-de>Tafeln</span></span><span class="v counter" data-count="1885">1885</span></div>
+      <div class="hstat"><span class="k"><span data-en>Translation</span><span data-de>Übersetzung</span></span><span class="v"><span data-en>World English Bible</span><span data-de>WEB &amp; Elberfelder 1871</span></span></div>
+    </div>
+    <div class="scrl"><span data-en>Scroll</span><span data-de>Scrollen</span><span class="ln2"></span></div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marq" aria-hidden="true">
+  <div class="marq-in">
+    <span>The Word, illustrated</span><span class="d"></span><span>A painting for every passage</span><span class="d"></span><span>In the tradition of the old masters</span><span class="d"></span><span>Museum-grade printing envisioned</span><span class="d"></span><span>Affordable for everyone</span><span class="d"></span><span>A lifetime work of love</span><span class="d"></span><span>The Word, illustrated</span><span class="d"></span><span>A painting for every passage</span><span class="d"></span><span>In the tradition of the old masters</span><span class="d"></span><span>Museum-grade printing envisioned</span><span class="d"></span><span>Affordable for everyone</span><span class="d"></span>
+  </div>
+</div>
+
+<!-- MANIFESTO -->
+<section class="mani" id="mani">
+  <div class="wrap">
+    <div class="mani-grid">
+      <div class="mani-left rv">
+        <div class="slabel"><span class="num">i.</span><span class="bar"></span><span data-en>The Project</span><span data-de>Das Projekt</span></div>
+        <h2 class="h2"><span data-en>The Bible deserves to be read like <em>the most important book</em> ever written.</span><span data-de>Die Bibel verdient es, gelesen zu werden wie <em>das wichtigste Buch,</em> das je geschrieben wurde.</span></h2>
+        <div class="mani-body" style="margin-top:clamp(28px,3vw,42px)">
+          <div data-en>
+            <p>The most beautiful illustrated Bible ever printed — not a collector's curiosity, but a companion for reading, for giving, for keeping. The whole New Testament is <strong>complete</strong>; the Old Testament follows, one book at a time.</p>
+          </div>
+          <div data-de>
+            <p>Die schönste illustrierte Bibel, die je gedruckt wurde — kein Sammlerstück hinter Glas, sondern ein Begleiter zum Lesen, zum Verschenken, zum Bewahren. Das ganze Neue Testament ist <strong>vollendet</strong>; das Alte Testament folgt, Buch für Buch.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mani-right rv d1">
+        <figure class="mani-hero">
+          <img src="assets/matthew/plates/p244.jpg" alt="The risen Christ commissions his disciples">
+          <figcaption>
+            <span class="mh-ref">Matthew 28 · 20</span>
+            <span class="mh-verse" data-en>"I am with you always, even to the end of the age."</span><span class="mh-verse" data-de>„Ich bin bei euch alle Tage bis an der Welt Ende."</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="mani-trip rv d2">
+      <figure>
+        <img src="assets/matthew/plates/p17.jpg" alt="The baptism of Jesus">
+        <figcaption><span data-en>The Baptism · Matthew 3</span><span data-de>Die Taufe · Matthäus 3</span></figcaption>
+      </figure>
+      <figure>
+        <img src="assets/matthew/plates/p129.jpg" alt="The Transfiguration">
+        <figcaption><span data-en>The Transfiguration · Matthew 17</span><span data-de>Die Verklärung · Matthäus 17</span></figcaption>
+      </figure>
+      <figure>
+        <img src="assets/matthew/plates/p214.jpg" alt="The Last Supper">
+        <figcaption><span data-en>The Last Supper · Matthew 26</span><span data-de>Das Abendmahl · Matthäus 26</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- VERSE OF THE DAY — one painting, deterministic per calendar day -->
+<style>
+.votd{position:relative;isolation:isolate;overflow:hidden;background:var(--ink);border-top:1px solid var(--rules);
+  min-height:clamp(460px,66vh,680px);display:flex;align-items:center;justify-content:center;text-align:center;padding:clamp(52px,7vw,104px) 0}
+/* Tagesgemälde als weicher Vollflächen-Hintergrund mit Scroll-Drift (Parallax in truthprint.js) */
+/* Gemälde jetzt GROSS + SCHARF als Hintergrund (vorher blur+dunkel = „lame") */
+.votd-bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center 30%;filter:brightness(.66) saturate(1.06);transform:scale(1.04);will-change:transform;pointer-events:none}
+/* leichter Scrim: Gemälde bleibt sichtbar, Text mittig lesbar; oben/unten in die Seite verlaufen */
+.votd-veil{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(10,7,5,.92),transparent 24%,transparent 72%,rgba(10,7,5,.95)),radial-gradient(ellipse 88% 74% at 50% 50%,rgba(10,7,5,.5),transparent 74%)}
+.votd-head{text-align:center;margin-bottom:clamp(30px,4.5vw,52px)}
+.votd .slabel{justify-content:center;margin-bottom:18px}
+.votd-fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:clamp(20px,2.6vw,30px)}
+.votd-frame{display:none}   /* das Gemälde ist jetzt der große Hintergrund, kein kleiner Rahmen mehr */
+.votd-frame img{width:100%;height:auto;display:block;opacity:0;transition:opacity 1.1s var(--eout);transform-origin:50% 42%}
+.votd-frame img.in{opacity:1}
+@media (prefers-reduced-motion:no-preference){.votd-frame img.in{animation:votdBreath 26s var(--ease) 1.2s infinite alternate}}
+@keyframes votdBreath{from{transform:scale(1)}to{transform:scale(1.06)}}
+.votd-frame::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 90px 10px rgba(10,7,5,.55);opacity:0;transition:opacity 1.4s var(--eout)}
+.votd.in .votd-frame::after{opacity:1}
+.votd-cap{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;max-width:680px;margin:0 auto}
+.votd-head .h2,.votd .slabel{text-shadow:0 2px 16px rgba(0,0,0,.7)}
+.votd-ref{font-family:var(--fd);font-style:italic;font-size:clamp(18px,2.4vw,23px);color:var(--gb);letter-spacing:.05em;text-shadow:0 1px 10px rgba(0,0,0,.75)}
+.votd-ref::before,.votd-ref::after{content:"·";color:var(--g);margin:0 .55em;opacity:.7}
+.votd-text{font-family:var(--fd);font-size:clamp(20px,2.6vw,28px);line-height:1.5;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.8)}
+body.de .votd-text[data-de]{display:block}   /* keep paragraph block; site's generic rule sets [data-de] inline */
+.votd-more{display:inline-flex;align-items:center;gap:9px;font-family:var(--fd);font-style:italic;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--gb);border-bottom:1px solid transparent;padding-bottom:2px;transition:border-color .3s,color .3s}
+.votd-more:hover{border-bottom-color:var(--g);color:var(--p)}
+.votd-more .arw{transition:transform .35s var(--ease)}
+.votd-more:hover .arw{transform:translateX(4px)}
+</style>
+<section class="votd rv" id="votd" aria-labelledby="votdTitle">
+  <div class="votd-bg" id="votdBg" aria-hidden="true"></div>
+  <div class="votd-veil" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="votd-head">
+      <div class="slabel"><span class="num">&#10022;</span><span class="bar"></span><span data-en>Verse of the day</span><span data-de>Vers des Tages</span></div>
+      <h2 class="h2" id="votdTitle"><span data-en>One passage, <em>held to the light.</em></span><span data-de>Eine Stelle, <em>ins Licht gehalten.</em></span></h2>
+    </div>
+    <figure class="votd-fig">
+      <div class="votd-frame" id="votdFrame"><img id="votdImg" alt=""></div>
+      <figcaption class="votd-cap">
+        <span class="votd-ref" data-en id="votdRefEn"></span><span class="votd-ref" data-de id="votdRefDe"></span>
+        <p class="votd-text" data-en id="votdTextEn"></p><p class="votd-text" data-de id="votdTextDe"></p>
+        <span style="display:flex;gap:clamp(18px,3vw,34px);flex-wrap:wrap;justify-content:center">
+          <a class="votd-more" id="votdRead" href="bible.html"><span data-en>Keep reading</span><span data-de>Im Reader weiterlesen</span><span class="arw">&#8594;</span></a>
+          <a class="votd-more" href="bloom/index.html"><span data-en>Discover more</span><span data-de>Mehr entdecken</span><span class="arw">&#8594;</span></a>
+        </span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- BOOK SHOWCASE -->
+<section class="showcase" id="book">
+  <div class="wrap">
+    <div class="bk-tabs sc-bktabs rv">
+      <button class="bk-tab on" data-showbook="matthew"><span data-en>Matthew</span><span data-de>Matthäus</span><span class="ct">244</span></button>
+      <button class="bk-tab" data-showbook="mark"><span data-en>Mark</span><span data-de>Markus</span><span class="ct">151</span></button>
+      <button class="bk-tab" data-showbook="luke"><span data-en>Luke</span><span data-de>Lukas</span><span class="ct">256</span></button>
+      <button class="bk-tab" data-showbook="john"><span data-en>John</span><span data-de>Johannes</span><span class="ct">199</span></button>
+    </div>
+    <div class="sc-grid">
+      <div class="sc-cover rv" id="scBookWrap">
+        <!-- Animated open-book spread -->
+        <div class="b3" id="b3" data-open="0">
+          <div class="b3-inner">
+            <div class="b3-pages">
+              <div class="b3-pg b3-l"><img id="scPgL" src="assets/pages/p05.jpg" alt="Left page — actual page from the printed edition"></div>
+              <div class="b3-pg b3-r"><img id="scPgR" src="assets/pages/p06.jpg" alt="Right page — actual page from the printed edition"></div>
+              <div class="b3-gutter"></div>
+            </div>
+            <div class="b3-cover" id="b3Cover">
+              <div class="b3-cov-front"><img id="b3CoverImg" src="assets/books/matthew-cover.jpg" alt="The Gospel of Matthew — cover"></div>
+              <div class="b3-cov-back"><img id="b3BackImg" src="assets/pages/p05.jpg" alt=""></div>
+            </div>
+          </div>
+          <button class="sc-flip prev" id="scFlipPrev" aria-label="Previous pages">&#8249;</button>
+          <button class="sc-flip next" id="scFlipNext" aria-label="Next pages">&#8250;</button>
+          <div class="sc-hint"><span data-en>Click to open the book</span><span data-de>Klicken, um das Buch zu öffnen</span></div>
+          <div class="sc-pgno" id="scPgNo"></div>
+        </div>
+        <!-- Preview trigger -->
+        <button class="sc-preview-btn rv d2" id="scPreviewBtn">
+          <span data-en>Actual pages from the book</span><span data-de>Echte Seiten aus dem Buch</span>
+          <span class="ar"></span>
+        </button>
+      </div>
+      <div class="sc-info rv d1">
+        <div class="slabel"><span class="bar"></span><span data-en>The Gospels</span><span data-de>Die Evangelien</span></div>
+        <div class="sc-avail"><span class="dot"></span><span data-en>Now Complete</span><span data-de>Jetzt vollendet</span></div>
+        <h2 class="sc-title" id="scTitle"><span data-en>The Gospel<em>of Matthew</em></span><span data-de>Das Evangelium<em>nach Matthäus</em></span></h2>
+        <p class="sc-desc" id="scDesc"><span data-en>Two hundred forty-four full-plate chiaroscuro illustrations carry the whole life of Christ, from the genealogy to the Great Commission, alongside the complete World English Bible text. The most densely illustrated volume in the library.</span><span data-de>Zweihundertvierundvierzig ganzseitige Chiaroscuro-Illustrationen tragen das ganze Leben Christi, vom Geschlechtsregister bis zum Missionsbefehl, begleitet vom vollständigen Text der World English Bible. Der am reichsten illustrierte Band der Bibliothek.</span></p>
+        <div class="sc-specs">
+          <div class="sc-spec"><div class="k"><span data-en>Plates</span><span data-de>Tafeln</span></div><div class="v" id="scPlates">244</div></div>
+          <div class="sc-spec"><div class="k"><span data-en>Chapters</span><span data-de>Kapitel</span></div><div class="v" id="scChapters">28</div></div>
+          <div class="sc-spec"><div class="k"><span data-en>Languages</span><span data-de>Sprachen</span></div><div class="v">EN · DE</div></div>
+          <div class="sc-spec"><div class="k"><span data-en>Editions</span><span data-de>Editionen</span></div><div class="v">3</div></div>
+        </div>
+        <div class="sc-btns">
+          <a href="#editions" class="btn-g"><span data-en>Order Now</span><span data-de>Jetzt bestellen</span> <span class="ar"></span></a>
+          <a href="#plates" class="btn-o"><span data-en>See the plates</span><span data-de>Tafeln ansehen</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section class="shop" id="shop">
+  <div class="wrap">
+    <div class="slabel rv"><span class="num">iv.</span><span class="bar"></span><span data-en>The Shop</span><span data-de>Der Shop</span></div>
+    <h2 class="h2 rv d1" style="margin-bottom:18px"><span data-en>The New Testament. <em>Every volume complete.</em></span><span data-de>Das Neue Testament. <em>Jeder Band vollendet.</em></span></h2>
+    <p class="rv d1" style="font-family:var(--fd);font-style:italic;font-size:16px;color:var(--pm);letter-spacing:.06em;max-width:600px"><span data-en>Twenty-seven books in nine volumes, each in three editions — digital, paperback, collector. The four Gospels are featured below; the full range is in the shop. The Old Testament follows.</span><span data-de>Siebenundzwanzig Bücher in neun Bänden, jeder in drei Editionen — digital, broschiert, Sammler. Unten die vier Evangelien; das ganze Sortiment im Shop. Das Alte Testament folgt.</span></p>
+    <div class="shopgrid">
+      <article class="prod">
+        <span class="prod-tag"><span data-en>Flagship</span><span data-de>Hauptband</span></span>
+        <div class="prod-cov"><img src="assets/books/matthew-cover.jpg" alt="The Gospel of Matthew" loading="lazy"></div>
+        <h3 class="prod-name"><span data-en>The Gospel of Matthew</span><span data-de>Das Evangelium nach Matthäus</span></h3>
+        <div class="prod-meta"><span data-en>244 plates · 28 chapters</span><span data-de>244 Tafeln · 28 Kapitel</span></div>
+        <div class="prod-foot">
+          <div class="prod-price"><span data-en>from</span><span data-de>ab</span> <b>€19</b></div>
+          <a href="#editions" class="prod-cta ed-buy" data-book="The Gospel of Matthew"><span data-en>Editions</span><span data-de>Editionen</span></a>
+        </div>
+      </article>
+      <article class="prod">
+        <span class="prod-tag"><span data-en>Available</span><span data-de>Erhältlich</span></span>
+        <div class="prod-cov"><img src="assets/books/mark-cover.jpg" alt="The Gospel of Mark" loading="lazy"></div>
+        <h3 class="prod-name"><span data-en>The Gospel of Mark</span><span data-de>Das Evangelium nach Markus</span></h3>
+        <div class="prod-meta"><span data-en>151 plates · 16 chapters</span><span data-de>151 Tafeln · 16 Kapitel</span></div>
+        <div class="prod-foot">
+          <div class="prod-price"><span data-en>from</span><span data-de>ab</span> <b>€19</b></div>
+          <a href="#editions" class="prod-cta ed-buy" data-book="The Gospel of Mark"><span data-en>Editions</span><span data-de>Editionen</span></a>
+        </div>
+      </article>
+      <article class="prod">
+        <span class="prod-tag"><span data-en>Available</span><span data-de>Erhältlich</span></span>
+        <div class="prod-cov"><img src="assets/books/luke-cover.jpg" alt="The Gospel of Luke" loading="lazy"></div>
+        <h3 class="prod-name"><span data-en>The Gospel of Luke</span><span data-de>Das Evangelium nach Lukas</span></h3>
+        <div class="prod-meta"><span data-en>256 plates · 24 chapters</span><span data-de>256 Tafeln · 24 Kapitel</span></div>
+        <div class="prod-foot">
+          <div class="prod-price"><span data-en>from</span><span data-de>ab</span> <b>€19</b></div>
+          <a href="#editions" class="prod-cta ed-buy" data-book="The Gospel of Luke"><span data-en>Editions</span><span data-de>Editionen</span></a>
+        </div>
+      </article>
+      <article class="prod">
+        <span class="prod-tag"><span data-en>Available</span><span data-de>Erhältlich</span></span>
+        <div class="prod-cov"><img src="assets/books/john-cover.jpg" alt="The Gospel of John" loading="lazy"></div>
+        <h3 class="prod-name"><span data-en>The Gospel of John</span><span data-de>Das Evangelium nach Johannes</span></h3>
+        <div class="prod-meta"><span data-en>199 plates · 21 chapters</span><span data-de>199 Tafeln · 21 Kapitel</span></div>
+        <div class="prod-foot">
+          <div class="prod-price"><span data-en>from</span><span data-de>ab</span> <b>€19</b></div>
+          <a href="#editions" class="prod-cta ed-buy" data-book="The Gospel of John"><span data-en>Editions</span><span data-de>Editionen</span></a>
+        </div>
+      </article>
+      <article class="prod prod-best">
+        <span class="prod-tag"><span data-en>Best value</span><span data-de>Bester Wert</span></span>
+        <div class="prod-cov"><img src="assets/books/collection-cover.jpg" alt="The Four Gospels" loading="lazy"></div>
+        <h3 class="prod-name"><span data-en>The Four Gospels</span><span data-de>Die Vier Evangelien</span></h3>
+        <div class="prod-meta"><span data-en>850 plates · one volume</span><span data-de>850 Tafeln · ein Band</span></div>
+        <div class="prod-foot">
+          <div class="prod-price"><span data-en>from</span><span data-de>ab</span> <b>€59</b></div>
+          <a href="#editions" class="prod-cta ed-buy" data-book="The Four Gospels"><span data-en>Editions</span><span data-de>Editionen</span></a>
+        </div>
+      </article>
+    </div>
+    <p class="rv" style="margin-top:34px;font-family:var(--fd);font-style:italic;font-size:16px;color:var(--pd);letter-spacing:.04em">
+      <span data-en>The complete New Testament — nine volumes, Acts to Revelation — is in the </span><span data-de>Das ganze Neue Testament — neun Bände, Apostelgeschichte bis Offenbarung — findest du im </span>
+      <a href="shop.html" style="color:var(--gb);border-bottom:1px solid var(--gd)"><span data-en>shop&nbsp;→</span><span data-de>Shop&nbsp;→</span></a>
+    </p>
+  </div>
+</section>
+<section class="vbreak heavens" aria-label="Scripture">
+  <p class="vb-line"><span data-en>&ldquo;Heaven and earth will pass away, but my words will not pass away.&rdquo;</span><span data-de>&bdquo;Himmel und Erde werden vergehen, aber meine Worte werden nicht vergehen.&ldquo;</span></p>
+  <cite><span data-en>Matthew 24 : 35</span><span data-de>Matthäus 24,35</span></cite>
+</section>
+
+
+
+<!-- THE VISION -->
+<section class="vision secbg" id="vision">
+  <div class="secbg-img" style="background-image:url('assets/bg/christ-light.jpg')"></div>
+  <div class="secbg-veil"></div>
+  <div class="wrap">
+    <div class="slabel rv"><span class="num">ii.</span><span class="bar"></span><span data-en>Why This Exists</span><span data-de>Warum es das gibt</span></div>
+    <p class="vision-statement rv d1"><span data-en>The most important book ever written deserves to be <em>seen</em> as it is read — and to stay within reach of everyone who seeks it. Not, first of all, a commercial venture, but a lifetime labour of love.</span><span data-de>Das wichtigste Buch, das je geschrieben wurde, verdient es, <em>gesehen</em> zu werden, während man es liest — und für jeden erreichbar zu bleiben, der es sucht. Kein kommerzielles Vorhaben, sondern ein lebenslanges Werk der Liebe.</span></p>
+    <div class="vision-pillars rv d2">
+      <div class="vpill"><span class="vp-num">i</span><span class="vp-h"><span data-en>Beautiful</span><span data-de>Schön</span></span><span class="vp-p"><span data-en>Every passage an original painting, in the chiaroscuro tradition of Caravaggio and Rembrandt.</span><span data-de>Jede Stelle ein eigenes Gemälde, im Chiaroscuro der Tradition von Caravaggio und Rembrandt.</span></span></div>
+      <div class="vpill"><span class="vp-num">ii</span><span class="vp-h"><span data-en>Accessible</span><span data-de>Zugänglich</span></span><span class="vp-p"><span data-en>Affordable digital editions and fairly priced print, so cost is never a barrier to the Word.</span><span data-de>Erschwingliche digitale Ausgaben und faire Druckpreise. Kosten sind nie eine Hürde zum Wort.</span></span></div>
+      <div class="vpill"><span class="vp-num">iii</span><span class="vp-h"><span data-en>Faithful</span><span data-de>Treu</span></span><span class="vp-p"><span data-en>Reverent to the text: the face of Christ unseen, God never figured as man, angels rendered as light.</span><span data-de>Dem Text treu: das Angesicht Christi ungezeigt, Gott nie als Mensch dargestellt, Engel als Licht.</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE LIBRARY / SERIES -->
+<section class="library" id="project">
+  <div class="wrap">
+    <div class="lib-head">
+      <div class="rv">
+        <div class="slabel"><span class="num">iii.</span><span class="bar"></span><span data-en>The Illustrated Bible</span><span data-de>Die Illustrierte Bibel</span></div>
+        <h2 class="h2"><span data-en>The whole library, <em>one volume at a time.</em></span><span data-de>Die ganze Bibliothek, <em>Band für Band.</em></span></h2>
+      </div>
+      <div class="lib-legend rv d1">
+        <span><i class="nt"></i><span data-en>New Testament</span><span data-de>Neues Testament</span></span>
+        <span><i class="at"></i><span data-en>Old Testament</span><span data-de>Altes Testament</span></span>
+      </div>
+    </div>
+
+    <div class="lib-group-t rv"><span data-en>New Testament · NT I – IX</span><span data-de>Neues Testament · NT I – IX</span><span class="ln3"></span></div>
+
+    <div style="font-family:var(--fd);font-style:italic;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--pm);margin:10px 0 16px;opacity:.75" class="rv">
+      <span data-en>The Four Gospels</span><span data-de>Die vier Evangelien</span>
+    </div>
+    <div class="lib-grid">
+      <div class="band done-band rv">
+        <div class="band-spine">I</div>
+        <div class="band-body"><span class="band-roman">NT · I</span><span class="band-name"><span data-en>The Gospel of Matthew</span><span data-de>Das Evangelium nach Matthäus</span></span><span class="band-books"><span data-en>28 chapters · 244 plates</span><span data-de>28 Kapitel · 244 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+        <span class="band-tag"><span data-en>Available</span><span data-de>Verfügbar</span></span>
+      </div>
+      <div class="band done-band rv">
+        <div class="band-spine">II</div>
+        <div class="band-body"><span class="band-roman">NT · II</span><span class="band-name"><span data-en>The Gospel of Mark</span><span data-de>Das Evangelium nach Markus</span></span><span class="band-books"><span data-en>16 chapters · 151 plates</span><span data-de>16 Kapitel · 151 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+      <div class="band done-band rv">
+        <div class="band-spine">III</div>
+        <div class="band-body"><span class="band-roman">NT · III</span><span class="band-name"><span data-en>The Gospel of Luke</span><span data-de>Das Evangelium nach Lukas</span></span><span class="band-books"><span data-en>24 chapters · 256 plates</span><span data-de>24 Kapitel · 256 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+      <div class="band done-band rv">
+        <div class="band-spine">IV</div>
+        <div class="band-body"><span class="band-roman">NT · IV</span><span class="band-name"><span data-en>The Gospel of John</span><span data-de>Das Evangelium nach Johannes</span></span><span class="band-books"><span data-en>21 chapters · 199 plates</span><span data-de>21 Kapitel · 199 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+    </div>
+
+    <div style="font-family:var(--fd);font-style:italic;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--pm);margin:clamp(32px,4vw,52px) 0 16px;opacity:.75" class="rv">
+      <span data-en>Acts · Paul's Letters · General Epistles · Revelation</span><span data-de>Apostelgeschichte · Paulusbriefe · Allgemeine Briefe · Offenbarung</span>
+    </div>
+    <div class="lib-grid">
+      <div class="band done-band rv">
+        <div class="band-spine">V</div>
+        <div class="band-body"><span class="band-roman">NT · V</span><span class="band-name"><span data-en>The Acts of the Apostles</span><span data-de>Die Apostelgeschichte</span></span><span class="band-books"><span data-en>28 chapters · 248 plates</span><span data-de>28 Kapitel · 248 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+      <div class="band done-band rv">
+        <div class="band-spine">VI</div>
+        <div class="band-body"><span class="band-roman">NT · VI</span><span class="band-name"><span data-en>Paul · Romans to Galatians</span><span data-de>Paulus · Römer bis Galater</span></span><span class="band-books"><span data-en>Romans · 1–2 Corinthians · Galatians · 302 plates</span><span data-de>Römer · 1–2 Korinther · Galater · 302 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+      <div class="band done-band rv">
+        <div class="band-spine">VII</div>
+        <div class="band-body"><span class="band-roman">NT · VII</span><span class="band-name"><span data-en>Paul · Ephesians to Philemon</span><span data-de>Paulus · Epheser bis Philemon</span></span><span class="band-books"><span data-en>Ephesians · Philippians · Colossians · Thessalonians · Timothy · Titus · Philemon · 171 plates</span><span data-de>Epheser · Philipper · Kolosser · Thessalonicher · Timotheus · Titus · Philemon · 171 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+      <div class="band done-band rv">
+        <div class="band-spine">VIII</div>
+        <div class="band-body"><span class="band-roman">NT · VIII</span><span class="band-name"><span data-en>Hebrews to Jude</span><span data-de>Hebräer bis Judas</span></span><span class="band-books"><span data-en>Hebrews · James · 1–2 Peter · 1–3 John · Jude · 184 plates</span><span data-de>Hebräer · Jakobus · 1–2 Petrus · 1–3 Johannes · Judas · 184 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+      <div class="band done-band rv">
+        <div class="band-spine">IX</div>
+        <div class="band-body"><span class="band-roman">NT · IX</span><span class="band-name"><span data-en>The Revelation</span><span data-de>Die Offenbarung</span></span><span class="band-books"><span data-en>Apocalypse of John · 130 plates</span><span data-de>Apokalypse des Johannes · 130 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+    </div>
+
+    <p class="rv" style="margin-top:clamp(30px,4vw,48px);font-family:var(--fd);font-style:italic;font-size:16px;color:var(--pm);letter-spacing:.04em">
+      <span data-en>The Old Testament follows, book by book — Genesis is already on the easel.</span><span data-de>Das Alte Testament folgt, Buch für Buch — die Genesis steht bereits auf der Staffelei.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap secbg" id="roadmap">
+  <div class="secbg-img" style="background-image:url('assets/bg/dawn.jpg')"></div>
+  <div class="secbg-veil"></div>
+  <div class="wrap">
+    <div class="slabel rv"><span class="num">iv.</span><span class="bar"></span><span data-en>The Complete Vision</span><span data-de>Die vollständige Vision</span></div>
+    <h2 class="h2 rv d1"><span data-en>From <em>Genesis</em> to Revelation. All 66 books.</span><span data-de>Von <em>Genesis</em> bis Offenbarung. Alle 66 Bücher.</span></h2>
+    <p class="rv d2" style="font-family:var(--fb);font-size:17px;line-height:1.75;color:var(--pd);max-width:64ch;margin-top:20px"><span data-en>The Protestant canon — the received text, 39 books of the Old Testament and 27 of the New. Every passage illustrated in the tradition of the old masters. This is a lifetime work.</span><span data-de>Der protestantische Kanon — der überlieferte Text, 39 Bücher des Alten und 27 des Neuen Testaments. Jede Stelle illustriert in der Tradition der alten Meister. Dies ist ein Lebenswerk.</span></p>
+    <div class="rm-progress rv d2">
+      <div class="rm-pbar"><span class="rm-pfill" style="width:41%"></span></div>
+      <div class="rm-plabel"><span><b>27</b> <span data-en>of 66 books illustrated</span><span data-de>von 66 Büchern illustriert</span></span><span><span data-en>The New Testament complete · 1885 plates</span><span data-de>Das Neue Testament vollendet · 1885 Tafeln</span></span></div>
+    </div>
+    <div class="rm-grid" style="margin-top:clamp(48px,6vw,80px)">
+
+      <div class="rm-item rv">
+        <div class="rm-inner">
+          <div>
+            <div class="rm-q"><span data-en>Next · Old Testament</span><span data-de>Als Nächstes · Altes Testament</span></div>
+            <div class="rm-title"><em><span data-en>Genesis to Malachi</span><span data-de>Genesis bis Maleachi</span></em></div>
+            <div class="rm-status"><span class="sdot"></span><span data-en>39 books · in progress</span><span data-de>39 Bücher · in Arbeit</span></div>
+          </div>
+          <div class="rm-desc"><span data-en>From creation to the last prophet — the whole Old Testament, book by book. Genesis, Exodus and the histories are already being painted.</span><span data-de>Von der Schöpfung bis zum letzten Propheten — das ganze Alte Testament, Buch für Buch. Genesis, Exodus und die Geschichtsbücher werden bereits gemalt.</span></div>
+        </div>
+      </div>
+
+      <div class="rm-item live rv">
+        <div class="rm-inner">
+          <div>
+            <div class="rm-q">2026 · <span data-en>New Testament · The Four Gospels</span><span data-de>Neues Testament · Die vier Evangelien</span></div>
+            <div class="rm-title"><span data-en>Matthew · Mark · Luke · <em>John</em></span><span data-de>Matthäus · Markus · Lukas · <em>Johannes</em></span></div>
+            <div class="rm-status done"><span class="sdot"></span><span data-en>NT · I–IV complete · 850 plates · available now</span><span data-de>NT · I–IV vollendet · 850 Tafeln · jetzt verfügbar</span></div>
+          </div>
+          <div class="rm-desc"><span data-en>All four Gospels are complete and available — Matthew, Mark, Luke and John. 850 plates, four volumes, one life of Christ.</span><span data-de>Alle vier Evangelien sind vollendet und verfügbar — Matthäus, Markus, Lukas und Johannes. 850 Tafeln, vier Bände, ein Leben Christi.</span></div>
+        </div>
+      </div>
+
+      <div class="rm-item live rv">
+        <div class="rm-inner">
+          <div>
+            <div class="rm-q">2026 · <span data-en>New Testament · Acts &amp; Paul's Letters</span><span data-de>Neues Testament · Apostelgeschichte &amp; Paulusbriefe</span></div>
+            <div class="rm-title"><span data-en>Acts · <em>Paul's Letters</em></span><span data-de>Apostelgeschichte · <em>Paulusbriefe</em></span></div>
+            <div class="rm-status done"><span class="sdot"></span><span data-en>NT · V–VII complete · available now</span><span data-de>NT · V–VII vollendet · jetzt verfügbar</span></div>
+          </div>
+          <div class="rm-desc"><span data-en>Acts of the Apostles and all fourteen Pauline letters — complete across three volumes. 473 plates.</span><span data-de>Die Apostelgeschichte und alle vierzehn Paulusbriefe — vollendet in drei Bänden. 473 Tafeln.</span></div>
+        </div>
+      </div>
+
+      <div class="rm-item live rv">
+        <div class="rm-inner">
+          <div>
+            <div class="rm-q">2026 · <span data-en>New Testament · General Epistles &amp; Revelation</span><span data-de>Neues Testament · Allgemeine Briefe &amp; Offenbarung</span></div>
+            <div class="rm-title"><span data-en>General Epistles · <em>Revelation</em></span><span data-de>Allgemeine Briefe · <em>Offenbarung</em></span></div>
+            <div class="rm-status done"><span class="sdot"></span><span data-en>NT · VIII–IX complete · available now</span><span data-de>NT · VIII–IX vollendet · jetzt verfügbar</span></div>
+          </div>
+          <div class="rm-desc"><span data-en>Hebrews through Jude, and the Revelation — complete. The New Testament is finished; the Old Testament follows.</span><span data-de>Hebräer bis Judas und die Offenbarung — vollendet. Das Neue Testament ist abgeschlossen; das Alte Testament folgt.</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="plates">
+  <div class="wrap">
+    <div class="gal-head">
+      <div class="rv">
+        <div class="slabel"><span class="num">v.</span><span class="bar"></span><span id="galLabel">Two hundred forty-four plates</span></div>
+        <h2 class="h2" id="galTitle">Matthew, <em>plate by plate.</em></h2>
+        <div class="bk-tabs" style="margin-top:22px">
+          <button class="bk-tab" data-galbook="matthew"><span data-en>Matthew</span><span data-de>Matthäus</span><span class="ct">244</span></button>
+          <button class="bk-tab" data-galbook="mark"><span data-en>Mark</span><span data-de>Markus</span><span class="ct">151</span></button>
+        <button class="bk-tab" data-galbook="luke"><span data-en>Luke</span><span data-de>Lukas</span><span class="ct">256</span></button>
+        <button class="bk-tab" data-galbook="john"><span data-en>John</span><span data-de>Johannes</span><span class="ct">199</span></button>
+        <button class="bk-tab" data-galbook="nt"><span data-en>Acts – Revelation</span><span data-de>Apg – Offenbarung</span><span class="ct">1035</span></button>
+        </div>
+      </div>
+      <div class="gal-ctrls rv d1">
+        <button class="ibtn" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"/></svg></button>
+        <button class="ibtn" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+      </div>
+    </div>
+    <div class="gvp" id="gvp"><div class="gtrack" id="gtrack"></div></div>
+    <div class="gfut">
+      <span class="cnt" id="gcnt">i – iii of xxv</span>
+      <div class="tr"><div class="tf" id="gtf"></div></div>
+      <span><span data-en>Drag · ← → keys · Click to enlarge</span><span data-de>Ziehen · ← → Tasten · Klicken zum Vergrößern</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- WALLART -->
+<section class="wallart" id="wallart">
+  <div class="wrap">
+    <div class="slabel rv"><span class="num">vi.</span><span class="bar"></span><span data-en>Wallart</span><span data-de>Wallart</span></div>
+    <h2 class="h2 rv d1" style="margin-bottom:18px"><span data-en>The plates, <em>for your walls.</em></span><span data-de>Die Tafeln, <em>für deine Wände.</em></span></h2>
+    <p class="rv d1" style="font-family:var(--fd);font-style:italic;font-size:16px;color:var(--pm);letter-spacing:.06em;max-width:560px"><span data-en>Selected plates as museum-grade fine-art prints — framed-ready, printed on demand, shipped worldwide.</span><span data-de>Ausgewählte Tafeln als Fine-Art-Drucke in Museumsqualität — rahmenfertig, auf Bestellung gedruckt, weltweit versandt.</span></p>
+    <div class="wa-grid">
+      <article class="wa-card rv" data-wa="wa1">
+        <div class="wa-wall"><div class="wa-frame"><img src="assets/wallart/plates/passage_02_mark-1-6-10.jpg" alt="The Baptism" loading="lazy"></div></div>
+        <h3 class="wa-name"><span data-en>The Baptism</span><span data-de>Die Taufe</span></h3>
+        <div class="wa-ref"><span data-en>Mark 1:6-10</span><span data-de>Markus 1,6-10</span></div>
+        <div class="wa-foot">
+          <select class="wa-size" aria-label="Size">
+            <option value="a3">A3 — €29</option>
+            <option value="a2">A2 — €49</option>
+            <option value="canvas">Canvas 60×40 — €89</option>
+          </select>
+          <button class="wa-add"><span data-en>Add</span><span data-de>In den Warenkorb</span></button>
+        </div>
+      </article>
+      <article class="wa-card rv" data-wa="wa2">
+        <div class="wa-wall"><div class="wa-frame"><img src="assets/wallart/plates/passage_08_matthew-2-6-9.jpg" alt="The Star of Bethlehem" loading="lazy"></div></div>
+        <h3 class="wa-name"><span data-en>The Star of Bethlehem</span><span data-de>Der Stern von Bethlehem</span></h3>
+        <div class="wa-ref"><span data-en>Matthew 2:6-9</span><span data-de>Matthäus 2,6-9</span></div>
+        <div class="wa-foot">
+          <select class="wa-size" aria-label="Size">
+            <option value="a3">A3 — €29</option>
+            <option value="a2">A2 — €49</option>
+            <option value="canvas">Canvas 60×40 — €89</option>
+          </select>
+          <button class="wa-add"><span data-en>Add</span><span data-de>In den Warenkorb</span></button>
+        </div>
+      </article>
+      <article class="wa-card rv" data-wa="wa3">
+        <div class="wa-wall"><div class="wa-frame"><img src="assets/wallart/plates/passage_112_matthew-14-27-32.jpg" alt="Upon the Water" loading="lazy"></div></div>
+        <h3 class="wa-name"><span data-en>Upon the Water</span><span data-de>Auf dem Wasser</span></h3>
+        <div class="wa-ref"><span data-en>Matthew 14:27-32</span><span data-de>Matthäus 14,27-32</span></div>
+        <div class="wa-foot">
+          <select class="wa-size" aria-label="Size">
+            <option value="a3">A3 — €29</option>
+            <option value="a2">A2 — €49</option>
+            <option value="canvas">Canvas 60×40 — €89</option>
+          </select>
+          <button class="wa-add"><span data-en>Add</span><span data-de>In den Warenkorb</span></button>
+        </div>
+      </article>
+      <article class="wa-card rv" data-wa="wa4">
+        <div class="wa-wall"><div class="wa-frame"><img src="assets/wallart/plates/passage_115_john-12-11-15.jpg" alt="The Triumphal Entry" loading="lazy"></div></div>
+        <h3 class="wa-name"><span data-en>The Triumphal Entry</span><span data-de>Der Einzug in Jerusalem</span></h3>
+        <div class="wa-ref"><span data-en>John 12:11-15</span><span data-de>Johannes 12,11-15</span></div>
+        <div class="wa-foot">
+          <select class="wa-size" aria-label="Size">
+            <option value="a3">A3 — €29</option>
+            <option value="a2">A2 — €49</option>
+            <option value="canvas">Canvas 60×40 — €89</option>
+          </select>
+          <button class="wa-add"><span data-en>Add</span><span data-de>In den Warenkorb</span></button>
+        </div>
+      </article>
+      <article class="wa-card rv" data-wa="wa5">
+        <div class="wa-wall"><div class="wa-frame"><img src="assets/wallart/plates/passage_04_luke-1-15-17.jpg" alt="Filled with the Spirit" loading="lazy"></div></div>
+        <h3 class="wa-name"><span data-en>Filled with the Spirit</span><span data-de>Voll des Geistes</span></h3>
+        <div class="wa-ref"><span data-en>Luke 1:15-17</span><span data-de>Lukas 1,15-17</span></div>
+        <div class="wa-foot">
+          <select class="wa-size" aria-label="Size">
+            <option value="a3">A3 — €29</option>
+            <option value="a2">A2 — €49</option>
+            <option value="canvas">Canvas 60×40 — €89</option>
+          </select>
+          <button class="wa-add"><span data-en>Add</span><span data-de>In den Warenkorb</span></button>
+        </div>
+      </article>
+      <article class="wa-card rv" data-wa="wa6">
+        <div class="wa-wall"><div class="wa-frame"><img src="assets/wallart/plates/passage_03_john-1-14-18.jpg" alt="The Word Made Flesh" loading="lazy"></div></div>
+        <h3 class="wa-name"><span data-en>The Word Made Flesh</span><span data-de>Das Wort ward Fleisch</span></h3>
+        <div class="wa-ref"><span data-en>John 1:14-18</span><span data-de>Johannes 1,14-18</span></div>
+        <div class="wa-foot">
+          <select class="wa-size" aria-label="Size">
+            <option value="a3">A3 — €29</option>
+            <option value="a2">A2 — €49</option>
+            <option value="canvas">Canvas 60×40 — €89</option>
+          </select>
+          <button class="wa-add"><span data-en>Add</span><span data-de>In den Warenkorb</span></button>
+        </div>
+      </article>
+    </div>
+    <p class="wa-note rv"><span data-en>Gicl&eacute;e print on archival paper or canvas &middot; produced on demand &middot; 30-day money-back guarantee</span><span data-de>Gicl&eacute;e-Druck auf Archivpapier oder Leinwand &middot; auf Bestellung gefertigt &middot; 30 Tage Geld-zur&uuml;ck-Garantie</span></p>
+  </div>
+</section>
+
+<section class="vbreak creation" aria-label="Scripture">
+  <p class="vb-line"><span data-en>&ldquo;In the beginning was the Word, and the Word was with God, and the Word was God.&rdquo;</span><span data-de>&bdquo;Im Anfang war das Wort, und das Wort war bei Gott, und Gott war das Wort.&ldquo;</span></p>
+  <cite><span data-en>John 1 : 1</span><span data-de>Johannes 1,1</span></cite>
+</section>
+
+
+<!-- (Reader-Teaser entfernt — es gibt jetzt den echten Read-Tab bible.html) -->
+
+<!-- EDITIONS -->
+<section class="editions" id="editions">
+  <div class="wrap">
+    <div class="slabel rv"><span class="num">vii.</span><span class="bar"></span><span data-en>Three Editions</span><span data-de>Drei Editionen</span></div>
+    <h2 class="h2 rv d1" style="margin-bottom:24px"><span data-en>The same text, <em>bound to the occasion.</em></span><span data-de>Derselbe Text, <em>dem Anlass gebunden.</em></span></h2>
+    <p class="rv d1" style="margin-bottom:48px;font-family:var(--fd);font-style:italic;font-size:16px;color:var(--pm);letter-spacing:.06em"><span data-en>Each volume is offered in three editions. Pricing shown for the Gospel of Matthew.</span><span data-de>Jeder Band wird in drei Editionen angeboten. Preise gelten für das Evangelium nach Matthäus.</span></p>
+    <div class="egrid">
+      <article class="ed rv">
+        <div class="ed-n">Edition I</div>
+        <h3 class="ed-name">Digital</h3>
+        <p class="ed-desc"><span data-en>Complete PDF. Plates and text as laid out for print. Instant, no DRM.</span><span data-de>Vollständiges PDF. Tafeln und Text im Drucklayout. Sofort, ohne DRM.</span></p>
+        <div class="ed-price"><span class="ed-cur">€</span><span class="ed-num">19</span><span class="ed-unit"><span data-en>instant · no DRM</span><span data-de>sofort · ohne DRM</span></span></div>
+        <ul>
+          <li><span data-en>Full World English Bible text</span><span data-de>Vollständiger Text der World English Bible</span></li>
+          <li><span data-en>All 244 plates at 300 dpi</span><span data-de>Alle 244 Tafeln mit 300 dpi</span></li>
+          <li><span data-en>Print-ready A4 &amp; US Letter</span><span data-de>Druckfertig A4 &amp; US Letter</span></li>
+          <li><span data-en>Immediate download</span><span data-de>Sofortiger Download</span></li>
+        </ul>
+        <div class="ed-cta"><a href="#waitlist" class="ed-link ed-buy"><span data-en>Download</span><span data-de>Herunterladen</span> <span class="a"></span></a></div>
+      </article>
+      <article class="ed rv d1 ed-feat">
+        <div class="ed-badge"><span data-en>Most chosen</span><span data-de>Meistgewählt</span></div>
+        <div class="ed-n">Edition II</div>
+        <h3 class="ed-name">Paperback</h3>
+        <p class="ed-desc"><span data-en>The reading copy. Cream paper, made to travel and to be given.</span><span data-de>Die Leseausgabe. Cremefarbenes Papier, zum Mitnehmen und Verschenken gemacht.</span></p>
+        <div class="ed-price"><span class="ed-cur">€</span><span class="ed-num">42</span><span class="ed-unit"><span data-en>soft-bound</span><span data-de>broschiert</span></span></div>
+        <ul>
+          <li><span data-en>Large-format print edition</span><span data-de>Großformatige Druckausgabe</span></li>
+          <li><span data-en>All plates in full colour</span><span data-de>Alle Tafeln in Vollfarbe</span></li>
+          <li><span data-en>Premium cream paper</span><span data-de>Cremefarbenes Premiumpapier</span></li>
+          <li><span data-en>Ships worldwide</span><span data-de>Weltweiter Versand</span></li>
+        </ul>
+        <div class="ed-cta"><a href="#waitlist" class="ed-link ed-buy"><span data-en>Order</span><span data-de>Bestellen</span> <span class="a"></span></a></div>
+      </article>
+      <article class="ed rv d2">
+        <div class="ed-n">Edition III</div>
+        <div class="ed-head"><h3 class="ed-name">Hardcover</h3><span class="ed-badge">Flagship</span></div>
+        <p class="ed-desc"><span data-en>The heirloom. Hardcover, made to be kept and handed on.</span><span data-de>Das Erbstück. Fester Einband, gemacht zum Bewahren und Weitergeben.</span></p>
+        <div class="ed-price"><span class="ed-cur">€</span><span class="ed-num">89</span><span class="ed-unit"><span data-en>heirloom</span><span data-de>Erbstück</span></span></div>
+        <ul>
+          <li><span data-en>Hardcover library binding</span><span data-de>Fester Bibliothekseinband</span></li>
+          <li><span data-en>All plates in full colour</span><span data-de>Alle Tafeln in Vollfarbe</span></li>
+          <li><span data-en>Premium cream paper</span><span data-de>Cremefarbenes Premiumpapier</span></li>
+          <li><span data-en>Ships worldwide</span><span data-de>Weltweiter Versand</span></li>
+        </ul>
+        <div class="ed-cta"><a href="#waitlist" class="ed-link ed-buy"><span data-en>Order</span><span data-de>Bestellen</span> <span class="a"></span></a></div>
+      </article>
+    </div>
+    <div class="trust-row rv d2">
+      <div class="trust-i"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg><span data-en>30-day money-back guarantee</span><span data-de>30 Tage Geld-zurück-Garantie</span></div>
+      <div class="trust-i"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="4" y="10" width="16" height="10" rx="1"/><path d="M8 10V7a4 4 0 018 0v3"/></svg><span data-en>Secure checkout · SSL</span><span data-de>Sichere Bezahlung · SSL</span></div>
+      <div class="trust-i"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M3 7h13v10H3zM16 10h3l2 3v4h-5z"/><circle cx="7" cy="17" r="1.6"/><circle cx="18" cy="17" r="1.6"/></svg><span data-en>Printed &amp; shipped worldwide</span><span data-de>Weltweiter Druck &amp; Versand</span></div>
+      <div class="trust-i"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M12 21C7 17 3 13.5 3 9.5A4.5 4.5 0 0112 6a4.5 4.5 0 019 3.5c0 4-4 7.5-9 11.5z"/></svg><span data-en>Independent · Soli Deo Gloria</span><span data-de>Unabhängig · Soli Deo Gloria</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- JERUSALEM CINEMATIC BREAK -->
+<div class="jbreak" id="jbreak" aria-hidden="true">
+  <div class="jbreak-img" style="background-image:url('assets/john316.jpg')"></div>
+  <div class="jbreak-overlay"></div>
+  <div class="jbreak-text rv">
+    <blockquote><span data-en>"For God so loved the world, that he gave his one and only Son, that whoever believes in him should not perish, but have eternal life."</span><span data-de>„Denn also hat Gott die Welt geliebt, dass er seinen eingeborenen Sohn gab, auf dass jeder, der an ihn glaubt, nicht verloren gehe, sondern ewiges Leben habe."</span></blockquote>
+    <cite>John 3 · 16</cite>
+  </div>
+</div>
+
+<!-- WAITLIST -->
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="slabel rv"><span class="num">ix.</span><span class="bar"></span><span data-en>The Publisher</span><span data-de>Der Verlag</span></div>
+    <div class="ab-grid">
+      <div class="ab-img rv d1"><img id="abPortrait" src="assets/lia-portrait.jpg?v=3" alt="Lia — TruthPrints, an old-master oil portrait" loading="lazy"></div>
+      <div>
+        <h2 class="h2 rv" style="margin-bottom:6px"><span data-en>One woman.<br>One conviction.<br><em class="nb">The whole Bible.</em></span><span data-de>Eine Frau.<br>Eine Überzeugung.<br><em class="nb">Die ganze Bibel.</em></span></h2>
+        <div class="ab-quote rv d1"><span data-en>&ldquo;What Scripture does not say, does not enter the picture.&rdquo;</span><span data-de>&bdquo;Was die Schrift nicht sagt, kommt nicht ins Bild.&ldquo;</span></div>
+        <div class="ab-body rv d2">
+          <p><span data-en>Behind TruthPrints stands no publishing house, only one woman: Lia, a born-again Christian from Innsbruck. She works alone, passage by passage, book by book, most of it by night when the city is quiet.</span><span data-de>Hinter TruthPrints steht kein Verlagshaus, sondern eine einzige Frau: Lia, eine wiedergeborene Christin aus Innsbruck. Sie arbeitet allein, Stelle f&uuml;r Stelle, Buch f&uuml;r Buch, das meiste davon nachts, wenn die Stadt still ist.</span></p>
+          <p><span data-en>Every plate begins with the words themselves. They are read, weighed and turned into a precise description before any image may exist. Afterwards each picture is held against the text once more, and whatever the text does not carry is taken out again. This is slow work. It is meant to be.</span><span data-de>Jede Tafel beginnt bei den Worten selbst. Sie werden gelesen, gewogen und in eine pr&auml;zise Beschreibung gefasst, bevor ein Bild entstehen darf. Danach wird jedes Bild noch einmal am Text gemessen, und was der Text nicht tr&auml;gt, wird wieder entfernt. Das ist langsame Arbeit. Sie soll es sein.</span></p>
+          <p><span data-en>The whole New Testament is finished — Matthew to Revelation. The Old Testament is on the easel now. And when the last book is bound one day, this library shall point to one person only: not to her, but to him whose word it carries.</span><span data-de>Das ganze Neue Testament ist vollendet — von Matth&auml;us bis zur Offenbarung. Das Alte Testament steht jetzt auf der Staffelei. Und wenn eines Tages das letzte Buch gebunden ist, soll diese Bibliothek auf einen Einzigen zeigen: nicht auf sie, sondern auf den, dessen Wort sie tr&auml;gt.</span></p>
+        </div>
+        <div class="ab-sig rv d3">Soli Deo Gloria.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="waitlist" id="waitlist">
+  <div class="wbg"></div>
+  <div class="win rv">
+    <div class="wpulse"><span class="dot"></span><span data-en>The weekly plate</span><span data-de>Die wöchentliche Tafel</span></div>
+    <div class="wprev"><img src="assets/wallart/galilee.jpg" alt="" loading="lazy"></div>
+    <h2 class="h2"><span data-en>A new painting every week. <em class="nb">And a short devotion.</em></span><span data-de>Jede Woche ein neues Gemälde. <em class="nb">Und eine kurze Andacht.</em></span></h2>
+    <p class="wsub"><span data-en>One fresh illustrated passage in your inbox each week — with the free Gospel of John to download today, and 10% off your first order.</span><span data-de>Jede Woche eine neue illustrierte Bibelstelle in dein Postfach — plus das Johannes-Evangelium gratis zum Download und 10 % auf deine erste Bestellung.</span></p>
+    <div class="wform" id="wform">
+      <input type="email" id="wemail" placeholder="Your email address" data-ph-en="Your email address" data-ph-de="Deine E-Mail-Adresse">
+      <button type="button" id="wsub"><span data-en>Get the free Gospel</span><span data-de>Gratis-Evangelium sichern</span></button>
+    </div>
+    <p class="wnote" id="wnote"><span data-en>No spam. One email a week. Unsubscribe anytime.</span><span data-de>Kein Spam. Eine E-Mail pro Woche. Jederzeit abmeldbar.</span></p>
+    <p class="wsuccess" id="wsuccess"><span data-en>You're on the list — your free Gospel and discount code are on their way. God bless.</span><span data-de>Du stehst auf der Liste — dein Gratis-Evangelium und dein Rabattcode sind unterwegs. Gott segne dich.</span></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fgrid">
+    <div class="fc">
+      <div class="brand" style="margin-bottom:18px"><span class="bmark"><img src="brand/truthprints-mark.svg" alt="TruthPrints"></span><span class="bname">Truth<b>Prints</b></span></div>
+      <p><span data-en>A project by Lia, a born-again Christian illustrating the entire Bible, one volume at a time, so the Word might be met with beauty and within reach of all.</span><span data-de>Ein Projekt von Lia, einer wiedergeborenen Christin, die die gesamte Bibel illustriert, Band für Band, damit das Wort in Schönheit und für alle erreichbar begegne.</span></p>
+    </div>
+    <div class="fc">
+      <h4><span data-en>The Library</span><span data-de>Die Bibliothek</span></h4>
+      <ul>
+        <li><a href="#book"><span data-en>Matthew · Available</span><span data-de>Matthäus · verfügbar</span></a></li>
+        <li><a href="#editions"><span data-en>1 Peter · Available</span><span data-de>1. Petrus · verfügbar</span></a></li>
+        <li><a href="#project"><span data-en>The Gospels</span><span data-de>Die Evangelien</span></a></li>
+        <li><a href="#project"><span data-en>Letters of Paul</span><span data-de>Briefe des Paulus</span></a></li>
+        <li><a href="#project"><span data-en>Revelation</span><span data-de>Die Offenbarung</span></a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4><span data-en>The Edition</span><span data-de>Die Ausgabe</span></h4>
+      <ul>
+        <li><a href="#mani"><span data-en>About the Project</span><span data-de>Über das Projekt</span></a></li>
+        <li><a href="#plates"><span data-en>The Plates</span><span data-de>Die Tafeln</span></a></li>
+        <li><a href="bible.html"><span data-en>Read a Passage</span><span data-de>Eine Stelle lesen</span></a></li>
+        <li><a href="#editions"><span data-en>Order</span><span data-de>Bestellen</span></a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4><span data-en>Correspond</span><span data-de>Kontakt</span></h4>
+      <ul>
+        <li><a href="mailto:hello.truthprints@gmail.com">hello.truthprints@gmail.com</a></li>
+        <li><a href="#waitlist"><span data-en>Newsletter</span><span data-de>Newsletter</span></a></li>
+        <li><a href="#"><span data-en>Trade orders</span><span data-de>Händleranfragen</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© MMXXVI TruthPrints</span>
+    <span><span data-en>Scripture: World English Bible &amp; Elberfelder 1871, both Public Domain</span><span data-de>Schrift: World English Bible &amp; Elberfelder 1871, beide gemeinfrei</span></span>
+    <span><span data-en>The Word, illustrated</span><span data-de>Das Wort, illustriert</span></span>
+  </div>
+
+  <div style="max-width:1200px;margin:34px auto 0;padding-top:22px;border-top:1px solid var(--rules);display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:center;font-family:var(--fb);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pm)">
+    <a href="impressum.html" style="color:var(--pd)">Impressum</a>
+    <a href="agb.html" style="color:var(--pd)">AGB</a>
+    <a href="widerruf.html" style="color:var(--pd)"><span data-en>Right of Withdrawal</span><span data-de>Widerruf</span></a>
+    <a href="impressum.html#datenschutz" style="color:var(--pd)"><span data-en>Privacy</span><span data-de>Datenschutz</span></a>
+    <a href="unsubscribe.html" style="color:var(--pd)"><span data-en>Unsubscribe</span><span data-de>Abmelden</span></a>
+    <span>© 2026 TruthPrints</span>
+  </div>
+</footer>
+
+<!-- BOOK PREVIEW MODAL -->
+<div class="bprev" id="bprev">
+  <div class="bprev-inner">
+    <button class="bprev-close" id="bprevX" aria-label="Close"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg></button>
+    <div class="bprev-spread">
+      <div class="bprev-page left"><img id="bprev-l" src="" alt=""></div>
+      <div class="bprev-page right"><img id="bprev-r" src="" alt=""></div>
+    </div>
+    <div class="bprev-foot">
+      <span id="bprev-ref" style="color:var(--g)"></span>
+      <div class="bprev-nav">
+        <button class="bprev-nbtn" id="bprev-p"><svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"/></svg></button>
+        <button class="bprev-nbtn" id="bprev-n"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+      </div>
+    </div>
+    <p class="bprev-hint"><span data-en>← → to navigate · Esc to close</span><span data-de>← → zum Blättern · Esc zum Schließen</span></p>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <div class="lbf">
+    <button class="lbnav lbprev" id="lbp" aria-label="Prev"><svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"/></svg></button>
+    <img id="lbi" alt="">
+    <button class="lbnav lbnext" id="lbn" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+    <button class="lbc" id="lbx" aria-label="Close"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg></button>
+    <div class="lbmeta"><span class="t" id="lbt"></span><span id="lbr"></span></div>
+  </div>
+</div>
+
+<!-- TWEAKS PANEL -->
+<div id="tw">
+  <div class="tw-hd">
+    <span class="tw-hd-t">Tweaks</span>
+    <button class="tw-hd-x" id="twx" aria-label="Close">×</button>
+  </div>
+  <div class="tw-sec">
+    <span class="tw-lbl">Language</span>
+    <div class="tw-radio">
+      <button class="tw-rb" data-lang="en">English</button>
+      <button class="tw-rb" data-lang="de">Deutsch</button>
+    </div>
+  </div>
+  <div class="tw-sec">
+    <span class="tw-lbl">Motion</span>
+    <div class="tw-radio">
+      <button class="tw-rb on" data-motion="full">Full</button>
+      <button class="tw-rb" data-motion="subtle">Subtle</button>
+      <button class="tw-rb" data-motion="off">Off</button>
+    </div>
+  </div>
+  <div class="tw-sec">
+    <span class="tw-lbl">Accent</span>
+    <div class="tw-pals">
+      <button class="tw-pal on" data-accent="gold"  style="background:linear-gradient(135deg,#B8924A,#D4AC63)" aria-label="Gold"></button>
+      <button class="tw-pal" data-accent="amber" style="background:linear-gradient(135deg,#C0772E,#E2A24A)" aria-label="Amber"></button>
+      <button class="tw-pal" data-accent="ember" style="background:linear-gradient(135deg,#A8412A,#D9743F)" aria-label="Ember"></button>
+      <button class="tw-pal" data-accent="sage"  style="background:linear-gradient(135deg,#7E7A3E,#B7AE63)" aria-label="Sage"></button>
+    </div>
+  </div>
+</div>
+
+
+<div class="stickybar" id="stickybar" role="complementary">
+  <span class="sb-t"><span data-en>The complete New Testament · 27 books · 1885 plates · available now</span><span data-de>Das ganze Neue Testament · 27 Bücher · 1885 Tafeln · jetzt erhältlich</span></span>
+  <a href="#editions" class="sb-btn"><span data-en>View Editions</span><span data-de>Editionen ansehen</span></a>
+  <button class="sb-x" id="sbx" aria-label="Dismiss">×</button>
+</div>
+
+<div class="tp-pop" id="tppop" role="dialog" aria-modal="true">
+  <div class="tp-pop-c">
+    <button class="tp-pop-x" id="tppopx" aria-label="Close">×</button>
+    <div class="tp-pop-k"><span data-en>Before you go</span><span data-de>Bevor du gehst</span></div>
+    <div class="tp-pop-h"><span data-en>Take <em>10% off</em> your first volume.</span><span data-de>Erhalte <em>10 % Rabatt</em> auf deinen ersten Band.</span></div>
+    <p class="tp-pop-p"><span data-en>A founding-reader thank-you — valid on any edition of any Gospel.</span><span data-de>Ein Dankeschön für Gründer-Leser — gültig für jede Edition jedes Evangeliums.</span></p>
+    <div class="tp-pop-code">FOUNDING10</div>
+    <button class="tp-pop-btn" id="tppopgo"><span data-en>Claim &amp; view editions</span><span data-de>Sichern &amp; Editionen ansehen</span></button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="truthprint.js?v=20260614rd2"></script>
+
+<script src="cart.js?v=2"></script>
+
+<script>
+/* kinetic verses — words kindle one after another */
+(function(){
+  document.querySelectorAll('.vbreak .vb-line span').forEach(function(span){
+    var words=span.textContent.trim().split(/\s+/);
+    span.innerHTML=words.map(function(w,i){return '<span class="vb-w" style="--i:'+i+'">'+w+'</span>';}).join(' ');
+  });
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('lit'); io.unobserve(e.target);} });
+  },{threshold:.45});
+  document.querySelectorAll('.vbreak').forEach(function(s){ io.observe(s); });
+})();
+/* candle-room ambience — synthesised, no audio file, starts only on tap */
+(function(){
+  var btn=document.getElementById('sndBtn'); if(!btn) return;
+  var ctx=null,master=null;
+  function build(){
+    ctx=new (window.AudioContext||window.webkitAudioContext)();
+    master=ctx.createGain(); master.gain.value=0; master.connect(ctx.destination);
+    /* warm air: filtered brown noise */
+    var len=ctx.sampleRate*4, buf=ctx.createBuffer(1,len,ctx.sampleRate), d=buf.getChannelData(0), last=0;
+    for(var i=0;i<len;i++){ var w=Math.random()*2-1; last=(last+.02*w)/1.02; d[i]=last*3.5; }
+    var src=ctx.createBufferSource(); src.buffer=buf; src.loop=true;
+    var lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=320; lp.Q.value=.4;
+    var ng=ctx.createGain(); ng.gain.value=.5;
+    src.connect(lp); lp.connect(ng); ng.connect(master); src.start();
+    /* candle flicker: slow random swells */
+    var fl=ctx.createGain(); fl.gain.value=.0;
+    var hp=ctx.createBiquadFilter(); hp.type='bandpass'; hp.frequency.value=900; hp.Q.value=1.2;
+    var src2=ctx.createBufferSource(); src2.buffer=buf; src2.loop=true; src2.playbackRate.value=.7;
+    src2.connect(hp); hp.connect(fl); fl.connect(master); src2.start();
+    (function flick(){
+      if(!ctx) return;
+      fl.gain.linearRampToValueAtTime(.04+Math.random()*.10, ctx.currentTime+ .35+Math.random()*1.2);
+      setTimeout(flick, 400+Math.random()*1400);
+    })();
+  }
+  var on=false;
+  btn.addEventListener('click',function(){
+    if(!ctx) build();
+    if(ctx.state==='suspended') ctx.resume();
+    on=!on;
+    btn.classList.toggle('on',on);
+    master.gain.cancelScheduledValues(ctx.currentTime);
+    master.gain.linearRampToValueAtTime(on?.05:.0, ctx.currentTime+1.2);
+  });
+})();
+</script>
+<script>
+/* scroll parallax for [data-prlx] images — subtle depth */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var els=[];
+  function collect(){els=[].slice.call(document.querySelectorAll('[data-prlx]'));}
+  collect();setTimeout(collect,1500);
+  var tick=false;
+  function frame(){
+    tick=false;
+    var vh=innerHeight;
+    els.forEach(function(el){
+      var r=el.getBoundingClientRect();
+      if(r.bottom<0||r.top>vh)return;
+      var p=(r.top+r.height/2-vh/2)/vh; /* -0.5..0.5 */
+      el.style.transform='translateY('+(p*-26).toFixed(1)+'px) scale(1.06)';
+    });
+  }
+  addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(frame);}},{passive:true});
+  frame();
+})();
+</script>
+
+<script src="hero-gl.js?v=151"></script>
+<script>
+/* preloader — counter eases to 90, completes on window load (or 2.6s), curtain lifts */
+(function(){
+  var pl=document.getElementById('preloader'),num=document.getElementById('plnum'),bar=document.getElementById('plbar');
+  if(!pl){document.body.classList.add('loaded');return;}
+  /* Vers des Tages statt Latein (kurz, sprachabhängig, deterministisch pro Kalendertag) */
+  (function(){
+    var plv=document.getElementById('plVerse'); if(!plv)return;
+    var VS=[
+      {de:'Im Anfang war das Wort.',en:'In the beginning was the Word.'},
+      {de:'Der HERR ist mein Hirte.',en:'The LORD is my shepherd.'},
+      {de:'Ich bin das Licht der Welt.',en:'I am the light of the world.'},
+      {de:'Dein Wort ist meines Fußes Leuchte.',en:'Your word is a lamp to my feet.'},
+      {de:'Ich bin der Weg, die Wahrheit und das Leben.',en:'I am the way, the truth, and the life.'},
+      {de:'Siehe, ich mache alles neu.',en:'Behold, I make all things new.'},
+      {de:'Das Wort unseres Gottes bleibt in Ewigkeit.',en:'The word of our God stands forever.'},
+      {de:'Selig, die reinen Herzens sind.',en:'Blessed are the pure in heart.'}
+    ];
+    var lang;try{lang=localStorage.getItem('tp_lang')||localStorage.getItem('tp-lang')||(navigator.language||'en').slice(0,2);}catch(e){lang='en';}
+    lang=(lang==='de')?'de':'en';
+    var now=new Date(),doy=Math.floor((now-new Date(now.getFullYear(),0,0))/864e5);
+    plv.textContent=VS[doy%VS.length][lang];
+  })();
+  var v=0,target=90,loaded=false,t0=performance.now();
+  addEventListener('load',function(){loaded=true});
+  setTimeout(function(){loaded=true},2600);
+  (function tick(){
+    if(loaded)target=100;
+    v+=(target-v)*.06+.12;
+    if(v>=99.6&&loaded){
+      num.textContent='100';bar.style.transform='scaleX(1)';
+      setTimeout(function(){
+        pl.classList.add('done');
+        document.body.classList.add('loaded');
+        setTimeout(function(){pl.remove()},1300);
+      },180);
+      return;
+    }
+    var d=Math.min(v,100);
+    num.textContent=Math.floor(d);
+    bar.style.transform='scaleX('+(d/100)+')';
+    requestAnimationFrame(tick);
+  })();
+})();
+/* magnetic buttons — gold pulls toward the hand */
+(function(){
+  if(matchMedia('(pointer:coarse)').matches)return;
+  document.querySelectorAll('.btn-g,.sb-btn,.tp-pop-btn').forEach(function(b){
+    var r;
+    b.addEventListener('mousemove',function(e){
+      r=r||b.getBoundingClientRect();
+      var x=(e.clientX-r.left-r.width/2)/r.width,y=(e.clientY-r.top-r.height/2)/r.height;
+      b.style.transform='translate('+x*9+'px,'+y*7+'px)';
+    });
+    b.addEventListener('mouseleave',function(){r=null;b.style.transform='';});
+  });
+})();
+</script>
+
+<!-- VERSE OF THE DAY — deterministic per local calendar day (image + verse + text from window.TP_BLOOM) -->
+<script src="bloom-verses.js?v=2"></script>
+<script>
+(function(){
+  var P = window.TP_BLOOM || [];
+  var frame = document.getElementById('votdFrame');
+  var img = document.getElementById('votdImg');
+  if(!P.length || !img){ var s=document.getElementById('votd'); if(s) s.style.display='none'; return; }
+
+  /* days since epoch by LOCAL calendar date → same painting for everyone that day,
+     switches at local midnight, NOT on reload */
+  var now = new Date();
+  var day = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 864e5);
+  var pick = P[((day % P.length) + P.length) % P.length];
+
+  img.addEventListener('load', function(){
+    var oAR = (img.naturalWidth && img.naturalHeight) ? img.naturalWidth/img.naturalHeight : 0.78;
+    frame.style.setProperty('--ar', (oAR / (1 - 0.04)).toFixed(4));  /* trim bottom, then contain */
+    img.classList.add('in');
+  });
+  img.src = pick.img;
+  img.alt = (pick.ref_en || '') + ' — illustrated';
+  var bg = document.getElementById('votdBg');
+  if(bg) bg.style.backgroundImage = 'url("' + pick.img + '")';
+  var rd = document.getElementById('votdRead');
+  if(rd && pick.book && pick.id) rd.href = 'bible.html#' + pick.book + '/' + pick.id;
+  document.getElementById('votdRefEn').textContent = pick.ref_en || '';
+  document.getElementById('votdRefDe').textContent = pick.ref_de || pick.ref_en || '';
+  document.getElementById('votdTextEn').textContent = pick.text_en || '';
+  document.getElementById('votdTextDe').textContent = pick.text_de || pick.text_en || '';
+})();
+</script>
+
+<!-- ===== Cookie-Consent (DSGVO): professionelles Overlay; Tracking lädt erst nach Zustimmung ===== -->
+<style>
+.ckb{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;padding:22px;
+  background:rgba(6,4,2,.66);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
+.ckb.show{display:flex;animation:ckbFade .45s ease}
+@keyframes ckbFade{from{opacity:0}to{opacity:1}}
+.ckb-card{width:min(468px,100%);background:linear-gradient(180deg,#17130c,#100c07);
+  border:1px solid rgba(184,146,74,.3);border-radius:22px;padding:clamp(28px,5vw,40px);text-align:center;
+  box-shadow:0 44px 130px rgba(0,0,0,.72);animation:ckbPop .55s cubic-bezier(.16,1,.3,1)}
+@keyframes ckbPop{from{opacity:0;transform:translateY(18px) scale(.965)}to{opacity:1;transform:none}}
+.ckb-ic{width:48px;height:48px;margin:0 auto 18px;color:#d4ac63}
+.ckb-ic svg{width:100%;height:100%}
+.ckb-h{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:27px;color:#f3ead7;margin-bottom:11px}
+.ckb-txt{font-family:'EB Garamond',Georgia,serif;font-size:15px;line-height:1.62;color:#c6bba6;margin:0 auto 24px;max-width:40ch}
+.ckb-btns{display:flex;flex-direction:column;gap:10px}
+.ckb-btn{font-family:'EB Garamond',Georgia,serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+  padding:15px 24px;border-radius:99px;cursor:pointer;border:1px solid transparent;transition:filter .25s,background .25s,color .25s,border-color .25s}
+.ckb-btn.accept{background:linear-gradient(135deg,#b8924a,#d4ac63);color:#100c07}
+.ckb-btn.accept:hover{filter:brightness(1.1)}
+.ckb-btn.ghost{background:none;border-color:rgba(212,172,99,.4);color:#d9ccb2}
+.ckb-btn.ghost:hover{border-color:#d4ac63;color:#fff}
+.ckb-link{display:inline-block;margin-top:17px;font-family:'EB Garamond',Georgia,serif;font-size:12px;color:#9a8f73;text-decoration:underline;text-underline-offset:2px}
+.ckb-link:hover{color:#d4ac63}
+@media(min-width:520px){.ckb-btns{flex-direction:row-reverse;justify-content:center}.ckb-btn{flex:1;max-width:210px}}
+</style>
+<div id="ckb" class="ckb" role="dialog" aria-modal="true" aria-label="Privacy">
+  <div class="ckb-card">
+    <div class="ckb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4.5"/></svg></div>
+    <h3 class="ckb-h" id="ckbH"></h3>
+    <p class="ckb-txt" id="ckbTxt"></p>
+    <div class="ckb-btns">
+      <button type="button" class="ckb-btn accept" id="ckbAccept"></button>
+      <button type="button" class="ckb-btn ghost" id="ckbDecline"></button>
+    </div>
+    <a class="ckb-link" id="ckbLink" href="impressum.html"></a>
+  </div>
+</div>
+<script>
+(function(){
+  var el=document.getElementById('ckb'); if(!el)return;
+  var lang;try{lang=localStorage.getItem('tp_lang')||localStorage.getItem('tp-lang')||(navigator.language||'en').slice(0,2);}catch(e){lang='en';}
+  lang=(lang==='de')?'de':'en';
+  var T={
+    de:{h:'Wir schätzen deine Privatsphäre',t:'Wir verwenden Cookies, um dir das beste Erlebnis zu bieten und unsere Kunst den richtigen Menschen zu zeigen. Du entscheidest.',ok:'Alle akzeptieren',no:'Nur notwendige',link:'Mehr im Datenschutz'},
+    en:{h:'We value your privacy',t:'We use cookies to give you the best experience and to share our art with the right people. The choice is yours.',ok:'Accept all',no:'Only necessary',link:'Privacy notice'}
+  }[lang];
+  document.getElementById('ckbH').textContent=T.h;
+  document.getElementById('ckbTxt').textContent=T.t;
+  document.getElementById('ckbAccept').textContent=T.ok;
+  document.getElementById('ckbDecline').textContent=T.no;
+  document.getElementById('ckbLink').textContent=T.link;
+  var choice;try{choice=localStorage.getItem('tp_consent');}catch(e){}
+  if(choice!=='yes'&&choice!=='no') setTimeout(function(){el.classList.add('show');},650);
+  function set(v){try{localStorage.setItem('tp_consent',v);}catch(e){} el.classList.remove('show'); if(v==='yes'&&window.tpLoadPinterest)window.tpLoadPinterest();}
+  document.getElementById('ckbAccept').addEventListener('click',function(){set('yes');});
+  document.getElementById('ckbDecline').addEventListener('click',function(){set('no');});
+})();
+</script>
+</body>
+</html>

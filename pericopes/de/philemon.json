@@ -1,0 +1,83 @@
+{
+  "book": "philemon",
+  "book_name": "Philemon",
+  "total": 5,
+  "bible_source_key": "web",
+  "bible_version": "ELB1871",
+  "bible_version_full": "Elberfelder 1871",
+  "bible_license_name": "Public Domain",
+  "source_file": "C:/Users/canzm/Desktop/bible-project-v2/data/web_raw.json",
+  "pericopes": [
+    {
+      "id": 1,
+      "title": "Philemon 1:1-6",
+      "verses": "Philemon 1,1-6",
+      "slug": "philemon-1-1-6",
+      "keywords": [
+        "paul",
+        "prisoner",
+        "christ",
+        "jesus",
+        "timothy"
+      ],
+      "text": "Paulus, ein Gefangener Christi Jesu, und Timotheus, der Bruder, Philemon, dem Geliebten und unserem Mitarbeiter, und Appia, der Schwester, und Archippus, unserem Mitkämpfer, und der Versammlung, die in deinem Hause ist: Gnade euch und Friede von Gott, unserem Vater, und dem Herrn Jesus Christus! Ich danke meinem Gott, indem ich allezeit deiner erwähne in meinen Gebeten, da ich höre von deiner Liebe und von dem Glauben, den du an den Herrn Jesus und zu allen Heiligen hast, daß die Gemeinschaft deines Glaubens wirksam werde in der Anerkennung alles Guten, welches in uns ist gegen Christum Jesum ."
+    },
+    {
+      "id": 2,
+      "title": "Philemon 1:7-12",
+      "verses": "Philemon 1,7-12",
+      "slug": "philemon-1-7-12",
+      "keywords": [
+        "much",
+        "comfort",
+        "love",
+        "because",
+        "hearts"
+      ],
+      "text": "Denn wir haben große Freude und großen Trost durch deine Liebe, weil die Herzen der Heiligen durch dich, Bruder, erquickt worden sind. Deshalb, obgleich ich große Freimütigkeit in Christo habe, dir zu gebieten, was sich geziemt, so bitte ich doch vielmehr um der Liebe willen, da ich nun ein solcher bin, wie Paulus, der Alte, jetzt aber auch ein Gefangener Jesu Christi. Ich bitte dich für mein Kind, das ich gezeugt habe in den Banden, Onesimus, der dir einst unnütz war, jetzt aber dir und mir nützlich ist, den ich zu dir zurückgesandt habe-ihn, das ist mein Herz;"
+    },
+    {
+      "id": 3,
+      "title": "Philemon 1:13-17",
+      "verses": "Philemon 1,13-17",
+      "slug": "philemon-1-13-17",
+      "keywords": [
+        "whom",
+        "desired",
+        "keep",
+        "behalf",
+        "might"
+      ],
+      "text": "welchen ich bei mir behalten wollte, auf daß er statt deiner mir diene in den Banden des Evangeliums. Aber ohne deinen Willen wollte ich nichts tun, auf daß deine Wohltat nicht wie gezwungen, sondern freiwillig sei. Denn vielleicht ist er deswegen für eine Zeit von dir getrennt gewesen, auf daß du ihn für immer besitzen mögest, nicht länger als einen Sklaven, sondern mehr als einen Sklaven, als einen geliebten Bruder, besonders für mich, wieviel mehr aber für dich, sowohl im Fleische als im Herrn. Wenn du mich nun für deinen Genossen hältst, so nimm ihn auf wie mich."
+    },
+    {
+      "id": 4,
+      "title": "Philemon 1:18-23",
+      "verses": "Philemon 1,18-23",
+      "slug": "philemon-1-18-23",
+      "keywords": [
+        "wronged",
+        "owes",
+        "anything",
+        "account",
+        "paul"
+      ],
+      "text": "Wenn er dir aber irgend ein Unrecht getan hat, oder dir etwas schuldig ist, so rechne dies mir an. Ich, Paulus, habe es mit meiner Hand geschrieben, ich will bezahlen; daß ich dir nicht sage, daß du auch dich selbst mir schuldig bist. Ja, Bruder, ich möchte gern Nutzen an dir haben im Herrn; erquicke mein Herz in Christo. Da ich deinem Gehorsam vertraue, so habe ich dir geschrieben, indem ich weiß, daß du auch mehr tun wirst, als ich sage. Zugleich aber bereite mir auch eine Herberge, denn ich hoffe, daß ich durch eure Gebete euch werde geschenkt werden. Es grüßt dich Epaphras, mein Mitgefangener in Christo Jesu,"
+    },
+    {
+      "id": 5,
+      "title": "Philemon 1:24-25",
+      "verses": "Philemon 1,24-25",
+      "slug": "philemon-1-24-25",
+      "keywords": [
+        "mark",
+        "aristarchus",
+        "demas",
+        "luke",
+        "fellow"
+      ],
+      "text": "Markus, Aristarchus, Demas, Lukas, meine Mitarbeiter. Die Gnade unseres Herrn Jesus Christus sei mit eurem Geiste!"
+    }
+  ],
+  "lang": "de"
+}

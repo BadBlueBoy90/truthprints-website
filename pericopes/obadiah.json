@@ -1,0 +1,110 @@
+{
+  "book": "obadiah",
+  "book_name": "Obadiah",
+  "total": 7,
+  "bible_source_key": "web",
+  "bible_version": "WEB",
+  "bible_version_full": "World English Bible",
+  "bible_license_name": "Public Domain",
+  "source_file": "C:/Users/canzm/Desktop/bible-project-v2/data/web_raw.json",
+  "pericopes": [
+    {
+      "id": 1,
+      "title": "Obadiah 1:1-3",
+      "verses": "Obadiah 1:1-3",
+      "slug": "obadiah-1-1-3",
+      "keywords": [
+        "vision",
+        "obadiah",
+        "lord",
+        "says",
+        "about"
+      ],
+      "text": "The vision of Obadiah. This is what the Lord GOD says about Edom. We have heard news from the LORD, and an ambassador is sent among the nations, saying, “Arise, and let’s rise up against her in battle. Behold, I have made you small among the nations. You are greatly despised. The pride of your heart has deceived you, you who dwell in the clefts of the rock, whose habitation is high, who says in his heart, ‘Who will bring me down to the ground?’"
+    },
+    {
+      "id": 2,
+      "title": "Obadiah 1:4-6",
+      "verses": "Obadiah 1:4-6",
+      "slug": "obadiah-1-4-6",
+      "keywords": [
+        "though",
+        "mount",
+        "high",
+        "eagle",
+        "nest"
+      ],
+      "text": "Though you mount on high as the eagle, and though your nest is set among the stars, I will bring you down from there,” says the LORD. “If thieves came to you, if robbers by night—oh, what disaster awaits you—wouldn’t they only steal until they had enough? If grape pickers came to you, wouldn’t they leave some gleaning grapes? How Esau will be ransacked! How his hidden treasures are sought out!"
+    },
+    {
+      "id": 3,
+      "title": "Obadiah 1:7-9",
+      "verses": "Obadiah 1:7-9",
+      "slug": "obadiah-1-7-9",
+      "keywords": [
+        "alliance",
+        "brought",
+        "even",
+        "border",
+        "peace"
+      ],
+      "text": "All the men of your alliance have brought you on your way, even to the border. The men who were at peace with you have deceived you, and prevailed against you. Friends who eat your bread lay a snare under you. There is no understanding in him.” “Won’t I in that day”, says the LORD, “destroy the wise men out of Edom, and understanding out of the mountain of Esau? Your mighty men, Teman, will be dismayed, to the end that everyone may be cut off from the mountain of Esau by slaughter."
+    },
+    {
+      "id": 4,
+      "title": "Obadiah 1:10-12",
+      "verses": "Obadiah 1:10-12",
+      "slug": "obadiah-1-10-12",
+      "keywords": [
+        "violence",
+        "done",
+        "brother",
+        "jacob",
+        "shame"
+      ],
+      "text": "For the violence done to your brother Jacob, shame will cover you, and you will be cut off forever. In the day that you stood on the other side, in the day that strangers carried away his substance and foreigners entered into his gates and cast lots for Jerusalem, even you were like one of them. But don’t look down on your brother in the day of his disaster, and don’t rejoice over the children of Judah in the day of their destruction. Don’t speak proudly in the day of distress."
+    },
+    {
+      "id": 5,
+      "title": "Obadiah 1:13-15",
+      "verses": "Obadiah 1:13-15",
+      "slug": "obadiah-1-13-15",
+      "keywords": [
+        "enter",
+        "into",
+        "gate",
+        "people",
+        "calamity"
+      ],
+      "text": "Don’t enter into the gate of my people in the day of their calamity. Don’t look down on their affliction in the day of their calamity, neither seize their wealth on the day of their calamity. Don’t stand in the crossroads to cut off those of his who escape. Don’t deliver up those of his who remain in the day of distress. For the day of the LORD is near all the nations! As you have done, it will be done to you. Your deeds will return upon your own head."
+    },
+    {
+      "id": 6,
+      "title": "Obadiah 1:16-18",
+      "verses": "Obadiah 1:16-18",
+      "slug": "obadiah-1-16-18",
+      "keywords": [
+        "drunk",
+        "holy",
+        "mountain",
+        "nations",
+        "drink"
+      ],
+      "text": "For as you have drunk on my holy mountain, so all the nations will drink continually. Yes, they will drink, swallow down, and will be as though they had not been. But in Mount Zion, there will be those who escape, and it will be holy. The house of Jacob will possess their possessions. The house of Jacob will be a fire, the house of Joseph a flame, and the house of Esau for stubble. They will burn among them and devour them. There will not be any remaining to the house of Esau.” Indeed, the LORD has spoken."
+    },
+    {
+      "id": 7,
+      "title": "Obadiah 1:19-21",
+      "verses": "Obadiah 1:19-21",
+      "slug": "obadiah-1-19-21",
+      "keywords": [
+        "those",
+        "south",
+        "possess",
+        "mountain",
+        "esau"
+      ],
+      "text": "Those of the South will possess the mountain of Esau, and those of the lowland, the Philistines. They will possess the field of Ephraim, and the field of Samaria. Benjamin will possess Gilead. The captives of this army of the children of Israel, who are among the Canaanites, will possess even to Zarephath; and the captives of Jerusalem, who are in Sepharad, will possess the cities of the Negev. Saviors will go up on Mount Zion to judge the mountains of Esau, and the kingdom will be the LORD’s."
+    }
+  ]
+}

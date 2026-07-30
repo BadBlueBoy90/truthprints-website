@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TruthPrints · Mehr erfahren — Die ganze Vision</title>
+<meta name="description" content="Warum TruthPrints existiert, wie jede Tafel entsteht und die ganze illustrierte Bibliothek — vom vollendeten Neuen Testament bis zum noch entstehenden Alten Testament.">
+<meta property="og:title" content="TruthPrints · Mehr erfahren">
+<meta property="og:description" content="Die ganze Vision: warum es das gibt, wie jede Tafel entsteht, und die komplette illustrierte Bibliothek.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://truthprints.de/mehr-erfahren.html">
+<meta property="og:image" content="https://truthprints.de/assets/hero-dawn.jpg">
+<link rel="icon" type="image/png" href="brand/truthprints-favicon.png">
+<link rel="preload" href="fonts/cormorant-garamond-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/eb-garamond-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="site.css?v=181">
+<style>
+/* page head */
+.pagehead{position:relative;padding:clamp(140px,18vh,220px) 0 clamp(48px,7vw,96px);border-bottom:1px solid var(--rules);overflow:hidden}
+.pagehead .secbg-img{background-image:url('assets/bg/christ-light.jpg');filter:brightness(.4) saturate(.9)}
+.pagehead .wrap{position:relative;max-width:1000px}
+.ph-back{display:inline-flex;align-items:center;gap:9px;font-family:var(--fd);font-style:italic;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--pm);margin-bottom:26px;transition:color .3s}
+.ph-back:hover{color:var(--gb)}
+.ph-h{font-family:var(--fd);font-weight:500;font-size:clamp(38px,6.4vw,86px);line-height:1.02;letter-spacing:-.015em;color:var(--p);margin:14px 0 clamp(22px,2.6vw,34px)}
+.ph-h em{font-style:italic;color:var(--gb)}
+.ph-lead{font-family:var(--fb);font-size:clamp(17px,1.7vw,21px);line-height:1.66;color:var(--pd);max-width:60ch}
+/* the project block on this page */
+.tp-proj{padding:clamp(64px,9vw,130px) 0}
+.mani-trip{margin-top:clamp(44px,5vw,72px)}
+</style>
+</head>
+<body>
+<div class="filmgrain" aria-hidden="true"></div>
+<div id="cur"></div>
+<div id="curglow"></div>
+<div class="prog"><div class="prog-b" id="pb"></div></div>
+
+<!-- MOBILE NAV -->
+<div class="mnav" id="mnav">
+  <a href="index.html#why" onclick="closeMnav()"><span data-en>Why</span><span data-de>Warum</span></a>
+  <a href="index.html#plates" onclick="closeMnav()"><span data-en>Plates</span><span data-de>Tafeln</span></a>
+  <a href="index.html#wallart" onclick="closeMnav()">Wallart</a>
+  <a href="bible.html" onclick="closeMnav()"><span data-en>Read</span><span data-de>Lesen</span></a>
+  <a href="bloom/" onclick="closeMnav()">Bloom</a>
+  <a href="mehr-erfahren.html" onclick="closeMnav()" class="act"><span data-en>Learn more</span><span data-de>Mehr erfahren</span></a>
+  <a href="free/" onclick="closeMnav()" style="color:var(--gb)"><span data-en>Free Gospel</span><span data-de>Gratis-Evangelium</span></a>
+  <a href="shop.html" class="mo" onclick="closeMnav()">Shop</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="brand"><span class="bmark"><img src="brand/truthprints-mark.svg" alt="TruthPrints"></span><span class="bname">Truth<b>Prints</b></span></a>
+  <div class="nlinks">
+    <a href="index.html#plates"><span data-en>Plates</span><span data-de>Tafeln</span></a>
+    <a href="index.html#wallart">Wallart</a>
+    <a href="bible.html"><span data-en>Read</span><span data-de>Lesen</span></a>
+    <a href="bloom/">Bloom</a>
+    <a href="mehr-erfahren.html" class="act"><span data-en>Learn&nbsp;more</span><span data-de>Mehr&nbsp;erfahren</span></a>
+    <a href="free/" style="color:var(--gb)"><span data-en>Free&nbsp;Gospel</span><span data-de>Gratis-Evangelium</span></a>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <button class="lang-btn" id="langBtn" aria-label="Toggle language">
+      <span class="lc on" id="lcEn">EN</span><span class="sep">·</span><span class="lc" id="lcDe">DE</span>
+    </button>
+    <a href="shop.html" class="nord">Shop</a>
+  </div>
+  <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- PAGE HEAD -->
+<header class="pagehead">
+  <div class="secbg-img"></div>
+  <div class="secbg-veil"></div>
+  <div class="wrap">
+    <a href="index.html" class="ph-back">&#8592; <span data-en>Back to home</span><span data-de>Zur Startseite</span></a>
+    <div class="slabel rv"><span class="bar"></span><span data-en>The whole vision</span><span data-de>Die ganze Vision</span></div>
+    <h1 class="ph-h rv d1"><span data-en>One woman, painting <em>the entire Bible.</em></span><span data-de>Eine Frau malt <em>die ganze Bibel.</em></span></h1>
+    <p class="ph-lead rv d1"><span data-en>Why this exists, how each plate is made, and the whole library &mdash; from the finished New Testament to the Old Testament still in the making.</span><span data-de>Warum es das gibt, wie jede Tafel entsteht, und die ganze Bibliothek &mdash; vom vollendeten Neuen Testament bis zum noch entstehenden Alten Testament.</span></p>
+  </div>
+</header>
+
+<!-- THE PROJECT -->
+<section class="tp-proj mani" id="project-intro">
+  <div class="wrap">
+    <div class="mani-grid">
+      <div class="mani-left rv">
+        <div class="slabel"><span class="num">i.</span><span class="bar"></span><span data-en>The Project</span><span data-de>Das Projekt</span></div>
+        <h2 class="h2"><span data-en>The Bible deserves to be read like <em>the most important book</em> ever written.</span><span data-de>Die Bibel verdient es, gelesen zu werden wie <em>das wichtigste Buch,</em> das je geschrieben wurde.</span></h2>
+        <div class="mani-body" style="margin-top:clamp(28px,3vw,42px)">
+          <div data-en>
+            <p>The most beautiful illustrated Bible ever printed — not a collector's curiosity, but a companion for reading, for giving, for keeping. The whole New Testament is <strong>complete</strong>; the Old Testament follows, one book at a time.</p>
+          </div>
+          <div data-de>
+            <p>Die schönste illustrierte Bibel, die je gedruckt wurde — kein Sammlerstück hinter Glas, sondern ein Begleiter zum Lesen, zum Verschenken, zum Bewahren. Das ganze Neue Testament ist <strong>vollendet</strong>; das Alte Testament folgt, Buch für Buch.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mani-right rv d1">
+        <figure class="mani-hero">
+          <img src="assets/matthew/plates/p244.jpg" alt="The risen Christ commissions his disciples">
+          <figcaption>
+            <span class="mh-ref">Matthew 28 · 20</span>
+            <span class="mh-verse" data-en>"I am with you always, even to the end of the age."</span><span class="mh-verse" data-de>„Ich bin bei euch alle Tage bis an der Welt Ende."</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="mani-trip rv d2">
+      <figure>
+        <img src="assets/matthew/plates/p17.jpg" alt="The baptism of Jesus">
+        <figcaption><span data-en>The Baptism · Matthew 3</span><span data-de>Die Taufe · Matthäus 3</span></figcaption>
+      </figure>
+      <figure>
+        <img src="assets/matthew/plates/p129.jpg" alt="The Transfiguration">
+        <figcaption><span data-en>The Transfiguration · Matthew 17</span><span data-de>Die Verklärung · Matthäus 17</span></figcaption>
+      </figure>
+      <figure>
+        <img src="assets/matthew/plates/p214.jpg" alt="The Last Supper">
+        <figcaption><span data-en>The Last Supper · Matthew 26</span><span data-de>Das Abendmahl · Matthäus 26</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- THE VISION -->
+<section class="vision secbg" id="vision">
+  <div class="secbg-img" style="background-image:url('assets/bg/christ-light.jpg')"></div>
+  <div class="secbg-veil"></div>
+  <div class="wrap">
+    <div class="slabel rv"><span class="num">ii.</span><span class="bar"></span><span data-en>Why This Exists</span><span data-de>Warum es das gibt</span></div>
+    <p class="vision-statement rv d1"><span data-en>The most important book ever written deserves to be <em>seen</em> as it is read — and to stay within reach of everyone who seeks it. Not, first of all, a commercial venture, but a lifetime labour of love.</span><span data-de>Das wichtigste Buch, das je geschrieben wurde, verdient es, <em>gesehen</em> zu werden, während man es liest — und für jeden erreichbar zu bleiben, der es sucht. Kein kommerzielles Vorhaben, sondern ein lebenslanges Werk der Liebe.</span></p>
+    <div class="vision-pillars rv d2">
+      <div class="vpill"><span class="vp-num">i</span><span class="vp-h"><span data-en>Beautiful</span><span data-de>Schön</span></span><span class="vp-p"><span data-en>Every passage an original painting, in the chiaroscuro tradition of Caravaggio and Rembrandt.</span><span data-de>Jede Stelle ein eigenes Gemälde, im Chiaroscuro der Tradition von Caravaggio und Rembrandt.</span></span></div>
+      <div class="vpill"><span class="vp-num">ii</span><span class="vp-h"><span data-en>Accessible</span><span data-de>Zugänglich</span></span><span class="vp-p"><span data-en>Affordable digital editions and fairly priced print, so cost is never a barrier to the Word.</span><span data-de>Erschwingliche digitale Ausgaben und faire Druckpreise. Kosten sind nie eine Hürde zum Wort.</span></span></div>
+      <div class="vpill"><span class="vp-num">iii</span><span class="vp-h"><span data-en>Faithful</span><span data-de>Treu</span></span><span class="vp-p"><span data-en>Reverent to the text: the face of Christ unseen, God never figured as man, angels rendered as light.</span><span data-de>Dem Text treu: das Angesicht Christi ungezeigt, Gott nie als Mensch dargestellt, Engel als Licht.</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE LIBRARY / SERIES -->
+<section class="library" id="project">
+  <div class="wrap">
+    <div class="lib-head">
+      <div class="rv">
+        <div class="slabel"><span class="num">iii.</span><span class="bar"></span><span data-en>The Illustrated Bible</span><span data-de>Die Illustrierte Bibel</span></div>
+        <h2 class="h2"><span data-en>The whole library, <em>one volume at a time.</em></span><span data-de>Die ganze Bibliothek, <em>Band für Band.</em></span></h2>
+      </div>
+      <div class="lib-legend rv d1">
+        <span><i class="nt"></i><span data-en>New Testament</span><span data-de>Neues Testament</span></span>
+        <span><i class="at"></i><span data-en>Old Testament</span><span data-de>Altes Testament</span></span>
+      </div>
+    </div>
+
+    <div class="lib-group-t rv"><span data-en>New Testament · NT I – IX</span><span data-de>Neues Testament · NT I – IX</span><span class="ln3"></span></div>
+
+    <div style="font-family:var(--fd);font-style:italic;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--pm);margin:10px 0 16px;opacity:.75" class="rv">
+      <span data-en>The Four Gospels</span><span data-de>Die vier Evangelien</span>
+    </div>
+    <div class="lib-grid">
+      <div class="band done-band rv">
+        <div class="band-spine">I</div>
+        <div class="band-body"><span class="band-roman">NT · I</span><span class="band-name"><span data-en>The Gospel of Matthew</span><span data-de>Das Evangelium nach Matthäus</span></span><span class="band-books"><span data-en>28 chapters · 244 plates</span><span data-de>28 Kapitel · 244 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+        <span class="band-tag"><span data-en>Available</span><span data-de>Verfügbar</span></span>
+      </div>
+      <div class="band done-band rv">
+        <div class="band-spine">II</div>
+        <div class="band-body"><span class="band-roman">NT · II</span><span class="band-name"><span data-en>The Gospel of Mark</span><span data-de>Das Evangelium nach Markus</span></span><span class="band-books"><span data-en>16 chapters · 151 plates</span><span data-de>16 Kapitel · 151 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+      <div class="band done-band rv">
+        <div class="band-spine">III</div>
+        <div class="band-body"><span class="band-roman">NT · III</span><span class="band-name"><span data-en>The Gospel of Luke</span><span data-de>Das Evangelium nach Lukas</span></span><span class="band-books"><span data-en>24 chapters · 256 plates</span><span data-de>24 Kapitel · 256 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+      <div class="band done-band rv">
+        <div class="band-spine">IV</div>
+        <div class="band-body"><span class="band-roman">NT · IV</span><span class="band-name"><span data-en>The Gospel of John</span><span data-de>Das Evangelium nach Johannes</span></span><span class="band-books"><span data-en>21 chapters · 199 plates</span><span data-de>21 Kapitel · 199 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+    </div>
+
+    <div style="font-family:var(--fd);font-style:italic;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--pm);margin:clamp(32px,4vw,52px) 0 16px;opacity:.75" class="rv">
+      <span data-en>Acts · Paul's Letters · General Epistles · Revelation</span><span data-de>Apostelgeschichte · Paulusbriefe · Allgemeine Briefe · Offenbarung</span>
+    </div>
+    <div class="lib-grid">
+      <div class="band done-band rv">
+        <div class="band-spine">V</div>
+        <div class="band-body"><span class="band-roman">NT · V</span><span class="band-name"><span data-en>The Acts of the Apostles</span><span data-de>Die Apostelgeschichte</span></span><span class="band-books"><span data-en>28 chapters · 248 plates</span><span data-de>28 Kapitel · 248 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+      <div class="band done-band rv">
+        <div class="band-spine">VI</div>
+        <div class="band-body"><span class="band-roman">NT · VI</span><span class="band-name"><span data-en>Paul · Romans to Galatians</span><span data-de>Paulus · Römer bis Galater</span></span><span class="band-books"><span data-en>Romans · 1–2 Corinthians · Galatians · 302 plates</span><span data-de>Römer · 1–2 Korinther · Galater · 302 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+      <div class="band done-band rv">
+        <div class="band-spine">VII</div>
+        <div class="band-body"><span class="band-roman">NT · VII</span><span class="band-name"><span data-en>Paul · Ephesians to Philemon</span><span data-de>Paulus · Epheser bis Philemon</span></span><span class="band-books"><span data-en>Ephesians · Philippians · Colossians · Thessalonians · Timothy · Titus · Philemon · 171 plates</span><span data-de>Epheser · Philipper · Kolosser · Thessalonicher · Timotheus · Titus · Philemon · 171 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+      <div class="band done-band rv">
+        <div class="band-spine">VIII</div>
+        <div class="band-body"><span class="band-roman">NT · VIII</span><span class="band-name"><span data-en>Hebrews to Jude</span><span data-de>Hebräer bis Judas</span></span><span class="band-books"><span data-en>Hebrews · James · 1–2 Peter · 1–3 John · Jude · 184 plates</span><span data-de>Hebräer · Jakobus · 1–2 Petrus · 1–3 Johannes · Judas · 184 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+      <div class="band done-band rv">
+        <div class="band-spine">IX</div>
+        <div class="band-body"><span class="band-roman">NT · IX</span><span class="band-name"><span data-en>The Revelation</span><span data-de>Die Offenbarung</span></span><span class="band-books"><span data-en>Apocalypse of John · 130 plates</span><span data-de>Apokalypse des Johannes · 130 Tafeln</span></span><span class="band-st done"><span class="dot"></span><span data-en>Complete</span><span data-de>Vollendet</span></span></div>
+      </div>
+    </div>
+
+    <p class="rv" style="margin-top:clamp(30px,4vw,48px);font-family:var(--fd);font-style:italic;font-size:16px;color:var(--pm);letter-spacing:.04em">
+      <span data-en>The Old Testament follows, book by book — Genesis is already taking shape.</span><span data-de>Das Alte Testament folgt, Buch für Buch — die Genesis entsteht bereits.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap secbg" id="roadmap">
+  <div class="secbg-img" style="background-image:url('assets/bg/dawn.jpg')"></div>
+  <div class="secbg-veil"></div>
+  <div class="wrap">
+    <div class="slabel rv"><span class="num">iv.</span><span class="bar"></span><span data-en>The Complete Vision</span><span data-de>Die vollständige Vision</span></div>
+    <h2 class="h2 rv d1"><span data-en>From <em>Genesis</em> to Revelation. All 66 books.</span><span data-de>Von <em>Genesis</em> bis Offenbarung. Alle 66 Bücher.</span></h2>
+    <p class="rv d2" style="font-family:var(--fb);font-size:17px;line-height:1.75;color:var(--pd);max-width:64ch;margin-top:20px"><span data-en>The Protestant canon — the received text, 39 books of the Old Testament and 27 of the New. Every passage illustrated in the tradition of the old masters. This is a lifetime work.</span><span data-de>Der protestantische Kanon — der überlieferte Text, 39 Bücher des Alten und 27 des Neuen Testaments. Jede Stelle illustriert in der Tradition der alten Meister. Dies ist ein Lebenswerk.</span></p>
+    <div class="rm-progress rv d2">
+      <div class="rm-pbar"><span class="rm-pfill" style="width:41%"></span></div>
+      <div class="rm-plabel"><span><b>27</b> <span data-en>of 66 books illustrated</span><span data-de>von 66 Büchern illustriert</span></span><span><span data-en>The New Testament complete · 1885 plates</span><span data-de>Das Neue Testament vollendet · 1885 Tafeln</span></span></div>
+    </div>
+    <div class="rm-grid" style="margin-top:clamp(48px,6vw,80px)">
+
+      <div class="rm-item rv">
+        <div class="rm-inner">
+          <div>
+            <div class="rm-q"><span data-en>Next · Old Testament</span><span data-de>Als Nächstes · Altes Testament</span></div>
+            <div class="rm-title"><em><span data-en>Genesis to Malachi</span><span data-de>Genesis bis Maleachi</span></em></div>
+            <div class="rm-status"><span class="sdot"></span><span data-en>39 books · in progress</span><span data-de>39 Bücher · in Arbeit</span></div>
+          </div>
+          <div class="rm-desc"><span data-en>From creation to the last prophet — the whole Old Testament, book by book. Genesis, Exodus and the histories are already being illustrated.</span><span data-de>Von der Schöpfung bis zum letzten Propheten — das ganze Alte Testament, Buch für Buch. Genesis, Exodus und die Geschichtsbücher werden bereits illustriert.</span></div>
+        </div>
+      </div>
+
+      <div class="rm-item live rv">
+        <div class="rm-inner">
+          <div>
+            <div class="rm-q">2026 · <span data-en>New Testament · The Four Gospels</span><span data-de>Neues Testament · Die vier Evangelien</span></div>
+            <div class="rm-title"><span data-en>Matthew · Mark · Luke · <em>John</em></span><span data-de>Matthäus · Markus · Lukas · <em>Johannes</em></span></div>
+            <div class="rm-status done"><span class="sdot"></span><span data-en>NT · I–IV complete · 850 plates · available now</span><span data-de>NT · I–IV vollendet · 850 Tafeln · jetzt verfügbar</span></div>
+          </div>
+          <div class="rm-desc"><span data-en>All four Gospels are complete and available — Matthew, Mark, Luke and John. 850 plates, four volumes, one life of Christ.</span><span data-de>Alle vier Evangelien sind vollendet und verfügbar — Matthäus, Markus, Lukas und Johannes. 850 Tafeln, vier Bände, ein Leben Christi.</span></div>
+        </div>
+      </div>
+
+      <div class="rm-item live rv">
+        <div class="rm-inner">
+          <div>
+            <div class="rm-q">2026 · <span data-en>New Testament · Acts &amp; Paul's Letters</span><span data-de>Neues Testament · Apostelgeschichte &amp; Paulusbriefe</span></div>
+            <div class="rm-title"><span data-en>Acts · <em>Paul's Letters</em></span><span data-de>Apostelgeschichte · <em>Paulusbriefe</em></span></div>
+            <div class="rm-status done"><span class="sdot"></span><span data-en>NT · V–VII complete · available now</span><span data-de>NT · V–VII vollendet · jetzt verfügbar</span></div>
+          </div>
+          <div class="rm-desc"><span data-en>Acts of the Apostles and all fourteen Pauline letters — complete across three volumes. 473 plates.</span><span data-de>Die Apostelgeschichte und alle vierzehn Paulusbriefe — vollendet in drei Bänden. 473 Tafeln.</span></div>
+        </div>
+      </div>
+
+      <div class="rm-item live rv">
+        <div class="rm-inner">
+          <div>
+            <div class="rm-q">2026 · <span data-en>New Testament · General Epistles &amp; Revelation</span><span data-de>Neues Testament · Allgemeine Briefe &amp; Offenbarung</span></div>
+            <div class="rm-title"><span data-en>General Epistles · <em>Revelation</em></span><span data-de>Allgemeine Briefe · <em>Offenbarung</em></span></div>
+            <div class="rm-status done"><span class="sdot"></span><span data-en>NT · VIII–IX complete · available now</span><span data-de>NT · VIII–IX vollendet · jetzt verfügbar</span></div>
+          </div>
+          <div class="rm-desc"><span data-en>Hebrews through Jude, and the Revelation — complete. The New Testament is finished; the Old Testament follows.</span><span data-de>Hebräer bis Judas und die Offenbarung — vollendet. Das Neue Testament ist abgeschlossen; das Alte Testament folgt.</span></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:clamp(48px,6vw,84px)">
+      <a href="index.html#shop" class="btn-g rv"><span data-en>See the editions</span><span data-de>Zu den Ausgaben</span> <span class="ar"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fgrid">
+    <div class="fc">
+      <div class="brand" style="margin-bottom:18px"><span class="bmark"><img src="brand/truthprints-mark.svg" alt="TruthPrints"></span><span class="bname">Truth<b>Prints</b></span></div>
+      <p><span data-en>A project by Lia, a born-again Christian illustrating the entire Bible, one volume at a time, so the Word might be met with beauty and within reach of all.</span><span data-de>Ein Projekt von Lia, einer wiedergeborenen Christin, die die gesamte Bibel illustriert, Band für Band, damit das Wort in Schönheit und für alle erreichbar begegne.</span></p>
+    </div>
+    <div class="fc">
+      <h4><span data-en>The Library</span><span data-de>Die Bibliothek</span></h4>
+      <ul>
+        <li><a href="index.html#shop"><span data-en>The Gospels</span><span data-de>Die Evangelien</span></a></li>
+        <li><a href="mehr-erfahren.html#project"><span data-en>Letters of Paul</span><span data-de>Briefe des Paulus</span></a></li>
+        <li><a href="mehr-erfahren.html#project"><span data-en>Revelation</span><span data-de>Die Offenbarung</span></a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4><span data-en>The Edition</span><span data-de>Die Ausgabe</span></h4>
+      <ul>
+        <li><a href="mehr-erfahren.html"><span data-en>About the Project</span><span data-de>Über das Projekt</span></a></li>
+        <li><a href="index.html#plates"><span data-en>The Plates</span><span data-de>Die Tafeln</span></a></li>
+        <li><a href="bible.html"><span data-en>Read a Passage</span><span data-de>Eine Stelle lesen</span></a></li>
+        <li><a href="index.html#shop"><span data-en>Order</span><span data-de>Bestellen</span></a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4><span data-en>Correspond</span><span data-de>Kontakt</span></h4>
+      <ul>
+        <li><a href="mailto:hello.truthprints@gmail.com">hello.truthprints@gmail.com</a></li>
+        <li><a href="index.html#newsletter"><span data-en>Newsletter</span><span data-de>Newsletter</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© MMXXVI TruthPrints</span>
+    <span><span data-en>Scripture: World English Bible &amp; Elberfelder 1871, both Public Domain</span><span data-de>Schrift: World English Bible &amp; Elberfelder 1871, beide gemeinfrei</span></span>
+    <span><span data-en>The Word, illustrated</span><span data-de>Das Wort, illustriert</span></span>
+  </div>
+  <div style="max-width:1200px;margin:34px auto 0;padding-top:22px;border-top:1px solid var(--rules);display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:center;font-family:var(--fb);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pm)">
+    <a href="impressum.html" style="color:var(--pd)">Impressum</a>
+    <a href="agb.html" style="color:var(--pd)">AGB</a>
+    <a href="widerruf.html" style="color:var(--pd)"><span data-en>Right of Withdrawal</span><span data-de>Widerruf</span></a>
+    <a href="impressum.html#datenschutz" style="color:var(--pd)"><span data-en>Privacy</span><span data-de>Datenschutz</span></a>
+    <span>© 2026 TruthPrints</span>
+  </div>
+</footer>
+
+<script>
+/* language — synced with the main site via localStorage('tp_lang') */
+(function(){
+  var de=false; try{ de=localStorage.getItem('tp_lang')==='de'; }catch(e){}
+  function apply(d){
+    document.body.classList.toggle('de',d);
+    var en=document.getElementById('lcEn'),dn=document.getElementById('lcDe');
+    if(en)en.classList.toggle('on',!d); if(dn)dn.classList.toggle('on',d);
+    document.documentElement.lang=d?'de':'en';
+    try{localStorage.setItem('tp_lang',d?'de':'en');}catch(e){}
+  }
+  apply(de);
+  var b=document.getElementById('langBtn');
+  if(b)b.addEventListener('click',function(){ apply(!document.body.classList.contains('de')); });
+})();
+/* nav scroll state + progress bar */
+(function(){
+  var n=document.getElementById('nav'),pb=document.getElementById('pb');
+  function on(){ if(n)n.classList.toggle('s',scrollY>40);
+    if(pb){var h=document.documentElement.scrollHeight-innerHeight;pb.style.width=(h>0?(scrollY/h*100):0)+'%';}
+  }
+  on(); addEventListener('scroll',on,{passive:true}); addEventListener('resize',on,{passive:true});
+})();
+/* mobile nav */
+(function(){
+  var h=document.getElementById('ham'),m=document.getElementById('mnav'); if(!h||!m)return;
+  h.addEventListener('click',function(){var o=h.classList.toggle('o');m.classList.toggle('o',o);document.body.style.overflow=o?'hidden':'';});
+  window.closeMnav=function(){h.classList.remove('o');m.classList.remove('o');document.body.style.overflow='';};
+})();
+/* reveal on scroll */
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -4% 0px'});
+  els.forEach(function(e){io.observe(e);});
+})();
+/* custom cursor + golden pointer glow */
+(function(){
+  if(!matchMedia('(hover:hover)').matches)return;
+  var cur=document.getElementById('cur'),glow=document.getElementById('curglow');
+  var gx=innerWidth/2,gy=innerHeight/2,tx=gx,ty=gy,raf=0;
+  function loop(){ gx+=(tx-gx)*.16; gy+=(ty-gy)*.16;
+    if(glow)glow.style.transform='translate('+gx+'px,'+gy+'px)';
+    if(Math.abs(tx-gx)>.4||Math.abs(ty-gy)>.4)raf=requestAnimationFrame(loop); else raf=0;
+  }
+  function kick(){ if(!raf)raf=requestAnimationFrame(loop); }
+  addEventListener('mousemove',function(e){
+    tx=e.clientX;ty=e.clientY;
+    if(cur){cur.style.left=tx+'px';cur.style.top=ty+'px';cur.classList.add('vis');}
+    if(glow)glow.classList.add('vis'); kick();
+  });
+  addEventListener('mousedown',function(){cur&&cur.classList.add('p');});
+  addEventListener('mouseup',function(){cur&&cur.classList.remove('p');});
+  function bind(){document.querySelectorAll('a,button,.band').forEach(function(el){
+    if(el._cb)return; el._cb=1;
+    el.addEventListener('mouseenter',function(){cur&&cur.classList.add('h');});
+    el.addEventListener('mouseleave',function(){cur&&cur.classList.remove('h');});
+  });}
+  bind();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="TruthPrints"><defs>
+    <linearGradient id="g" x1="100" y1="6" x2="100" y2="195" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F3DDA0"/><stop offset="0.5" stop-color="#C9A24E"/>
+      <stop offset="1" stop-color="#977230"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="100" cy="24" r="34" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF6DD" stop-opacity="0.92"/>
+      <stop offset="0.32" stop-color="#F1D38C" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#F1D38C" stop-opacity="0"/>
+    </radialGradient></defs><circle cx="100" cy="30" r="44" fill="url(#glow)"/><path d="M100 8 C105.0 20.0 108.5 29.0 103.6 36.5 C101.3 38.9 98.7 38.9 96.4 36.5 C91.5 29.0 95.0 20.0 100 8 Z" fill="url(#g)"/><ellipse cx="100" cy="21" rx="2.8" ry="6" fill="#FBEFCF" opacity="0.9"/><g fill="url(#g)"><path d="M32 40 L168 40 L168 60 L158 60 C155 56 153 54 149 53 L108 53 L92 53 L51 53 C47 54 45 56 42 60 L32 60 Z"/><path d="M92.5 52 L107.5 52 L106.5 158 C108.5 165 112 169 120 171 L130 171 L130 175 L70 175 L70 171 L80 171 C88 169 91.5 165 93.5 158 L93.5 52 Z"/></g></svg>

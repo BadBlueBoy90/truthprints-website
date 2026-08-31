@@ -1,0 +1,989 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>/* tp-lang-from-url — Sprache aus der Adresse uebernehmen (?lang=de|en).
+   Fuer die QR-Codes in den gedruckten Baenden: ein deutscher Band fuehrt auf die
+   deutsche Fassung, unabhaengig von Browsersprache und frueherer Wahl. Setzt nur
+   den gespeicherten Wert vor; die vorhandene Sprachlogik liest ihn wie immer. */
+(function(){try{
+  var m=/[?&]lang=(de|en)/i.exec(location.search); if(!m) return;
+  var l=m[1].toLowerCase();
+  localStorage.setItem('tp-lang',l); localStorage.setItem('tp_lang',l);
+}catch(e){}})();</script>
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Pinterest Domain-Bestaetigung: reines Meta-Tag, setzt nichts, uebertraegt
+     nichts. Bleibt. -->
+<meta name="p:domain_verify" content="7f531c41f028272809ed17292e685964"/>
+
+<!-- ⚠️ Der Pinterest-Tag wurde am 25.08.2026 ENTFERNT.
+     Nachgesehen, was er tatsaechlich tat: pintrk('load') und pintrk('page') —
+     sonst nichts. Kein Ereignis, keine Conversion. Er ist dazu da, die Wirkung
+     von PINTEREST-WERBUNG zu messen, und es laeuft keine. Er hat also nichts
+     gemessen, was uns nuetzt — aber Besucherdaten in die USA uebertragen und
+     als einziger Dienst eine Einwilligung noetig gemacht.
+     Die eigenen Pin-Zahlen fuers Dashboard kommen ueber die Pinterest-API und
+     brauchen keinen Tag auf der Website.
+     Wird wieder Werbung geschaltet, gehoert er zurueck — samt Eintrag in der
+     Dienste-Tabelle des Zustimmungsdialogs und in der Datenschutzerklaerung.
+     Das alte Snippet steht in der Git-Historie (Commit e6cd06a). -->
+<title>TruthPrints · The Illustrated Bible</title>
+<!-- Google Search Console — Bestaetigung der Property (25.08.2026).
+     ⚠️ Nie entfernen: Google prueft das Tag regelmaessig nach. Faellt es weg,
+     verliert die Property ihre Bestaetigung und alle Daten sind nicht mehr
+     zugaenglich. Es ist kein Geheimnis und traegt keine Nutzerdaten. -->
+<meta name="google-site-verification" content="CVN6lm9XOTZv9jFLf57BrtgM4Tam-hT5PtnrWkikcyM">
+<meta name="description" content="The entire Bible, illustrated. Every passage painted in the tradition of Caravaggio and Rembrandt. The complete New Testament — 27 books, 1885 plates — illustrated and available now.">
+<meta property="og:title" content="TruthPrints · The Illustrated Bible">
+<meta property="og:description" content="Every passage of Scripture, painted like a lost museum masterpiece. The complete New Testament — 27 books, 1885 plates.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://truthprints.de/">
+<meta property="og:image" content="https://truthprints.de/assets/hero-dawn.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://truthprints.de/assets/hero-dawn.jpg">
+<link rel="canonical" href="https://truthprints.de/">
+<link rel="alternate" hreflang="de" href="https://truthprints.de/">
+<link rel="alternate" hreflang="en" href="https://truthprints.de/">
+<link rel="alternate" hreflang="x-default" href="https://truthprints.de/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"TruthPrints","alternateName":"TruthPrints · Die illustrierte Bibel","url":"https://truthprints.de/","logo":"https://truthprints.de/brand/truthprints-mark.svg","image":"https://truthprints.de/assets/hero-dawn.jpg","email":"hello.truthprints@gmail.com","description":"Die gesamte Bibel, illustriert — jede Stelle der Schrift als Ölgemälde in der Tradition von Caravaggio und Rembrandt. Das Neue Testament ist vollendet, das Alte Testament entsteht.","foundingLocation":{"@type":"Place","name":"Innsbruck, Österreich"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"TruthPrints","alternateName":"Die illustrierte Bibel","url":"https://truthprints.de/","inLanguage":["de","en"]}
+</script>
+<link rel="icon" type="image/png" href="brand/truthprints-favicon.png">
+<link rel="preload" href="fonts/cormorant-garamond-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/eb-garamond-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="site.css?v=208">
+</head>
+<body>
+<div class="filmgrain" aria-hidden="true"></div>
+<div id="preloader" aria-hidden="true">
+  <img class="pl-bg" src="assets/hero-dawn.jpg" alt="" aria-hidden="true">
+  <div class="pl-c">
+    <img class="pl-flame" src="brand/truthprints-mark.svg" alt="">
+    <div class="pl-word">TRUTH<b>PRINTS</b></div>
+    <div class="pl-verse" id="plVerse"></div>
+    <div class="pl-bar"><i id="plbar"></i></div>
+  </div>
+  <div class="pl-num"><span id="plnum">0</span></div>
+</div>
+
+
+<div id="cur"></div>
+<div id="curglow"></div>
+<div class="prog"><div class="prog-b" id="pb"></div></div>
+
+<!-- MOBILE NAV -->
+<div class="mnav" id="mnav">
+  <a href="#why" onclick="closeMnav()"><span data-en>Why</span><span data-de>Warum</span></a>
+  <a href="#plates" onclick="closeMnav()"><span data-en>Plates</span><span data-de>Tafeln</span></a>
+  
+  <a href="bible.html" onclick="closeMnav()"><span data-en>Read</span><span data-de>Lesen</span></a>
+  <a href="bloom/" onclick="closeMnav()">Bloom</a>
+  <a href="mehr-erfahren.html" onclick="closeMnav()"><span data-en>Learn more</span><span data-de>Mehr erfahren</span></a>
+  <a href="free/" onclick="closeMnav()" style="color:var(--gb)"><span data-en>Free Gospel</span><span data-de>Gratis-Evangelium</span></a>
+  
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="brand"><span class="bmark"><img src="brand/truthprints-mark.svg" alt="TruthPrints"></span><span class="bname">Truth<b>Prints</b></span></a>
+  <div class="nlinks">
+    <a href="#why" data-s="why"><span data-en>Why</span><span data-de>Warum</span></a>
+    <a href="#plates" data-s="plates"><span data-en>Plates</span><span data-de>Tafeln</span></a>
+    
+    <a href="bible.html" data-s="read"><span data-en>Read</span><span data-de>Lesen</span></a>
+    <a href="bloom/" data-s="bloom"><span data-en>Bloom</span><span data-de>Bloom</span></a>
+    <a href="mehr-erfahren.html"><span data-en>Learn&nbsp;more</span><span data-de>Mehr&nbsp;erfahren</span></a>
+    <a href="free/" data-s="gift" style="color:var(--gb)"><span data-en>Free&nbsp;Gospel</span><span data-de>Gratis-Evangelium</span></a>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <button id="sndBtn" aria-label="Ambient sound" title="Ambience"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" stroke="none"/><path class="sw" d="M16.5 8.5a5 5 0 0 1 0 7"/><path class="sw" d="M19 6a8.5 8.5 0 0 1 0 12"/></svg></button>
+    <button class="lang-btn" id="langBtn" aria-label="Toggle language">
+      <span class="lc on" id="lcEn">EN</span><span class="sep">·</span><span class="lc" id="lcDe">DE</span>
+    </button>
+    
+  </div>
+  <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <canvas id="heroGL" aria-hidden="true"></canvas>
+  <canvas id="torch"></canvas>
+  <div class="hgrain"></div>
+  <div class="hc">
+    <div class="heyebrow"><span class="erule"></span><span data-en>TruthPrints · The Illustrated Bible</span><span data-de>TruthPrints · Die Illustrierte Bibel</span></div>
+    <h1 class="htitle">
+      <span class="ln"><span class="lnw"><span data-en>The Entire</span><span data-de>Die gesamte</span></span></span>
+      <span class="ln"><span class="lnw"><span data-en>Bible,</span><span data-de>Bibel,</span></span></span>
+      <span class="ln"><span class="lnw"><span data-en>Illustrated.</span><span data-de>Illustriert.</span></span></span>
+    </h1>
+    <p class="hsub"><span data-en>Every passage of Scripture, painted in the tradition of Caravaggio and Rembrandt.</span><span data-de>Jede Stelle der Schrift, gemalt in der Tradition von Caravaggio und Rembrandt.</span></p>
+    <div class="hbtns">
+      <a href="#book" class="btn-g"><span data-en>Explore the Edition</span><span data-de>Die Edition entdecken</span> <span class="ar"></span></a>
+      <a href="#plates" class="btn-o"><span data-en>See the plates</span><span data-de>Tafeln ansehen</span></a>
+    </div>
+  </div>
+  <div class="hbot">
+    <div class="hstats">
+      
+    <div class="scrl"><span data-en>Scroll</span><span data-de>Scrollen</span><span class="ln2"></span></div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marq" aria-hidden="true">
+  <div class="marq-in">
+    <span>The Word, illustrated</span><span class="d"></span><span>A painting for every passage</span><span class="d"></span><span>In the tradition of the old masters</span><span class="d"></span><span>Museum-grade printing envisioned</span><span class="d"></span><span>Affordable for everyone</span><span class="d"></span><span>A lifetime work of love</span><span class="d"></span><span>The Word, illustrated</span><span class="d"></span><span>A painting for every passage</span><span class="d"></span><span>In the tradition of the old masters</span><span class="d"></span><span>Museum-grade printing envisioned</span><span class="d"></span><span>Affordable for everyone</span><span class="d"></span>
+  </div>
+</div>
+
+<!-- USP — why TruthPrints exists (core message) -->
+<style>
+.usp{position:relative;border-top:1px solid var(--rules);padding:clamp(64px,9vw,140px) 0;overflow:hidden}
+.usp .wrap{position:relative}
+.usp-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,88px);align-items:center}
+.usp-h{font-family:var(--fd);font-weight:500;font-size:clamp(30px,4.6vw,60px);line-height:1.08;letter-spacing:-.01em;color:var(--p);margin:22px 0 clamp(26px,3vw,40px)}
+.usp-h em{font-style:italic;color:var(--gb)}
+.usp-p{font-family:var(--fb);font-size:clamp(16px,1.5vw,19px);line-height:1.74;color:var(--pd);max-width:52ch}
+.usp-p+.usp-p{margin-top:20px}
+.usp-p strong{color:var(--p);font-weight:600}
+.usp-fig{position:relative;margin:0}
+.usp-fig img{width:100%;height:auto;display:block;border:1px solid var(--rule);box-shadow:0 30px 80px -30px rgba(0,0,0,.85)}
+.usp-fig figcaption{margin-top:14px;display:flex;flex-direction:column;gap:5px;font-family:var(--fd);font-style:italic}
+.usp-fig .r{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--g)}
+.usp-fig .v{font-size:16px;color:var(--pd)}
+.usp-turn{margin-top:clamp(40px,5vw,72px);padding-top:clamp(30px,3.4vw,48px);border-top:1px solid var(--rules);font-family:var(--fd);font-style:italic;font-size:clamp(22px,3.1vw,40px);line-height:1.25;color:var(--gd);text-align:center;letter-spacing:.005em}
+.usp-turn .big{color:var(--gb)}
+@media(max-width:820px){.usp-grid{grid-template-columns:1fr;gap:32px}.usp-fig{order:-1}}
+</style>
+<section class="usp" id="why">
+  <div class="wrap">
+    <div class="usp-grid">
+      <div class="usp-txt">
+        <div class="slabel rv"><span class="num">i.</span><span class="bar"></span><span data-en>Why TruthPrints exists</span><span data-de>Warum es TruthPrints gibt</span></div>
+        <h2 class="usp-h rv d1"><span data-en>The most important book ever written — <em>and we stopped reading it.</em></span><span data-de>Das wichtigste Buch, das je geschrieben wurde — <em>und kaum jemand liest es noch.</em></span></h2>
+        <p class="usp-p rv d1"><span data-en>Attention has never been shorter. A wall of small print can't win against a glowing screen — so the greatest story ever told stays unopened, generation after generation.</span><span data-de>Die Aufmerksamkeitsspanne war nie kürzer. Eine Wand aus Kleingedrucktem verliert gegen jeden leuchtenden Bildschirm — und so bleibt die größte Geschichte aller Zeiten ungeöffnet, Generation für Generation.</span></p>
+        <p class="usp-p rv d2"><span data-en>So we paint it. <strong>Every passage of Scripture becomes an old-master painting</strong> that pulls the eye in — and once the eye is caught, the Word is read.</span><span data-de>Also malen wir sie. <strong>Jede Stelle der Schrift wird zu einem Gemälde alter Meister,</strong> das den Blick hineinzieht — und ist das Auge einmal gefangen, wird das Wort gelesen.</span></p>
+      </div>
+      <figure class="usp-fig rv d1">
+        <img src="assets/matthew/plates/p244.jpg" alt="The risen Christ commissions his disciples">
+        <figcaption>
+          <span class="r">Matthew 28 · 20</span>
+          <span class="v" data-en>"I am with you always, even to the end of the age."</span><span class="v" data-de>„Ich bin bei euch alle Tage bis an der Welt Ende."</span>
+        </figcaption>
+      </figure>
+    </div>
+    <p class="usp-turn rv d2"><span data-en>Scripture you can <span class="big">see</span> — and finally <span class="big">want to read.</span></span><span data-de>Schrift, die man <span class="big">sehen</span> kann — und endlich <span class="big">lesen will.</span></span></p>
+  </div>
+</section>
+
+<!-- VERSE OF THE DAY — one painting, deterministic per calendar day -->
+<style>
+.votd{position:relative;isolation:isolate;overflow:hidden;background:var(--ink);border-top:1px solid var(--rules);
+  min-height:clamp(460px,66vh,680px);display:flex;align-items:center;justify-content:center;text-align:center;padding:clamp(52px,7vw,104px) 0}
+/* Tagesgemälde als weicher Vollflächen-Hintergrund mit Scroll-Drift (Parallax in truthprint.js) */
+/* Gemälde jetzt GROSS + SCHARF als Hintergrund (vorher blur+dunkel = „lame") */
+.votd-bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center 30%;filter:brightness(.66) saturate(1.06);transform:scale(1.04);will-change:transform;pointer-events:none}
+/* leichter Scrim: Gemälde bleibt sichtbar, Text mittig lesbar; oben/unten in die Seite verlaufen */
+.votd-veil{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(10,7,5,.92),transparent 24%,transparent 72%,rgba(10,7,5,.95)),radial-gradient(ellipse 88% 74% at 50% 50%,rgba(10,7,5,.5),transparent 74%)}
+.votd-head{text-align:center;margin-bottom:clamp(30px,4.5vw,52px)}
+.votd .slabel{justify-content:center;margin-bottom:18px}
+.votd-fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:clamp(20px,2.6vw,30px)}
+.votd-frame{display:none}   /* das Gemälde ist jetzt der große Hintergrund, kein kleiner Rahmen mehr */
+.votd-frame img{width:100%;height:auto;display:block;opacity:0;transition:opacity 1.1s var(--eout);transform-origin:50% 42%}
+.votd-frame img.in{opacity:1}
+@media (prefers-reduced-motion:no-preference){.votd-frame img.in{animation:votdBreath 26s var(--ease) 1.2s infinite alternate}}
+@keyframes votdBreath{from{transform:scale(1)}to{transform:scale(1.06)}}
+.votd-frame::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 90px 10px rgba(10,7,5,.55);opacity:0;transition:opacity 1.4s var(--eout)}
+.votd.in .votd-frame::after{opacity:1}
+.votd-cap{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;max-width:680px;margin:0 auto}
+.votd-head .h2,.votd .slabel{text-shadow:0 2px 16px rgba(0,0,0,.7)}
+.votd-ref{font-family:var(--fd);font-style:italic;font-size:clamp(18px,2.4vw,23px);color:var(--gb);letter-spacing:.05em;text-shadow:0 1px 10px rgba(0,0,0,.75)}
+.votd-ref::before,.votd-ref::after{content:"·";color:var(--g);margin:0 .55em;opacity:.7}
+.votd-text{font-family:var(--fd);font-size:clamp(20px,2.6vw,28px);line-height:1.55;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.8);padding-bottom:.18em}
+/* descenders (g, y, p) were clipped by the tight global .h2 line-height — give them room, votd only */
+.votd-head .h2{line-height:1.16;padding-bottom:.1em}
+.votd-ref{padding-bottom:.06em}
+body.de .votd-text[data-de]{display:block}   /* keep paragraph block; site's generic rule sets [data-de] inline */
+.votd-more{display:inline-flex;align-items:center;gap:9px;font-family:var(--fd);font-style:italic;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--gb);border-bottom:1px solid transparent;padding-bottom:2px;transition:border-color .3s,color .3s}
+.votd-more:hover{border-bottom-color:var(--g);color:var(--p)}
+.votd-more .arw{transition:transform .35s var(--ease)}
+.votd-more:hover .arw{transform:translateX(4px)}
+</style>
+<section class="votd rv" id="votd" aria-labelledby="votdTitle">
+  <div class="votd-bg" id="votdBg" aria-hidden="true"></div>
+  <div class="votd-veil" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="votd-head">
+      <div class="slabel"><span class="num">&#10022;</span><span class="bar"></span><span data-en>Verse of the day</span><span data-de>Vers des Tages</span></div>
+      <h2 class="h2" id="votdTitle"><span data-en>One passage, <em>held to the light.</em></span><span data-de>Eine Stelle, <em>ins Licht gehalten.</em></span></h2>
+    </div>
+    <figure class="votd-fig">
+      <div class="votd-frame" id="votdFrame"><img id="votdImg" alt=""></div>
+      <figcaption class="votd-cap">
+        <span class="votd-ref" data-en id="votdRefEn"></span><span class="votd-ref" data-de id="votdRefDe"></span>
+        <p class="votd-text" data-en id="votdTextEn"></p><p class="votd-text" data-de id="votdTextDe"></p>
+        <span style="display:flex;gap:clamp(18px,3vw,34px);flex-wrap:wrap;justify-content:center">
+          <a class="votd-more" id="votdRead" href="bible.html"><span data-en>Keep reading</span><span data-de>Im Reader weiterlesen</span><span class="arw">&#8594;</span></a>
+          <a class="votd-more" href="bloom/index.html"><span data-en>Discover more</span><span data-de>Mehr entdecken</span><span class="arw">&#8594;</span></a>
+        </span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="jbreak" aria-label="Scripture">
+  <div class="jbreak-img" style="background-image:url('assets/verse-creation.jpg')"></div>
+  <div class="jbreak-overlay"></div>
+  <div class="jbreak-text rv">
+    <blockquote><span data-en>&ldquo;In the beginning was the Word, and the Word was with God, and the Word was God.&rdquo;</span><span data-de>&bdquo;Im Anfang war das Wort, und das Wort war bei Gott, und Gott war das Wort.&ldquo;</span></blockquote>
+    <cite><span data-en>John 1 · 1</span><span data-de>Johannes 1,1</span></cite>
+  </div>
+</div>
+
+<!-- BOOK SHOWCASE -->
+<section class="showcase" id="book">
+  <div class="wrap">
+    <div class="bk-tabs sc-bktabs rv">
+      <button class="bk-tab on" data-showbook="matthew"><span data-en>Matthew</span><span data-de>Matthäus</span><span class="ct">244</span></button>
+      <button class="bk-tab" data-showbook="mark"><span data-en>Mark</span><span data-de>Markus</span><span class="ct">151</span></button>
+      <button class="bk-tab" data-showbook="luke"><span data-en>Luke</span><span data-de>Lukas</span><span class="ct">256</span></button>
+      <button class="bk-tab" data-showbook="john"><span data-en>John</span><span data-de>Johannes</span><span class="ct">199</span></button>
+    </div>
+    <div class="sc-grid">
+      <div class="sc-cover rv" id="scBookWrap">
+        <!-- Animated open-book spread -->
+        <div class="b3" id="b3" data-open="0">
+          <div class="b3-inner">
+            <div class="b3-pages">
+              <div class="b3-pg b3-l"><img id="scPgL" src="assets/pages/p05.jpg" alt="Left page — actual page from the printed edition"></div>
+              <div class="b3-pg b3-r"><img id="scPgR" src="assets/pages/p06.jpg" alt="Right page — actual page from the printed edition"></div>
+              <div class="b3-gutter"></div>
+            </div>
+            <div class="b3-cover" id="b3Cover">
+              <div class="b3-cov-front"><img id="b3CoverImg" src="assets/books/matthew-cover.jpg" alt="The Gospel of Matthew — cover"></div>
+              <div class="b3-cov-back"><img id="b3BackImg" src="assets/pages/p05.jpg" alt=""></div>
+            </div>
+          </div>
+          <button class="sc-flip prev" id="scFlipPrev" aria-label="Previous pages">&#8249;</button>
+          <button class="sc-flip next" id="scFlipNext" aria-label="Next pages">&#8250;</button>
+          <div class="sc-hint"><span data-en>Click to open the book</span><span data-de>Klicken, um das Buch zu öffnen</span></div>
+          <div class="sc-pgno" id="scPgNo"></div>
+        </div>
+        <!-- Preview trigger -->
+        <button class="sc-preview-btn rv d2" id="scPreviewBtn">
+          <span data-en>Actual pages from the book</span><span data-de>Echte Seiten aus dem Buch</span>
+          <span class="ar"></span>
+        </button>
+      </div>
+      <div class="sc-info rv d1">
+        <div class="slabel"><span class="bar"></span><span data-en>The Gospels</span><span data-de>Die Evangelien</span></div>
+        <div class="sc-avail"><span class="dot"></span><span data-en>Now Complete</span><span data-de>Jetzt vollendet</span></div>
+        <h2 class="sc-title" id="scTitle"><span data-en>The Gospel<em>of Matthew</em></span><span data-de>Das Evangelium<em>nach Matthäus</em></span></h2>
+        <p class="sc-desc" id="scDesc"><span data-en>Two hundred forty-four full-plate chiaroscuro illustrations carry the whole life of Christ, from the genealogy to the Great Commission, alongside the complete World English Bible text. The most densely illustrated volume in the library.</span><span data-de>Zweihundertvierundvierzig ganzseitige Chiaroscuro-Illustrationen tragen das ganze Leben Christi, vom Geschlechtsregister bis zum Missionsbefehl, begleitet vom vollständigen Text der World English Bible. Der am reichsten illustrierte Band der Bibliothek.</span></p>
+        <div class="sc-specs">
+          <div class="sc-spec"><div class="k"><span data-en>Plates</span><span data-de>Tafeln</span></div><div class="v" id="scPlates">244</div></div>
+          <div class="sc-spec"><div class="k"><span data-en>Chapters</span><span data-de>Kapitel</span></div><div class="v" id="scChapters">28</div></div>
+          <div class="sc-spec"><div class="k"><span data-en>Languages</span><span data-de>Sprachen</span></div><div class="v">EN · DE</div></div>
+          
+        </div>
+        <div class="sc-btns">
+          
+          <a href="#plates" class="btn-o"><span data-en>See the plates</span><span data-de>Tafeln ansehen</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+
+<div class="jbreak" aria-label="Scripture">
+  <div class="jbreak-img" style="background-image:url('assets/verse-heavens.jpg')"></div>
+  <div class="jbreak-overlay"></div>
+  <div class="jbreak-text rv">
+    <blockquote><span data-en>&ldquo;Heaven and earth will pass away, but my words will not pass away.&rdquo;</span><span data-de>&bdquo;Himmel und Erde werden vergehen, aber meine Worte werden nicht vergehen.&ldquo;</span></blockquote>
+    <cite><span data-en>Matthew 24 · 35</span><span data-de>Matthäus 24,35</span></cite>
+  </div>
+</div>
+
+
+
+<!-- MEHR ERFAHREN — teaser; full vision moved to mehr-erfahren.html -->
+<style>
+.more{position:relative;padding:clamp(60px,8vw,120px) 0;text-align:center;overflow:hidden}
+.more .wrap{max-width:900px;position:relative}
+.more-h{font-family:var(--fd);font-weight:500;font-size:clamp(26px,3.6vw,46px);line-height:1.12;color:var(--p);margin:20px 0 clamp(20px,2.4vw,30px)}
+.more-h em{font-style:italic;color:var(--gb)}
+.more-lead{font-family:var(--fb);font-size:clamp(16px,1.5vw,18px);line-height:1.7;color:var(--pd);max-width:60ch;margin:0 auto clamp(30px,4vw,48px)}
+.more-facts{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(24px,5vw,64px);margin-bottom:clamp(34px,4.4vw,52px)}
+.more-fact{display:flex;flex-direction:column;gap:6px}
+.more-fact b{font-family:var(--fd);font-size:clamp(28px,4vw,44px);color:var(--gb);font-weight:500;line-height:1}
+.more-fact span{font-family:var(--fd);font-style:italic;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pm)}
+</style>
+<section class="more secbg" id="story">
+  <div class="secbg-img" style="background-image:url(assets/bg/dawn.jpg)"></div>
+  <div class="secbg-veil"></div>
+  <div class="wrap">
+    <div class="slabel rv" style="justify-content:center"><span class="bar"></span><span data-en>The whole story</span><span data-de>Die ganze Geschichte</span></div>
+    <h2 class="more-h rv d1"><span data-en>One woman, painting <em>all 66 books.</em></span><span data-de>Eine Frau, die <em>alle 66 Bücher</em> malt.</span></h2>
+    <p class="more-lead rv d1"><span data-en>Why this exists, how each plate is made, and the whole library from Matthew to the Old Testament still in the making &mdash; the full vision has its own page.</span><span data-de>Warum es das gibt, wie jede Tafel entsteht, und die ganze Bibliothek von Matth&auml;us bis zum noch entstehenden Alten Testament &mdash; die vollst&auml;ndige Vision hat ihre eigene Seite.</span></p>
+    <div class="more-facts rv d2">
+      <div class="more-fact"><b class="counter" data-count="27">27</b><span data-en>books complete</span><span data-de>B&uuml;cher vollendet</span></div>
+      <div class="more-fact"><b>1885</b><span data-en>plates illustrated</span><span data-de>Tafeln illustriert</span></div>
+      <div class="more-fact"><b>66</b><span data-en>the whole canon</span><span data-de>der ganze Kanon</span></div>
+    </div>
+    <a href="mehr-erfahren.html" class="btn-g rv d2"><span data-en>Read the full story</span><span data-de>Die ganze Geschichte lesen</span> <span class="ar"></span></a>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="plates">
+  <div class="wrap">
+    <div class="gal-head">
+      <div class="rv">
+        <div class="slabel"><span class="num">iii.</span><span class="bar"></span><span id="galLabel">Two hundred forty-four plates</span></div>
+        <h2 class="h2" id="galTitle">Matthew, <em>plate by plate.</em></h2>
+        <div class="bk-tabs" style="margin-top:22px">
+          <button class="bk-tab" data-galbook="matthew"><span data-en>Matthew</span><span data-de>Matthäus</span><span class="ct">244</span></button>
+          <button class="bk-tab" data-galbook="mark"><span data-en>Mark</span><span data-de>Markus</span><span class="ct">151</span></button>
+        <button class="bk-tab" data-galbook="luke"><span data-en>Luke</span><span data-de>Lukas</span><span class="ct">256</span></button>
+        <button class="bk-tab" data-galbook="john"><span data-en>John</span><span data-de>Johannes</span><span class="ct">199</span></button>
+        <button class="bk-tab" data-galbook="nt"><span data-en>Acts – Revelation</span><span data-de>Apg – Offenbarung</span><span class="ct">1035</span></button>
+        </div>
+      </div>
+      <div class="gal-ctrls rv d1">
+        <button class="ibtn" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"/></svg></button>
+        <button class="ibtn" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+      </div>
+    </div>
+    <div class="gvp" id="gvp"><div class="gtrack" id="gtrack"></div></div>
+    <div class="gfut">
+      <span class="cnt" id="gcnt">i – iii of xxv</span>
+      <div class="tr"><div class="tf" id="gtf"></div></div>
+      <span><span data-en>Drag · ← → keys · Click to enlarge</span><span data-de>Ziehen · ← → Tasten · Klicken zum Vergrößern</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- WALLART -->
+
+
+<!-- (Reader-Teaser entfernt — es gibt jetzt den echten Read-Tab bible.html) -->
+
+<!-- EDITIONS -->
+
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="ab-pattern" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="slabel rv"><span class="num">vi.</span><span class="bar"></span><span data-en>The Publisher</span><span data-de>Der Verlag</span></div>
+    <div class="ab-grid">
+      <div class="ab-img rv d1" tabindex="0" title="Ein Kind Gottes">
+        <div class="ab-flip"><div class="ab-flip-inner">
+          <img class="ab-face ab-front" id="abPortrait" src="assets/lia-portrait.jpg?v=5" alt="Lia — an old-master oil portrait" loading="lazy">
+          <img class="ab-face ab-back" src="assets/lia-back.jpg?v=1" alt="The Lord walking hand in hand with a child toward the holy light" loading="lazy">
+        </div></div>
+      </div>
+      <div>
+        <h2 class="ab-h rv"><span class="ab-h1"><span data-en>One woman. One conviction.</span><span data-de>Eine Frau. Eine Überzeugung.</span></span><span class="ab-h2"><span data-en>The whole Bible.</span><span data-de>Die ganze Bibel.</span></span></h2>
+        <div class="ab-quote rv d1"><span data-en>&ldquo;What Scripture does not say, does not enter the picture.&rdquo;</span><span data-de>&bdquo;Was die Schrift nicht sagt, kommt nicht ins Bild.&ldquo;</span></div>
+        <div class="ab-body rv d2">
+          <p><span data-en>Behind TruthPrints stands no publishing house, only one woman: Lia, a born-again Christian from Innsbruck. She works alone, passage by passage, book by book, most of it by night when the city is quiet.</span><span data-de>Hinter TruthPrints steht kein Verlagshaus, sondern eine einzige Frau: Lia, eine wiedergeborene Christin aus Innsbruck. Sie arbeitet allein, Stelle f&uuml;r Stelle, Buch f&uuml;r Buch, das meiste davon nachts, wenn die Stadt still ist.</span></p>
+          <p><span data-en>Every plate begins with the words themselves. They are read, weighed and turned into a precise description before any image may exist. Afterwards each picture is held against the text once more, and whatever the text does not carry is taken out again. This is slow work. It is meant to be.</span><span data-de>Jede Tafel beginnt bei den Worten selbst. Sie werden gelesen, gewogen und in eine pr&auml;zise Beschreibung gefasst, bevor ein Bild entstehen darf. Danach wird jedes Bild noch einmal am Text gemessen, und was der Text nicht tr&auml;gt, wird wieder entfernt. Das ist langsame Arbeit. Sie soll es sein.</span></p>
+          <p><span data-en>The whole New Testament is finished — Matthew to Revelation. The Old Testament is taking shape now, passage by passage. And when the last book is bound one day, this library shall point to one person only: not to her, but to him whose word it carries.</span><span data-de>Das ganze Neue Testament ist vollendet — von Matth&auml;us bis zur Offenbarung. Das Alte Testament entsteht jetzt, Stelle f&uuml;r Stelle. Und wenn eines Tages das letzte Buch gebunden ist, soll diese Bibliothek auf einen Einzigen zeigen: nicht auf sie, sondern auf den, dessen Wort sie tr&auml;gt.</span></p>
+        </div>
+        <div class="ab-sig rv d3">Soli Deo Gloria.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.nl-benefits{list-style:none;max-width:540px;margin:clamp(24px,3.2vw,36px) auto clamp(28px,3.6vw,42px);text-align:left;display:flex;flex-direction:column;gap:14px}
+.nl-benefits li{position:relative;padding-left:32px;font-family:var(--fb);font-size:clamp(15px,1.45vw,17px);line-height:1.5;color:var(--pd)}
+.nl-benefits li::before{content:"";position:absolute;left:0;top:.42em;width:13px;height:13px;border:1px solid var(--g);border-radius:50%;background:radial-gradient(circle,var(--gb) 0 38%,transparent 40%)}
+.nl-benefits li b{color:var(--p);font-weight:600}
+/* Publisher (Lia) — refined heading + drifting ornamental pattern */
+.ab-h{margin-bottom:22px;font-family:var(--fd);font-weight:300;line-height:1.12}
+.ab-h .ab-h1{display:block;font-style:italic;font-size:clamp(20px,2.05vw,30px);color:var(--pd);letter-spacing:.012em}
+.ab-h .ab-h2{display:block;font-style:italic;font-size:clamp(30px,3.8vw,50px);color:var(--gb);letter-spacing:-.006em;margin-top:8px}
+.ab-pattern{position:absolute;inset:-16%;z-index:0;pointer-events:none;opacity:.55;will-change:transform;
+  background:
+    radial-gradient(circle at 20% 28%, rgba(184,146,74,.11), transparent 44%),
+    radial-gradient(circle at 84% 70%, rgba(184,146,74,.08), transparent 48%),
+    repeating-linear-gradient(45deg, rgba(184,146,74,.035) 0 2px, transparent 2px 26px),
+    repeating-linear-gradient(-45deg, rgba(184,146,74,.028) 0 2px, transparent 2px 26px)}
+body.motion-off .ab-pattern{transform:none!important}
+/* Shop — the nine volumes NT I–IX, each in the ornate frame */
+.bands-shop{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));gap:clamp(22px,2.5vw,40px);margin-top:44px}
+.bandc{display:flex;flex-direction:column;text-align:center;transition:transform .5s var(--ease)}
+.bandc:hover{transform:translateY(-6px)}
+.bandc-fr{position:relative;line-height:0;
+  box-shadow:0 22px 44px -18px rgba(0,0,0,.92),0 6px 16px rgba(0,0,0,.5);
+  transition:transform .55s var(--ease),box-shadow .45s ease}
+.bandc:hover .bandc-fr{transform:translateY(-2px) scale(1.015);box-shadow:0 30px 60px -20px rgba(0,0,0,.95),0 8px 20px rgba(0,0,0,.55)}
+.bandc-fr img{width:100%;display:block}
+.bandc-rom{font-family:var(--fd);font-style:italic;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--g);margin:15px 0 4px}
+.bandc-name{font-family:var(--fd);font-size:16px;color:var(--p);line-height:1.28;margin-bottom:3px}
+.bandc-meta{font-family:var(--fd);font-style:italic;font-size:13px;color:var(--pm);margin-bottom:11px}
+.bandc-cta{font-family:var(--fb);font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--gb);border-bottom:1px solid var(--gd);padding-bottom:2px;align-self:center;transition:color .25s,border-color .25s}
+.bandc-cta:hover{color:var(--p);border-color:var(--g)}
+</style>
+<section class="waitlist" id="newsletter">
+  <div class="wbg"></div>
+  <div class="win rv">
+    <div class="wpulse"><span class="dot"></span><span data-en>The Newsletter</span><span data-de>Der Newsletter</span></div>
+    <h2 class="h2"><span data-en>Subscribe — and the <em class="nb">Gospel of John is yours, free.</em></span><span data-de>Eintragen — und das <em class="nb">Johannes-Evangelium gehört dir, gratis.</em></span></h2>
+    <p class="wsub"><span data-en>The complete illustrated Gospel of John, as a digital edition, the moment you join — then, now and then, a painted passage and a short devotion. Never spam.</span><span data-de>Das ganze illustrierte Johannes-Evangelium als digitale Ausgabe, sobald du dich einträgst — und ab und zu eine gemalte Bibelstelle mit kurzer Andacht. Niemals Spam.</span></p>
+    <ul class="nl-benefits">
+      <li><b><span data-en>The Gospel of John, illustrated — free.</span><span data-de>Das Johannes-Evangelium, illustriert — gratis.</span></b> <span data-en>The complete digital edition, yours the moment you subscribe.</span><span data-de>Die vollständige digitale Ausgabe, sofort bei der Anmeldung.</span></li>
+      <li><b><span data-en>Painted passages &amp; short devotions.</span><span data-de>Gemalte Stellen &amp; kurze Andachten.</span></b> <span data-en>A fresh illustrated passage of Scripture, held to the light.</span><span data-de>Eine frische illustrierte Bibelstelle, ins Licht gehalten.</span></li>
+      <li><b><span data-en>First look as the Bible unfolds.</span><span data-de>Erster Blick, wie die Bibel entsteht.</span></b> <span data-en>See each new book of the Old Testament before anyone else.</span><span data-de>Jedes neue Buch des Alten Testaments vor allen anderen sehen.</span></li>
+      <li><b><span data-en>Reader-only offers.</span><span data-de>Angebote nur für Leser.</span></b> <span data-en>Quiet discounts on the print editions, kept for subscribers.</span><span data-de>Stille Rabatte auf die Druckausgaben, den Abonnenten vorbehalten.</span></li>
+    </ul>
+    <div class="wform" id="wform">
+      <input type="email" id="wemail" placeholder="Your email address" data-ph-en="Your email address" data-ph-de="Deine E-Mail-Adresse">
+      <button type="button" id="wsub"><span data-en>Get the free Gospel</span><span data-de>Gratis-Evangelium sichern</span></button>
+    </div>
+    <p class="wnote" id="wnote"><span data-en>No spam. Unsubscribe anytime.</span><span data-de>Kein Spam. Jederzeit abmeldbar.</span></p>
+    <p class="wsuccess" id="wsuccess"><span data-en>You're on the list — your free Gospel of John is on its way. God bless.</span><span data-de>Du stehst auf der Liste — dein Gratis-Johannes-Evangelium ist unterwegs. Gott segne dich.</span></p>
+  </div>
+</section>
+
+<!-- JERUSALEM CINEMATIC BREAK — the closing word (John 3:16) -->
+<div class="jbreak" aria-label="Scripture">
+  <div class="jbreak-img" style="background-image:url('assets/john316.jpg')"></div>
+  <div class="jbreak-overlay"></div>
+  <div class="jbreak-text rv">
+    <blockquote><span data-en>&ldquo;For God so loved the world, that he gave his one and only Son, that whoever believes in him should not perish, but have eternal life.&rdquo;</span><span data-de>&bdquo;Denn also hat Gott die Welt geliebt, dass er seinen eingeborenen Sohn gab, auf dass jeder, der an ihn glaubt, nicht verloren gehe, sondern ewiges Leben habe.&ldquo;</span></blockquote>
+    <cite>John 3 · 16</cite>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fgrid">
+    <div class="fc">
+      <div class="brand" style="margin-bottom:18px"><span class="bmark"><img src="brand/truthprints-mark.svg" alt="TruthPrints"></span><span class="bname">Truth<b>Prints</b></span></div>
+      <p><span data-en>A project by Lia, a born-again Christian illustrating the entire Bible, one volume at a time, so the Word might be met with beauty and within reach of all.</span><span data-de>Ein Projekt von Lia, einer wiedergeborenen Christin, die die gesamte Bibel illustriert, Band für Band, damit das Wort in Schönheit und für alle erreichbar begegne.</span></p>
+    </div>
+    <div class="fc">
+      <h4><span data-en>The Library</span><span data-de>Die Bibliothek</span></h4>
+      <ul>
+        <li><a href="#book"><span data-en>Matthew</span><span data-de>Matthäus</span></a></li>
+        
+        <li><a href="mehr-erfahren.html#project"><span data-en>The Gospels</span><span data-de>Die Evangelien</span></a></li>
+        <li><a href="mehr-erfahren.html#project"><span data-en>Letters of Paul</span><span data-de>Briefe des Paulus</span></a></li>
+        <li><a href="mehr-erfahren.html#project"><span data-en>Revelation</span><span data-de>Die Offenbarung</span></a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4><span data-en>The Edition</span><span data-de>Die Ausgabe</span></h4>
+      <ul>
+        <li><a href="mehr-erfahren.html"><span data-en>About the Project</span><span data-de>Über das Projekt</span></a></li>
+        <li><a href="#plates"><span data-en>The Plates</span><span data-de>Die Tafeln</span></a></li>
+        <!-- Der Weg zu den 4693 Tafelseiten. Bis 25.08.2026 zeigte KEIN Link der
+             Website auf sie — sie standen nur in der Sitemap und blieben darum bei
+             Google (und in Google Bilder) unsichtbar. -->
+        <li><a href="/plate/" data-en>All plates</a><a href="/tafel/" data-de>Alle Tafeln</a></li>
+        <li><a href="bible.html"><span data-en>Read a Passage</span><span data-de>Eine Stelle lesen</span></a></li>
+        
+      </ul>
+    </div>
+    <div class="fc">
+      <h4><span data-en>Correspond</span><span data-de>Kontakt</span></h4>
+      <ul>
+        <li><a href="mailto:hello.truthprints@gmail.com">hello.truthprints@gmail.com</a></li>
+        <li><a href="#newsletter"><span data-en>Newsletter</span><span data-de>Newsletter</span></a></li>
+        <!-- Widerruf muss so leicht sein wie die Zustimmung (Art. 7 Abs. 3 DSGVO) —
+             darum oeffnet dieser Link denselben Dialog mit der bisherigen Auswahl. -->
+        <li><a href="#" onclick="if(window.tpConsentOeffnen){tpConsentOeffnen();}return false;"><span data-en>Cookie settings</span><span data-de>Cookie-Einstellungen</span></a></li>
+        
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© MMXXVI TruthPrints</span>
+    <span><span data-en>Scripture: World English Bible &amp; Elberfelder 1871, both Public Domain</span><span data-de>Schrift: World English Bible &amp; Elberfelder 1871, beide gemeinfrei</span></span>
+    <span><span data-en>The Word, illustrated</span><span data-de>Das Wort, illustriert</span></span>
+  </div>
+
+  <div style="max-width:1200px;margin:34px auto 0;padding-top:22px;border-top:1px solid var(--rules);display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:center;font-family:var(--fb);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pm)">
+    <a href="impressum.html" style="color:var(--pd)">Impressum</a>
+    
+    
+    <a href="impressum.html#datenschutz" style="color:var(--pd)"><span data-en>Privacy</span><span data-de>Datenschutz</span></a>
+    <a href="unsubscribe.html" style="color:var(--pd)"><span data-en>Unsubscribe</span><span data-de>Abmelden</span></a>
+    <span>© 2026 TruthPrints</span>
+  </div>
+</footer>
+
+<!-- BOOK PREVIEW MODAL -->
+<div class="bprev" id="bprev">
+  <div class="bprev-inner">
+    <button class="bprev-close" id="bprevX" aria-label="Close"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg></button>
+    <div class="bprev-spread">
+      <div class="bprev-page left"><img id="bprev-l" src="" alt=""></div>
+      <div class="bprev-page right"><img id="bprev-r" src="" alt=""></div>
+    </div>
+    <div class="bprev-foot">
+      <span id="bprev-ref" style="color:var(--g)"></span>
+      <div class="bprev-nav">
+        <button class="bprev-nbtn" id="bprev-p"><svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"/></svg></button>
+        <button class="bprev-nbtn" id="bprev-n"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+      </div>
+    </div>
+    <p class="bprev-hint"><span data-en>← → to navigate · Esc to close</span><span data-de>← → zum Blättern · Esc zum Schließen</span></p>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <div class="lbf">
+    <button class="lbnav lbprev" id="lbp" aria-label="Prev"><svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"/></svg></button>
+    <img id="lbi" alt="">
+    <button class="lbnav lbnext" id="lbn" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+    <button class="lbc" id="lbx" aria-label="Close"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg></button>
+    <div class="lbmeta"><span class="t" id="lbt"></span><span id="lbr"></span></div>
+  </div>
+</div>
+
+<!-- TWEAKS PANEL -->
+<div id="tw">
+  <div class="tw-hd">
+    <span class="tw-hd-t">Tweaks</span>
+    <button class="tw-hd-x" id="twx" aria-label="Close">×</button>
+  </div>
+  <div class="tw-sec">
+    <span class="tw-lbl">Language</span>
+    <div class="tw-radio">
+      <button class="tw-rb" data-lang="en">English</button>
+      <button class="tw-rb" data-lang="de">Deutsch</button>
+    </div>
+  </div>
+  <div class="tw-sec">
+    <span class="tw-lbl">Motion</span>
+    <div class="tw-radio">
+      <button class="tw-rb on" data-motion="full">Full</button>
+      <button class="tw-rb" data-motion="subtle">Subtle</button>
+      <button class="tw-rb" data-motion="off">Off</button>
+    </div>
+  </div>
+  <div class="tw-sec">
+    <span class="tw-lbl">Accent</span>
+    <div class="tw-pals">
+      <button class="tw-pal on" data-accent="gold"  style="background:linear-gradient(135deg,#B8924A,#D4AC63)" aria-label="Gold"></button>
+      <button class="tw-pal" data-accent="amber" style="background:linear-gradient(135deg,#C0772E,#E2A24A)" aria-label="Amber"></button>
+      <button class="tw-pal" data-accent="ember" style="background:linear-gradient(135deg,#A8412A,#D9743F)" aria-label="Ember"></button>
+      <button class="tw-pal" data-accent="sage"  style="background:linear-gradient(135deg,#7E7A3E,#B7AE63)" aria-label="Sage"></button>
+    </div>
+  </div>
+</div>
+
+
+<div class="stickybar" id="stickybar" role="complementary">
+  <span class="sb-t"><span data-en>The complete New Testament · 27 books · 1885 plates · available now</span><span data-de>Das ganze Neue Testament · 27 Bücher · 1885 Tafeln · jetzt erhältlich</span></span>
+  
+  <button class="sb-x" id="sbx" aria-label="Dismiss">×</button>
+</div>
+
+<div class="tp-pop" id="tppop" role="dialog" aria-modal="true">
+  <div class="tp-pop-c">
+    <button class="tp-pop-x" id="tppopx" aria-label="Close">×</button>
+    <div class="tp-pop-k"><span data-en>Before you go</span><span data-de>Bevor du gehst</span></div>
+    <div class="tp-pop-h"><span data-en>Take <em>10% off</em> your first volume.</span><span data-de>Erhalte <em>10 % Rabatt</em> auf deinen ersten Band.</span></div>
+    <p class="tp-pop-p"><span data-en>A founding-reader thank-you — valid on any edition of any Gospel.</span><span data-de>Ein Dankeschön für Gründer-Leser — gültig für jede Edition jedes Evangeliums.</span></p>
+    <div class="tp-pop-code">FOUNDING10</div>
+    <button class="tp-pop-btn" id="tppopgo"><span data-en>Claim &amp; view editions</span><span data-de>Sichern &amp; Editionen ansehen</span></button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="truthprint.js?v=20260614rd2"></script>
+
+
+
+<script>
+/* kinetic verses — words kindle one after another */
+(function(){
+  document.querySelectorAll('.vbreak .vb-line span').forEach(function(span){
+    var words=span.textContent.trim().split(/\s+/);
+    span.innerHTML=words.map(function(w,i){return '<span class="vb-w" style="--i:'+i+'">'+w+'</span>';}).join(' ');
+  });
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('lit'); io.unobserve(e.target);} });
+  },{threshold:.45});
+  document.querySelectorAll('.vbreak').forEach(function(s){ io.observe(s); });
+})();
+/* candle-room ambience — synthesised, no audio file, starts only on tap */
+(function(){
+  var btn=document.getElementById('sndBtn'); if(!btn) return;
+  var ctx=null,master=null;
+  function build(){
+    ctx=new (window.AudioContext||window.webkitAudioContext)();
+    master=ctx.createGain(); master.gain.value=0; master.connect(ctx.destination);
+    /* warm air: filtered brown noise */
+    var len=ctx.sampleRate*4, buf=ctx.createBuffer(1,len,ctx.sampleRate), d=buf.getChannelData(0), last=0;
+    for(var i=0;i<len;i++){ var w=Math.random()*2-1; last=(last+.02*w)/1.02; d[i]=last*3.5; }
+    var src=ctx.createBufferSource(); src.buffer=buf; src.loop=true;
+    var lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=320; lp.Q.value=.4;
+    var ng=ctx.createGain(); ng.gain.value=.5;
+    src.connect(lp); lp.connect(ng); ng.connect(master); src.start();
+    /* candle flicker: slow random swells */
+    var fl=ctx.createGain(); fl.gain.value=.0;
+    var hp=ctx.createBiquadFilter(); hp.type='bandpass'; hp.frequency.value=900; hp.Q.value=1.2;
+    var src2=ctx.createBufferSource(); src2.buffer=buf; src2.loop=true; src2.playbackRate.value=.7;
+    src2.connect(hp); hp.connect(fl); fl.connect(master); src2.start();
+    (function flick(){
+      if(!ctx) return;
+      fl.gain.linearRampToValueAtTime(.04+Math.random()*.10, ctx.currentTime+ .35+Math.random()*1.2);
+      setTimeout(flick, 400+Math.random()*1400);
+    })();
+  }
+  var on=false;
+  btn.addEventListener('click',function(){
+    if(!ctx) build();
+    if(ctx.state==='suspended') ctx.resume();
+    on=!on;
+    btn.classList.toggle('on',on);
+    master.gain.cancelScheduledValues(ctx.currentTime);
+    master.gain.linearRampToValueAtTime(on?.05:.0, ctx.currentTime+1.2);
+  });
+})();
+</script>
+<script>
+/* scroll parallax for [data-prlx] images — subtle depth */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var els=[];
+  function collect(){els=[].slice.call(document.querySelectorAll('[data-prlx]'));}
+  collect();setTimeout(collect,1500);
+  var tick=false;
+  function frame(){
+    tick=false;
+    var vh=innerHeight;
+    els.forEach(function(el){
+      var r=el.getBoundingClientRect();
+      if(r.bottom<0||r.top>vh)return;
+      var p=(r.top+r.height/2-vh/2)/vh; /* -0.5..0.5 */
+      el.style.transform='translateY('+(p*-26).toFixed(1)+'px) scale(1.06)';
+    });
+  }
+  addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(frame);}},{passive:true});
+  frame();
+})();
+</script>
+
+<script src="hero-gl.js?v=208"></script>
+<script>
+/* preloader — counter eases to 90, completes on window load (or 2.6s), curtain lifts */
+(function(){
+  var pl=document.getElementById('preloader'),num=document.getElementById('plnum'),bar=document.getElementById('plbar');
+  if(!pl){document.body.classList.add('loaded');return;}
+  /* Vers des Tages statt Latein (kurz, sprachabhängig, deterministisch pro Kalendertag) */
+  (function(){
+    var plv=document.getElementById('plVerse'); if(!plv)return;
+    var VS=[
+      {de:'Im Anfang war das Wort.',en:'In the beginning was the Word.'},
+      {de:'Der HERR ist mein Hirte.',en:'The LORD is my shepherd.'},
+      {de:'Ich bin das Licht der Welt.',en:'I am the light of the world.'},
+      {de:'Dein Wort ist meines Fußes Leuchte.',en:'Your word is a lamp to my feet.'},
+      {de:'Ich bin der Weg, die Wahrheit und das Leben.',en:'I am the way, the truth, and the life.'},
+      {de:'Siehe, ich mache alles neu.',en:'Behold, I make all things new.'},
+      {de:'Das Wort unseres Gottes bleibt in Ewigkeit.',en:'The word of our God stands forever.'},
+      {de:'Selig, die reinen Herzens sind.',en:'Blessed are the pure in heart.'}
+    ];
+    var lang;try{lang=localStorage.getItem('tp_lang')||localStorage.getItem('tp-lang')||(navigator.language||'en').slice(0,2);}catch(e){lang='en';}
+    lang=(lang==='de')?'de':'en';
+    var now=new Date(),doy=Math.floor((now-new Date(now.getFullYear(),0,0))/864e5);
+    plv.textContent=VS[doy%VS.length][lang];
+  })();
+  var v=0,target=90,loaded=false,t0=performance.now();
+  addEventListener('load',function(){loaded=true});
+  setTimeout(function(){loaded=true},2600);
+  (function tick(){
+    if(loaded)target=100;
+    v+=(target-v)*.06+.12;
+    if(v>=99.6&&loaded){
+      num.textContent='100';bar.style.transform='scaleX(1)';
+      setTimeout(function(){
+        pl.classList.add('done');
+        document.body.classList.add('loaded');
+        setTimeout(function(){pl.remove()},1300);
+      },180);
+      return;
+    }
+    var d=Math.min(v,100);
+    num.textContent=Math.floor(d);
+    bar.style.transform='scaleX('+(d/100)+')';
+    requestAnimationFrame(tick);
+  })();
+})();
+/* magnetic buttons — gold pulls toward the hand */
+(function(){
+  if(matchMedia('(pointer:coarse)').matches)return;
+  document.querySelectorAll('.btn-g,.sb-btn,.tp-pop-btn').forEach(function(b){
+    var r;
+    b.addEventListener('mousemove',function(e){
+      r=r||b.getBoundingClientRect();
+      var x=(e.clientX-r.left-r.width/2)/r.width,y=(e.clientY-r.top-r.height/2)/r.height;
+      b.style.transform='translate('+x*9+'px,'+y*7+'px)';
+    });
+    b.addEventListener('mouseleave',function(){r=null;b.style.transform='';});
+  });
+})();
+</script>
+
+<!-- VERSE OF THE DAY — deterministic per local calendar day (image + verse + text from window.TP_BLOOM) -->
+<script src="bloom-verses.js?v=2"></script>
+<script>
+(function(){
+  var P = window.TP_BLOOM || [];
+  var frame = document.getElementById('votdFrame');
+  var img = document.getElementById('votdImg');
+  if(!P.length || !img){ var s=document.getElementById('votd'); if(s) s.style.display='none'; return; }
+
+  /* days since epoch by LOCAL calendar date → same painting for everyone that day,
+     switches at local midnight, NOT on reload */
+  var now = new Date();
+  var day = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 864e5);
+  var pick = P[((day % P.length) + P.length) % P.length];
+
+  img.addEventListener('load', function(){
+    var oAR = (img.naturalWidth && img.naturalHeight) ? img.naturalWidth/img.naturalHeight : 0.78;
+    frame.style.setProperty('--ar', (oAR / (1 - 0.04)).toFixed(4));  /* trim bottom, then contain */
+    img.classList.add('in');
+  });
+  img.src = pick.img;
+  img.alt = (pick.ref_en || '') + ' — illustrated';
+  var bg = document.getElementById('votdBg');
+  if(bg) bg.style.backgroundImage = 'url("' + pick.img + '")';
+  var rd = document.getElementById('votdRead');
+  if(rd && pick.book && pick.id) rd.href = 'bible.html#' + pick.book + '/' + pick.id;
+  document.getElementById('votdRefEn').textContent = pick.ref_en || '';
+  document.getElementById('votdRefDe').textContent = pick.ref_de || pick.ref_en || '';
+  document.getElementById('votdTextEn').textContent = pick.text_en || '';
+  document.getElementById('votdTextDe').textContent = pick.text_de || pick.text_en || '';
+})();
+</script>
+
+<!-- Lia-Flip auch per Tipp (Handy: kein Hover) -->
+<script>
+(function(){var c=document.querySelector('.ab-img');if(!c)return;
+  c.addEventListener('click',function(){c.classList.toggle('flipped');});
+})();
+</script>
+
+<!-- ===== Cookie-Consent (DSGVO): professionelles Overlay; Tracking lädt erst nach Zustimmung ===== -->
+<style>
+.ckb{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;padding:22px;
+  background:rgba(6,4,2,.66);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
+.ckb.show{display:flex;animation:ckbFade .45s ease}
+@keyframes ckbFade{from{opacity:0}to{opacity:1}}
+.ckb-card{width:min(468px,100%);background:linear-gradient(180deg,#17130c,#100c07);
+  border:1px solid rgba(184,146,74,.3);border-radius:22px;padding:clamp(28px,5vw,40px);text-align:center;
+  box-shadow:0 44px 130px rgba(0,0,0,.72);animation:ckbPop .55s cubic-bezier(.16,1,.3,1)}
+@keyframes ckbPop{from{opacity:0;transform:translateY(18px) scale(.965)}to{opacity:1;transform:none}}
+.ckb-ic{width:48px;height:48px;margin:0 auto 18px;color:#d4ac63}
+.ckb-ic svg{width:100%;height:100%}
+.ckb-h{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:27px;color:#f3ead7;margin-bottom:11px}
+.ckb-txt{font-family:'EB Garamond',Georgia,serif;font-size:15px;line-height:1.62;color:#c6bba6;margin:0 auto 24px;max-width:40ch}
+.ckb-btns{display:flex;flex-direction:column;gap:10px}
+.ckb-btn{font-family:'EB Garamond',Georgia,serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+  padding:15px 24px;border-radius:99px;cursor:pointer;border:1px solid transparent;transition:filter .25s,background .25s,color .25s,border-color .25s}
+.ckb-btn.accept{background:linear-gradient(135deg,#b8924a,#d4ac63);color:#100c07}
+.ckb-btn.accept:hover{filter:brightness(1.1)}
+.ckb-btn.ghost{background:none;border-color:rgba(212,172,99,.4);color:#d9ccb2}
+.ckb-btn.ghost:hover{border-color:#d4ac63;color:#fff}
+.ckb-link{display:inline-block;margin-top:17px;font-family:'EB Garamond',Georgia,serif;font-size:12px;color:#9a8f73;text-decoration:underline;text-underline-offset:2px;background:none;border:none;cursor:pointer}
+.ckb-link:hover{color:#d4ac63}
+@media(min-width:520px){.ckb-btns{flex-direction:row-reverse;justify-content:center}.ckb-btn{flex:1;max-width:210px}}
+/* ── Zweite Ebene: was genau, wozu, wie lange (25.08.2026) ───────────────────
+   Eine Einwilligung muss informiert sein. "Um dir das beste Erlebnis zu bieten"
+   nennt weder den Dienst noch den Zweck noch die Dauer und traegt darum keine
+   Einwilligung. Die oesterreichische Datenschutzbehoerde hat amtswegige
+   Pruefungen von Cookie-Bannern angekuendigt (§ 165 Abs. 3 TKG 2021). */
+.ckb-card{max-height:88vh;overflow-y:auto;text-align:left}
+.ckb-ic,.ckb-h,.ckb-txt{text-align:center}
+.ckb-det{display:none;margin:4px 0 20px}
+.ckb-det.on{display:block}
+.ckb-z{border-top:1px solid rgba(184,146,74,.18);padding:14px 2px}
+.ckb-zh{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ckb-zt{font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;color:#f3ead7}
+.ckb-zd{font-family:'EB Garamond',Georgia,serif;font-size:13.5px;line-height:1.6;color:#a99e88;margin-top:5px}
+.ckb-zd b{color:#c6bba6;font-weight:600}
+.ckb-sw{position:relative;width:44px;height:25px;flex:0 0 auto;border-radius:99px;border:1px solid rgba(212,172,99,.45);
+  background:rgba(255,255,255,.06);cursor:pointer;transition:background .25s,border-color .25s}
+.ckb-sw::after{content:"";position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;
+  background:#c6bba6;transition:transform .25s,background .25s}
+.ckb-sw[aria-checked="true"]{background:linear-gradient(135deg,#b8924a,#d4ac63);border-color:#d4ac63}
+.ckb-sw[aria-checked="true"]::after{transform:translateX(19px);background:#100c07}
+.ckb-sw[aria-disabled="true"]{opacity:.5;cursor:not-allowed}
+.ckb-tab{width:100%;border-collapse:collapse;margin-top:9px;font-family:'EB Garamond',Georgia,serif;font-size:12.5px;color:#9a8f73}
+.ckb-tab th{text-align:left;font-weight:600;color:#c6bba6;padding:4px 8px 4px 0;border-bottom:1px solid rgba(184,146,74,.16)}
+.ckb-tab td{padding:5px 8px 5px 0;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:top}
+</style>
+<div id="ckb" class="ckb" role="dialog" aria-modal="true" aria-label="Privacy">
+  <div class="ckb-card">
+    <div class="ckb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4.5"/></svg></div>
+    <h3 class="ckb-h" id="ckbH"></h3>
+    <p class="ckb-txt" id="ckbTxt"></p>
+
+    <div class="ckb-det" id="ckbDet">
+      <div class="ckb-z">
+        <div class="ckb-zh">
+          <span class="ckb-zt" id="ckbN1"></span>
+          <span class="ckb-sw" role="switch" aria-checked="true" aria-disabled="true" aria-label="notwendig"></span>
+        </div>
+        <div class="ckb-zd" id="ckbN2"></div>
+      </div>
+      <div class="ckb-z">
+        <div class="ckb-zh">
+          <span class="ckb-zt" id="ckbS1"></span>
+          <span class="ckb-sw" role="switch" aria-checked="false" id="swStat" tabindex="0"></span>
+        </div>
+        <div class="ckb-zd" id="ckbS2"></div>
+        <table class="ckb-tab" id="tabStat"></table>
+      </div>
+      <div class="ckb-z">
+        <div class="ckb-zh">
+          <span class="ckb-zt" id="ckbM1"></span>
+          <span class="ckb-sw" role="switch" aria-checked="false" id="swMark" tabindex="0"></span>
+        </div>
+        <div class="ckb-zd" id="ckbM2"></div>
+        <table class="ckb-tab" id="tabMark"></table>
+      </div>
+    </div>
+
+    <div class="ckb-btns">
+      <button type="button" class="ckb-btn accept" id="ckbAccept"></button>
+      <button type="button" class="ckb-btn ghost" id="ckbDecline"></button>
+    </div>
+    <div class="ckb-btns" style="margin-top:10px">
+      <button type="button" class="ckb-btn ghost" id="ckbSave" style="display:none"></button>
+    </div>
+    <div style="text-align:center">
+      <button type="button" class="ckb-link" id="ckbMore"></button>
+      <span style="color:#5c5342"> · </span>
+      <a class="ckb-link" id="ckbLink" href="impressum.html#datenschutz"></a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var el=document.getElementById('ckb'); if(!el)return;
+  var lang;try{lang=localStorage.getItem('tp_lang')||localStorage.getItem('tp-lang')||(navigator.language||'en').slice(0,2);}catch(e){lang='en';}
+  lang=(lang==='de')?'de':'en';
+  var T={
+    de:{h:'Deine Entscheidung',
+        t:'Diese Seite funktioniert ohne Zustimmung. Nur zwei Dinge fragen wir dich: dürfen wir zählen, wie die Seite genutzt wird, und dürfen wir sehen, ob unsere Bilder auf Pinterest jemanden erreichen?',
+        ok:'Alle akzeptieren',no:'Nur notwendige',save:'Auswahl speichern',
+        more:'Details anzeigen',less:'Details verbergen',link:'Datenschutz',
+        n1:'Notwendig',n2:'Sprache, gewählte Ansicht und deine Entscheidung von hier. Bleibt <b>auf deinem Gerät</b> und wird nie übertragen. Ohne das kann die Seite dich nicht wiedererkennen.',
+        s1:'Statistik',s2:'Zählt anonym, wie viele Menschen kommen und welche Stellen gelesen werden. Wir sehen Zahlen, keine Personen.',
+        m1:'Marketing',m2:'Zeigt uns, ob jemand über Pinterest zu uns findet. Dabei werden Daten an Pinterest in den <b>USA</b> übertragen.',
+        th:['Dienst','Zweck','Dauer','Anbieter']},
+    en:{h:'Your choice',
+        t:'This site works without consent. We only ask two things: may we count how the site is used, and may we see whether our paintings reach anyone on Pinterest?',
+        ok:'Accept all',no:'Only necessary',save:'Save selection',
+        more:'Show details',less:'Hide details',link:'Privacy',
+        n1:'Necessary',n2:'Language, chosen view and your decision here. Stays <b>on your device</b> and is never transmitted. Without it the site cannot remember you.',
+        s1:'Statistics',s2:'Counts anonymously how many people come and which passages are read. We see numbers, not people.',
+        m1:'Marketing',m2:'Shows us whether anyone finds us through Pinterest. Data is transferred to Pinterest in the <b>USA</b>.',
+        th:['Service','Purpose','Duration','Provider']}
+  }[lang];
+  /* Die Tabelle ist der eigentliche Punkt: Dienst, Zweck, Dauer, Anbieter.
+     Neue Dienste kommen HIER hinein — nicht still im Skript dazu. */
+  /* Stand 25.08.2026: BEIDE Listen sind leer — es gibt auf dieser Seite keinen
+     einzigen zustimmungspflichtigen Dienst mehr. Google Analytics wurde nie
+     eingebaut (bewusste Entscheidung: Search Console beantwortet unsere Fragen
+     und braucht keine Einwilligung), der Pinterest-Tag wurde entfernt.
+     Der Dialog bleibt trotzdem im Code — er stellt sich selbst ein:
+     leere Listen → er draengt sich niemandem mehr auf. Kommt je ein Dienst
+     dazu, wird er HIER eingetragen, und der Dialog erscheint von allein wieder.
+     So kann niemand einen Tracker einbauen und das Fragen vergessen. */
+  var DIENSTE={ statistik:[], marketing:[] };
+  var BRAUCHT_ZUSTIMMUNG = DIENSTE.statistik.length>0 || DIENSTE.marketing.length>0;
+  function tabelle(id,liste){
+    var h='<tr>'+T.th.map(function(x){return '<th>'+x+'</th>';}).join('')+'</tr>';
+    liste.forEach(function(r){h+='<tr><td>'+r.d+'</td><td>'+r.z[lang]+'</td><td>'+r.w[lang]+'</td><td>'+r.a+'</td></tr>';});
+    document.getElementById(id).innerHTML=h;
+  }
+  var g=function(i){return document.getElementById(i);};
+  g('ckbH').textContent=T.h; g('ckbTxt').textContent=T.t;
+  g('ckbAccept').textContent=T.ok; g('ckbDecline').textContent=T.no;
+  g('ckbSave').textContent=T.save; g('ckbMore').textContent=T.more; g('ckbLink').textContent=T.link;
+  g('ckbN1').textContent=T.n1; g('ckbN2').innerHTML=T.n2;
+  g('ckbS1').textContent=T.s1; g('ckbS2').innerHTML=T.s2;
+  g('ckbM1').textContent=T.m1; g('ckbM2').innerHTML=T.m2;
+  tabelle('tabStat',DIENSTE.statistik); tabelle('tabMark',DIENSTE.marketing);
+
+  function schalter(el){
+    function um(){ el.setAttribute('aria-checked', el.getAttribute('aria-checked')==='true'?'false':'true'); }
+    el.addEventListener('click',um);
+    el.addEventListener('keydown',function(e){ if(e.key===' '||e.key==='Enter'){e.preventDefault();um();} });
+  }
+  schalter(g('swStat')); schalter(g('swMark'));
+
+  g('ckbMore').addEventListener('click',function(){
+    var auf=g('ckbDet').classList.toggle('on');
+    g('ckbSave').style.display=auf?'':'none';
+    this.textContent=auf?T.less:T.more;
+  });
+
+  /* Gespeichert wird ein Beleg, kein Ja/Nein: welcher Zweck, wann, welche Fassung.
+     Aendern sich die Zwecke, steigt v — und es wird neu gefragt. */
+  function set(stat,mark){
+    var c={v:2,notwendig:true,statistik:!!stat,marketing:!!mark,ts:new Date().toISOString()};
+    try{localStorage.setItem('tp_consent2',JSON.stringify(c));}catch(e){}
+    window.tpConsent=c;
+    el.classList.remove('show');
+    if(c.marketing&&window.tpLoadPinterest)window.tpLoadPinterest();
+    if(c.statistik&&window.tpLoadGA4)window.tpLoadGA4();
+  }
+  g('ckbAccept').addEventListener('click',function(){set(true,true);});
+  g('ckbDecline').addEventListener('click',function(){set(false,false);});
+  g('ckbSave').addEventListener('click',function(){
+    set(g('swStat').getAttribute('aria-checked')==='true',
+        g('swMark').getAttribute('aria-checked')==='true');
+  });
+
+  /* Widerruf muss so leicht sein wie die Zustimmung — darum ein Fusszeilen-Link. */
+  window.tpConsentOeffnen=function(){
+    var c=window.tpConsent||{};
+    g('swStat').setAttribute('aria-checked',c.statistik?'true':'false');
+    g('swMark').setAttribute('aria-checked',c.marketing?'true':'false');
+    if(!g('ckbDet').classList.contains('on'))g('ckbMore').click();
+    el.classList.add('show');
+  };
+
+  var gespeichert=null;
+  try{gespeichert=JSON.parse(localStorage.getItem('tp_consent2')||'null');}catch(e){}
+  if(gespeichert&&gespeichert.v===2){ window.tpConsent=gespeichert; }
+
+  if(!BRAUCHT_ZUSTIMMUNG){
+    /* Nichts zu fragen — also fragen wir nicht. Ein Zustimmungsfenster ohne
+       zustimmungspflichtigen Dienst ist keine Rechtssicherheit, sondern eine
+       Huerde ohne Zweck. Ueber die Fusszeile bleibt der Dialog erreichbar und
+       sagt dann ehrlich, dass es nichts einzustellen gibt. */
+    g('ckbTxt').textContent = (lang==='de')
+      ? 'Diese Seite lädt keine Dienste von Dritten und setzt keine Werbe- oder Statistik-Cookies. Gespeichert wird nur, was auf deinem Gerät bleibt: Sprache, Ansicht, Lesezeichen und Notizen. Es gibt hier nichts einzustellen — und das ist Absicht.'
+      : 'This site loads no third-party services and sets no advertising or analytics cookies. The only thing stored stays on your device: language, view, bookmarks and notes. There is nothing to configure here — by design.';
+    g('ckbMore').style.display='none';
+    g('ckbAccept').style.display='none';
+    g('ckbDecline').textContent = (lang==='de') ? 'Schließen' : 'Close';
+  } else if(!(gespeichert&&gespeichert.v===2)) {
+    setTimeout(function(){el.classList.add('show');},650);
+  }
+})();
+</script>
+</body>
+</html>

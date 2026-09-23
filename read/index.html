@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8">
+<script>/* tp-lang-from-url — Sprache aus der Adresse uebernehmen (?lang=de|en).
+   Diese Weiterleitung ist das Ziel der QR-Codes in den gedruckten Baenden.
+   Zweifach abgesichert: die Sprache wird hier bereits gemerkt UND der Query-String
+   ans Ziel weitergereicht. Ohne das ging die Sprache beim Weiterleiten verloren
+   und ein deutscher Band fuehrte auf die englische Fassung. */
+(function(){try{
+  var m=/[?&]lang=(de|en)/i.exec(location.search);
+  if(m){var l=m[1].toLowerCase();
+    localStorage.setItem('tp-lang',l); localStorage.setItem('tp_lang',l);}
+}catch(e){}
+location.replace("../bible.html"+location.search);})();</script>
+<meta http-equiv="refresh" content="0;url=../bible.html">
+<title>TruthPrints</title></head><body></body></html>

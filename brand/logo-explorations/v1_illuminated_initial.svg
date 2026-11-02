@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="TruthPrints">
+<defs>
+  <linearGradient id="g" x1="100" y1="6" x2="100" y2="194" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#F3DDA0"/>
+    <stop offset="0.5" stop-color="#C9A24E"/>
+    <stop offset="1" stop-color="#9A7430"/>
+  </linearGradient>
+  <radialGradient id="glow" cx="100" cy="30" r="46" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#F6E4B0" stop-opacity="0.55"/>
+    <stop offset="1" stop-color="#F6E4B0" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect x="14" y="14" width="172" height="172" rx="18" fill="none" stroke="url(#g)" stroke-width="3"/><rect x="22" y="22" width="156" height="156" rx="12" fill="none" stroke="url(#g)" stroke-width="1.1" opacity="0.6"/><path d="M14 95 L19 100 L14 105 L9 100 Z" fill="url(#g)"/><path d="M186 95 L191 100 L186 105 L181 100 Z" fill="url(#g)"/><path d="M100 9 L105 14 L100 19 L95 14 Z" fill="url(#g)"/><path d="M100 181 L105 186 L100 191 L95 186 Z" fill="url(#g)"/><circle cx="100" cy="34" r="40" fill="url(#glow)"/><path d="M100 14 C105.2 22.666666666666664 110.4 30.46666666666667 104.33333333333333 37.4 C101.73333333333333 40.86666666666667 98.26666666666667 40.86666666666667 95.66666666666667 37.4 C89.6 30.46666666666667 94.8 22.666666666666664 100 14 Z" fill="url(#g)"/><g fill="url(#g)"><path d="M24 41 L176 41 L176 67 L162 67 C160 61 159 57 154 56 L46 56 C41 57 40 61 38 67 L24 67 Z"/><path d="M92 56 L108 56 L107 150 C109 156 112 160 120 162 L132 162 L132 170 L68 170 L68 162 L80 162 C88 160 91 156 93 150 L93 56 Z"/></g></svg>
